@@ -178,7 +178,7 @@
             </table>
             
         </div>
-        <div class="h-[100%] w-[7%]  border border-red-700">
+        <div class="h-[100%] w-[20%]  border border-red-700">
             <table class="w-[100%] h-[100%] border-collapse flex-col justify-start items-start">
                 <!-- Table Header -->
                 <thead>
@@ -189,48 +189,56 @@
                 
                 <!-- Table Body -->
                 <tbody>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch ">
-                        <td class="w-16 h-16 flex justify-center items-center">
-                            <img src="../../../../assets/more_vert.svg" alt="" class="w-6 h-6">
+                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                        <td class="p-2 h-16 flex justify-between items-center ">
+                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
+                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
+                        </td>
+                    </tr>
+                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                        <td class="p-2 h-16 flex justify-between items-center ">
+                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
+                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
+                        </td>
+                    </tr>
+                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                        <td class="p-2 h-16 flex justify-between items-center ">
+                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
+                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
+                        </td>
+                    </tr>
+                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                        <td class="p-2 h-16 flex justify-between items-center ">
+                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
+                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
+                        </td>
+                    </tr>
+                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                        <td class="p-2 h-16 flex justify-between items-center ">
+                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
+                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
+                        </td>
+                    </tr>
+                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                        <td class="p-2 h-16 flex justify-between items-center ">
+                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
+                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
                         </td>
                     </tr>
                     
                     
                     
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc]">
-                        <td class="w-16 h-16 flex justify-center items-center">
-                            <img src="../../../../assets/more_vert.svg" alt="" class="w-6 h-6">
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc]">
-                        <td class="w-16 h-16 flex justify-center items-center">
-                            <img src="../../../../assets/more_vert.svg" alt="" class="w-6 h-6">
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc]">
-                        <td class="w-16 h-16 flex justify-center items-center">
-                            <img src="../../../../assets/more_vert.svg" alt="" class="w-6 h-6">
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc]">
-                        <td class="w-16 h-16 flex justify-center items-center">
-                            <img src="../../../../assets/more_vert.svg" alt="" class="w-6 h-6">
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc]">
-                        <td class="w-16 h-16 flex justify-center items-center">
-                            <img src="../../../../assets/more_vert.svg" alt="" class="w-6 h-6">
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc]">
-                        <td class="w-16 h-16 flex justify-center items-center">
-                            <img src="../../../../assets/more_vert.svg" alt="" class="w-6 h-6">
-                        </td>
-                    </tr>
                     
                     
                     
                     
+                    
+                    <tr class="h-14 bg-white border-b border-red-700 self-stretch">
+                        <td class="p-2 h-16 flex justify-between items-center ">
+                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
+                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
+                        </td>
+                    </tr>
                     
                     
                    
@@ -242,5 +250,24 @@
 
         
     </div>
-    <div class="h-[40px] w-[95%] ml-6 border border-red-700"></div>
+    <div class="h-[40px] w-[95%] ml-6   flex justify-between ">
+        <div class="h-[100%] w-[20%] ">
+            <button (click)="handleButtonClick()" class="h-9 rounded-lg flex justify-start items-start bg-white shadow border border-[#cfd4dc] px-3.5 py-2">
+                <div class="w-5 h-5 relative">
+                    <img src="../../../../assets/arrow-left.svg" alt="">
+                </div>
+                <div class="text-[#344053] text-sm font-medium leading-tight ml-2">Previous</div>
+            </button>
+            
+        </div>
+        <div class="h-[100%] w-[20%] border border-red-700"></div>
+        <div class="h-[100%] w-[20%] flex justify-end border-red-700">
+            <button (click)="handleNextClick()" class="h-9 px-3.5 py-2 bg-white rounded-lg shadow border border-[#feb172] flex justify-center items-center gap-2">
+            <div class="text-[#344053] text-sm font-medium leading-tight">Next</div>
+            <div class="w-5 h-5 relative"></div>
+        </button>
+        </div>
+
+
+    </div>
 </div>

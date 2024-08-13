@@ -1,0 +1,11 @@
+.popup-menu {
+    z-index: 1000; /* Make sure the popup is above other content */
+}
+
+.relative {
+    position: relative; /* Ensure the popup is positioned relative to the table cell */
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
