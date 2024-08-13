@@ -24,13 +24,68 @@
             <button class="h-10 px-5 rounded-lg border-2 border-[#ec4909] justify-center items-center gap-2 inline-flex">
                 <span class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Bulk upload</span>
             </button>
-            <button class="h-10 px-5 bg-[#ec4909] rounded-lg justify-center items-center gap-2 inline-flex">
-                <span class="text-white text-base font-normal font-['Archivo'] leading-normal tracking-tight">Add Student</span>
+            <!-- Add Student Button -->
+            <button (click)="toggleForm()" class="h-10 px-5 bg-[#ec4909] rounded-lg justify-center items-center gap-2 inline-flex">
+    <span class="text-white text-base font-normal font-['Archivo'] leading-normal tracking-tight">Add Student</span>
             </button>
+
+            <!-- Modal Popup -->
+            <div *ngIf="showForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div class="w-[400px] h-[482px] p-6 bg-white rounded-xl shadow-lg flex-col justify-start items-center gap-8">
+            <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
+            <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Student</div>
+            <div class="self-stretch text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
+                Please fill the forms below to send an invite to the trainer
+            </div>
+            </div>
+            <div class="self-stretch h-[250px] flex-col justify-start items-center gap-5 flex">
+            <!-- Name Input -->
+            <div class="self-stretch flex-col justify-start items-start gap-1.5 flex">
+                <label for="name" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Name*</label>
+                <input id="name" type="text" placeholder="Enter name" class="self-stretch h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+            </div>
+
+            <!-- Email Input -->
+            <div class="self-stretch flex-col justify-start items-start gap-1.5 flex">
+                <label for="email" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</label>
+                <input id="email" type="email" placeholder="Enter email" class="self-stretch h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+            </div>
+
+            <!-- Assign Departments(s) Input -->
+            <div class="self-stretch flex-col justify-start items-start gap-1.5 flex">
+            <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Departments(s)*</label>
+            <select id="departments" class="self-stretch h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                <option value="" disabled selected>Select department</option>
+                <option value="department1">Department 1</option>
+                <option value="department2">Department 2</option>
+                <option value="department3">Department 3</option>
+                <!-- Add more options as needed -->
+    </select>
+</div>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="h-[44px] w-[352px] mt-7 flex justify-between border-red-700">
+            <div class="h-[44px] w-[170px] rounded-lg">
+                <button (click)="toggleForm()" class="w-full h-full bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
+                    <div class="text-[#344053] text-base font-semibold">Cancel</div>
+                </button>
+            </div>
+            <div class="h-[44px] w-[170px] rounded-lg">
+                <button class="w-full h-full bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
+                    <div class="text-white text-base font-semibold">Invite</div>
+                </button>
+            </div>
         </div>
     </div>
-    <div class="h-[85%] w-[95%] flex border border-red-700 ml-6  ">
-        <div class="h-[100%] w-[30%]  border border-red-700">
+            </div>
+
+
+        </div>
+    </div>
+    <div class="h-[85%] w-[95%] flex  ml-6  ">
+        <div class="h-[100%] w-[30%]  ">
             <table class="h-[100%] w-full border-collapse flex-col justify-start items-start">
                 <!-- Table Header -->
                 <thead>
@@ -102,7 +157,7 @@
             </table>
             
         </div>
-        <div class="h-[100%] w-[30%]  border border-red-700">
+        <div class="h-[100%] w-[30%]  ">
             <table class="h-[100%] w-full border-collapse flex-col justify-start items-start">
                 <!-- Table Header -->
                 <thead>
@@ -140,7 +195,7 @@
             </table>
             
         </div>
-        <div class="h-[100%] w-[35%]  border border-red-700">
+        <div class="h-[100%] w-[35%]  ">
             <table class="h-[100%] w-full border-collapse flex-col justify-start items-start">
                 <!-- Table Header -->
                 <thead>
@@ -178,7 +233,7 @@
             </table>
             
         </div>
-        <div class="h-[100%] w-[20%]  border border-red-700">
+        <div class="h-[100%] w-[20%] ">
             <table class="w-[100%] h-[100%] border-collapse flex-col justify-start items-start">
                 <!-- Table Header -->
                 <thead>
@@ -264,7 +319,9 @@
         <div class="h-[100%] w-[20%] flex justify-end border-red-700">
             <button (click)="handleNextClick()" class="h-9 px-3.5 py-2 bg-white rounded-lg shadow border border-[#feb172] flex justify-center items-center gap-2">
             <div class="text-[#344053] text-sm font-medium leading-tight">Next</div>
-            <div class="w-5 h-5 relative"></div>
+            <div class="w-5 h-5 relative">
+                <img src="../../../../assets/arrow-right.svg" alt="">
+            </div>
         </button>
         </div>
 

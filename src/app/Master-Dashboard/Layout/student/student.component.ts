@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class StudentComponent {
 
   editUser() {
+    this.isEditUserVisible = true;
     // Your logic for editing a user
     console.log('Edit User button clicked');
   }
@@ -24,6 +25,19 @@ export class StudentComponent {
   handleButtonClick() {
     // Your logic for handling button click
     console.log('Button clicked');
+  }
+  isEditUserVisible: boolean = false;
+
+  
+  cancelEdit() {
+    this.isEditUserVisible = false;
+  }
+  
+
+  showForm = false;
+
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
   
 }
