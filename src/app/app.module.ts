@@ -8,6 +8,7 @@ import { SidebarComponent } from './Master-Dashboard/Layout/sidebar/sidebar.comp
 import { StudentComponent } from './Master-Dashboard/Layout/student/student.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { TopPanelComponent } from './Master-Dashboard/Layout/top-panel/top-panel.component';
 
 
 
@@ -16,7 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     LoginComponent,
     SidebarComponent,
-    StudentComponent
+    StudentComponent,
+    TopPanelComponent
   ],
   imports: [
     BrowserModule,
