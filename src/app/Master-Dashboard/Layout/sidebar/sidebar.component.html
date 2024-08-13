@@ -1,0 +1,78 @@
+<div class="w-screen h-screen justify-center items-center">
+    <div class=" h-screen w-[220px] flex justify-center items-center border-r-2 border-[#D0D5DD
+    ]">
+        <div class="h-[565px] w-[220px] border border-red-700 flex flex-col justify-between">
+            <div class="h-[70%] w-[100%] border-2 border-blue-700">
+                <a routerLink="/dashboard" 
+   routerLinkActive="active-link" 
+   class="h-10 pl-3 pr-4 rounded-lg justify-start items-center gap-2 inline-flex cursor-pointer">
+    <div class="w-6 h-6 justify-center items-center flex">
+        <div class="w-6 h-6 relative">
+            <img src="../../../../assets/category.svg" alt="">
+        </div>
+    </div>
+    <div class="text-[#1a1a2a] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+        Dashboard
+    </div>
+</a>
+
+<a (click)="toggleExpand()" 
+   class="h-10 pl-3 pr-4 rounded-lg justify-start items-center gap-2 inline-flex cursor-pointer">
+    <div class="w-6 h-6 justify-center items-center flex">
+        <div class="w-6 h-6 relative">
+            <img src="../../../../assets/people.svg" alt="">
+        </div>
+    </div>
+    <div class="text-[#1a1a2a] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+        Manage Users
+    </div>
+</a>
+
+<!-- Expandable Links -->
+<div *ngIf="isExpanded" class="flex flex-col ml-8">
+    <a routerLink="/students" 
+       routerLinkActive="active-link" 
+       class="h-10 pl-3 pr-4 rounded-lg justify-start items-center gap-2 inline-flex cursor-pointer">
+        <div class="text-[#1a1a2a] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+            Student
+        </div>
+    </a>
+    <a routerLink="/admins" 
+       routerLinkActive="active-link" 
+       class="h-10 pl-3 pr-4 rounded-lg justify-start items-center gap-2 inline-flex cursor-pointer">
+        <div class="text-[#1a1a2a] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+            Admin
+        </div>
+    </a>
+</div>
+
+
+<a routerLink="/settings" 
+   routerLinkActive="active-link" 
+   class="h-10 pl-3 pr-4 rounded-lg justify-start items-center gap-2 inline-flex cursor-pointer">
+    <div class="w-6 h-6 justify-center items-center flex">
+        <div class="w-6 h-6 relative">
+            <img src="../../../../assets/setting.svg" alt="">
+        </div>
+    </div>
+    <div class="text-[#1a1a2a] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+        Settings
+    </div>
+</a>
+                
+            </div>
+            <div class="h-[10%] w-[100%] border-2 border-blue-700">
+                <a href="/logout" class="w-[167px] h-10 pl-3 pr-4 rounded-lg justify-start items-center gap-2 inline-flex">
+                    <div class="w-6 h-6 justify-center items-center flex">
+                        <div class="w-6 h-6 relative">
+                            <img src="../../../../assets/logout.svg" alt="Logout">
+                        </div>
+                    </div>
+                    <div class="text-[#1a1a2a] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Logout</div>
+                </a>
+                
+            </div>
+
+        </div>
+    </div>
+</div>

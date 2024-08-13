@@ -1,0 +1,15 @@
+a {
+    transition: color 0.3s, filter 0.3s;
+}
+
+a:hover img,
+a:hover div {
+    filter: invert(50%) sepia(100%) saturate(1500%) hue-rotate(-20deg) brightness(95%) contrast(100%);
+    color: #ec4909;
+}
+
+a.active-link img,
+a.active-link div {
+    filter: invert(50%) sepia(100%) saturate(1500%) hue-rotate(-20deg) brightness(95%) contrast(100%);
+    color: #ec4909;
+}
