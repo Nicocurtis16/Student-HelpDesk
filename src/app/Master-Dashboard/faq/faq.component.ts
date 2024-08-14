@@ -6,18 +6,27 @@ import { Component } from '@angular/core';
   styleUrl: './faq.component.css'
 })
 export class FAQComponent {
-  showModal = false;
+  showDeleteModal = false;
+  showModal = false; // Controls modal visibility
+  faqQuestion = '';
+  faqAnswer = '';
+  faqTopic = '';
+  topics = ['Admission', 'Portal', 'Department']; // Example topics
+
+  
 
   editUser() {
     this.isEditUserVisible = true;
     // Your logic for editing a user
     console.log('Edit User button clicked');
+    this.showModal=true;
+  }
+  saveFAQ(){
+    console.log('saved sucessfully')
   }
 
-  deleteUser() {
-    // Your logic for deleting a user
-    console.log('Delete User button clicked');
-  }
+
+ 
   handleNextClick() {
     // Your logic for handling the button click
     console.log('Next button clicked');
@@ -40,6 +49,18 @@ export class FAQComponent {
   toggleForm() {
     this.showForm = !this.showForm;
   }
-  
+  closeModal() {
+    this.showModal = false;
+  }
+  deleteUser() {
+    this.showDeleteModal = true;
+    console.log('Delete User button clicked');
+  }
+
+  // Method to hide the Delete confirmation modal
+  closeDeleteModal() {
+    this.showDeleteModal = false;
+  }
+
 
 }

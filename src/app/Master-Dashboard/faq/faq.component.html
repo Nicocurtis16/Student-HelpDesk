@@ -242,49 +242,154 @@
                     
                     <!-- Table Body -->
                     <tbody>
+                        <!-- Row 1 -->
                         <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                             <td class="p-2 h-16 flex justify-between items-center">
                                 <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
                                 <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
                             </td>
                         </tr>
+                        <!-- Row 2 -->
                         <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                             <td class="p-2 h-16 flex justify-between items-center">
                                 <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
                                 <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
                             </td>
                         </tr>
+                        <!-- Row 3 -->
                         <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                             <td class="p-2 h-16 flex justify-between items-center">
                                 <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
                                 <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
                             </td>
                         </tr>
+                        <!-- Row 4 -->
                         <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                             <td class="p-2 h-16 flex justify-between items-center">
                                 <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
                                 <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
                             </td>
                         </tr>
+                        <!-- Row 5 -->
                         <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                             <td class="p-2 h-16 flex justify-between items-center">
                                 <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
                                 <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
                             </td>
                         </tr>
+                        <!-- Row 6 -->
                         <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                             <td class="p-2 h-16 flex justify-between items-center">
                                 <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
                                 <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
                             </td>
                         </tr>
-                        <tr class="h-14 bg-white border-b border-red-700 self-stretch">
+                        <!-- Row 7 -->
+                        <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                             <td class="p-2 h-16 flex justify-between items-center">
                                 <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
                                 <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
                             </td>
                         </tr>
+                    
+                        <!-- Modal Popup -->
+                        <div *ngIf="showModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+                            <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
+                                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
+                                    <div class="h-[76px] flex-col justify-start items-start gap-2 inline-flex">
+                                        <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Edit FAQ</div>
+                                        <div class="self-stretch text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Please fill the forms below to edit the FAQ</div>
+                                    </div>
+                                </div>
+                                <div class="self-stretch h-auto flex-col justify-start items-start gap-5 flex">
+                                    <div class="self-stretch h-[100px] flex-col justify-start items-start gap-3 flex">
+                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Questions*</div>
+                                        </div>
+                                        <input 
+                                            type="text" 
+                                            class="self-stretch h-[70px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                                            [(ngModel)]="faqQuestion"
+                                            placeholder="Enter the question"
+                                        />
+                                    </div>
+                                    <div class="self-stretch h-[100px] flex-col justify-start items-start gap-5 flex">
+                                        <div class="self-stretch h-[100px] flex-col justify-start items-start gap-3 flex">
+                                            <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                                                <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Answers*</div>
+                                            </div>
+                                            <input 
+                                                type="text" 
+                                                class="self-stretch h-[70px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                                                [(ngModel)]="faqAnswer"
+                                                placeholder="Enter the Answer"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="self-stretch h-[100px] flex-col justify-start items-start gap-5 flex">
+                                        <div class="self-stretch h-[60px] flex-col justify-start items-start gap-3 flex">
+                                            <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                                                <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Topic*</div>
+                                            </div>
+                                            <select 
+                                                class="self-stretch h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                                                [(ngModel)]="faqTopic"
+                                            >
+                                                <option *ngFor="let topic of topics" [value]="topic">{{ topic }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <!-- Buttons -->
+                                <div class="self-stretch justify-start items-start gap-3 inline-flex">
+                                    <div 
+                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
+                                        (click)="closeModal()"
+                                    >
+                                        <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+                                    </div>
+                                    <div 
+                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center gap-2 cursor-pointer"
+                                        (click)="saveFAQ()"
+                                    >
+                                        <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Save</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div *ngIf="showDeleteModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+        <div class="w-[400px] h-[200px] p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
+            <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
+                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-2 flex">
+                    <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Delete User</div>
+                    <div class="self-stretch">
+                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Are you sure you want to delete </span>
+                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">{{ userName }}</span>
+                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">? This action cannot be undone.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="self-stretch justify-start items-start gap-3 inline-flex">
+                <div 
+                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
+                    (click)="closeDeleteModal()"
+                >
+                    <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+                </div>
+                <div 
+                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#d92c20] rounded-lg shadow border border-[#d92c20] flex justify-center items-center gap-2 cursor-pointer"
+                    (click)="confirmDelete()"
+                >
+                    <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Delete</span>
+                </div>
+            </div>
+        </div>
+    </div>
                     </tbody>
+                    
                     
                     
                 </table>
