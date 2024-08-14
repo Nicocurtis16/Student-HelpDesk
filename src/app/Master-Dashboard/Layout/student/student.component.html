@@ -1,344 +1,323 @@
-
 <div class="w-screen h-screen flex">
-    <div class="h-[100%] w-[20p%] ">
-        <app-sidebar></app-sidebar>
-        
+    <!-- Sidebar -->
+    <div class="h-full w-[20%]">
+      <app-sidebar></app-sidebar>
     </div>
-   
-
-    <div class="h-[100%] w-screen ">
-        <div class="h-[10%] w-[100%] mb-5"><app-top-panel></app-top-panel></div>
-        <div class="h-[87%] w-[100%] "><div class="h-[100%] w-[100%] flex flex-col gap-4">
-    <div class="h-[50px] w-[95%] ml-6 flex ">
-        <div class="h-[100%] w-[80%] flex justify-between  ">
-            <div class="h-[100%] w-[30%] justify-start items-center inline-flex">
-                <div class="text-black text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                    Manage Users / 
-                </div>
-                <div class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                    Student
-                </div>
+  
+    <!-- Main Content Area -->
+    <div class="h-full w-[80%] flex flex-col">
+      <!-- Top Panel -->
+      <div class="h-[10%] w-[100%] mb-5">
+        <app-top-panel></app-top-panel>
+      </div>
+  
+      <!-- Down Panel -->
+      <div class="h-[87%] w-full flex flex-col items-center gap-4">
+        <!-- first -->
+        <div class="h-[10%] w-[95%] flex justify-between items-center ">
+          <!-- Left Section (Breadcrumbs) -->
+          <div class="h-full w-[30%] flex items-center  ">
+            <div class="text-black text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+              Manage Users /
             </div>
-            <div class="h-[100%] w-[32%] flex items-center  "> 
-                <div class="h-10 bg-white flex-col justify-start items-start gap-2 inline-flex">
-                <div class="w-[300px] h-10 px-4 py-2 rounded-lg border border-[#a6a6ab] flex items-center gap-2">
-                    <img src="../../../../assets/search-normal.svg" alt="">
-                    <input type="text" 
-                           placeholder="Search in table" 
-                           class="w-full h-6 text-[#a6a6ab] text-base font-normal font-['Archivo'] leading-normal tracking-tight outline-none"/>
-                </div>
+            <div class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight ml-1">
+              Student
             </div>
+          </div>
+  
+          <!-- Center Section (Search Bar) -->
+          <div class="h-full w-[47%] flex items-center justify-end ">
+            <div class="h-10 bg-white flex items-center gap-2">
+              <div class="w-[300px] h-10 px-4 py-2 rounded-lg border border-[#a6a6ab] flex items-center gap-2">
+                <img src="../../../../assets/search-normal.svg" alt="Search Icon">
+                <input type="text" 
+                       placeholder="Search in table" 
+                       class="w-full h-6 text-[#a6a6ab] text-base font-normal font-['Archivo'] leading-normal tracking-tight outline-none"/>
+              </div>
             </div>
-        </div>
-        <div class="h-[100%] w-[22%] flex justify-between items-center ">
-            <button class="h-10 px-5 rounded-lg border-2 border-[#ec4909] justify-center items-center gap-2 inline-flex">
-                <span class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Bulk upload</span>
+          </div>
+  
+          <!-- Right Section (Buttons) -->
+          <div class="h-full w-[22%] flex justify-between items-center ">
+            <button class="h-10 px-5 rounded-lg border-2 border-[#ec4909] flex items-center justify-center">
+              <span class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Bulk Upload</span>
             </button>
+  
             <!-- Add Student Button -->
-            <button (click)="toggleForm()" class="h-10 px-5 bg-[#ec4909] rounded-lg justify-center items-center gap-2 inline-flex">
-    <span class="text-white text-base font-normal font-['Archivo'] leading-normal tracking-tight">Add Student</span>
+            <button (click)="toggleForm()" class="h-10 px-5 bg-[#ec4909] rounded-lg flex items-center justify-center">
+              <span class="text-white text-base font-normal font-['Archivo'] leading-normal tracking-tight">Add Student</span>
             </button>
-
-            <!-- Modal Popup -->
-            <div *ngIf="showForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div class="w-[400px] h-[482px] p-6 bg-white rounded-xl shadow-lg flex-col justify-start items-center gap-8">
-            <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
-            <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Student</div>
-            <div class="self-stretch text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
+          </div>
+        </div>
+  
+        <!-- Modal Popup -->
+        <div *ngIf="showForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div class="w-[400px] h-[482px] p-6 bg-white rounded-xl shadow-lg flex flex-col gap-8">
+            <div class="flex flex-col gap-5">
+              <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Student</div>
+              <div class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
                 Please fill the forms below to send an invite to the trainer
+              </div>
             </div>
-            </div>
-            <div class="self-stretch h-[250px] flex-col justify-start items-center gap-5 flex">
-            <!-- Name Input -->
-            <div class="self-stretch flex-col justify-start items-start gap-1.5 flex">
+  
+            <div class="flex flex-col gap-5">
+              <!-- Name Input -->
+              <div class="flex flex-col gap-1.5">
                 <label for="name" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Name*</label>
-                <input id="name" type="text" placeholder="Enter name" class="self-stretch h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-            </div>
-
-            <!-- Email Input -->
-            <div class="self-stretch flex-col justify-start items-start gap-1.5 flex">
+                <input id="name" type="text" placeholder="Enter name" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+              </div>
+  
+              <!-- Email Input -->
+              <div class="flex flex-col gap-1.5">
                 <label for="email" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</label>
-                <input id="email" type="email" placeholder="Enter email" class="self-stretch h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                <input id="email" type="email" placeholder="Enter email" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+              </div>
+  
+              <!-- Assign Departments(s) Input -->
+              <div class="flex flex-col gap-1.5">
+                <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Departments(s)*</label>
+                <select id="departments" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                  <option value="" disabled selected>Select department</option>
+                  <option value="department1">Department 1</option>
+                  <option value="department2">Department 2</option>
+                  <option value="department3">Department 3</option>
+                </select>
+              </div>
             </div>
-
-            <!-- Assign Departments(s) Input -->
-            <div class="self-stretch flex-col justify-start items-start gap-1.5 flex">
-            <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Departments(s)*</label>
-            <select id="departments" class="self-stretch h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                <option value="" disabled selected>Select department</option>
-                <option value="department1">Department 1</option>
-                <option value="department2">Department 2</option>
-                <option value="department3">Department 3</option>
-                <!-- Add more options as needed -->
-    </select>
-</div>
-
+  
+            <!-- Buttons -->
+            <div class="flex justify-between mt-7">
+              <button (click)="toggleForm()" class="h-11 w-[170px] bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
+                <span class="text-[#344053] text-base font-semibold">Cancel</span>
+              </button>
+              <button class="h-11 w-[170px] bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
+                <span class="text-white text-base font-semibold">Invite</span>
+              </button>
+            </div>
+          </div>
         </div>
-
-        <!-- Buttons -->
-        <div class="h-[44px] w-[352px] mt-7 flex justify-between border-red-700">
-            <div class="h-[44px] w-[170px] rounded-lg">
-                <button (click)="toggleForm()" class="w-full h-full bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
-                    <div class="text-[#344053] text-base font-semibold">Cancel</div>
-                </button>
+        <!-- second -->
+        <div class="h-[80%] w-[95%] flex  items-center border">
+            <!-- first table -->
+            <div class="h-[100%] w-[30%] flex justify-start items-start ">
+                <table class="w-full border-collapse">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Username
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="h-14 bg-white border-b border-[#cfd4dc]">
+                            <td class="flex items-center gap-4 p-2">
+                                <div class="w-12 h-12 bg-[#f2f3f6] rounded-full flex justify-center items-center">
+                                    <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">OR</span>
+                                </div>
+                                <span class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                    Jane Cooper
+                                </span>
+                            </td>
+                        </tr>
+                </table>
             </div>
-            <div class="h-[44px] w-[170px] rounded-lg">
-                <button class="w-full h-full bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
-                    <div class="text-white text-base font-semibold">Invite</div>
-                </button>
+            
+            <!-- second table -->
+            <div class="h-[100%] w-[30%] flex justify-start items-start ">
+                <table class="w-full border-collapse">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Email
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="h-16 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
+                            <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">janecooper&#64;gmail.com</td>
+                        </tr>
+                       
+                </table>
+
+            </div>
+            <!-- third table -->
+            <div class="h-[100%] w-[20%] flex justify-start items-start ">
+                <table class="w-full border-collapse">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Email
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="h-16 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
+                            <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">janecooper&#64;gmail.com</td>
+                        </tr>
+                       
+                </table>
+
+            </div>
+            <!-- forth table -->
+            <div class="h-[100%] w-[20%] flex justify-start items-start ">
+                <table class="w-full border-collapse ">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    
+                    <!-- Table Body -->
+                    <tbody>
+                        <!-- Row 1 -->
+                        <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                            <td class="p-2 h-16 flex justify-between items-center">
+                                <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
+                                <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
+                            </td>
+                        </tr>
+                        
+                        <!-- Modal Popup -->
+                        <div *ngIf="showModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+                            <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
+                                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
+                                    <div class="h-[76px] flex-col justify-start items-start gap-2 inline-flex">
+                                        <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Edit FAQ</div>
+                                        <div class="self-stretch text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Please fill the forms below to edit the FAQ</div>
+                                    </div>
+                                </div>
+                                <div class="self-stretch h-auto flex-col justify-start items-start gap-5 flex">
+                                    <div class="self-stretch h-[100px] flex-col justify-start items-start gap-3 flex">
+                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Questions*</div>
+                                        </div>
+                                        <input 
+                                            type="text" 
+                                            class="self-stretch h-[70px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                                            [(ngModel)]="faqQuestion"
+                                            placeholder="Enter the question"
+                                        />
+                                    </div>
+                                    <div class="self-stretch h-[100px] flex-col justify-start items-start gap-5 flex">
+                                        <div class="self-stretch h-[100px] flex-col justify-start items-start gap-3 flex">
+                                            <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                                                <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Answers*</div>
+                                            </div>
+                                            <input 
+                                                type="text" 
+                                                class="self-stretch h-[70px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                                                [(ngModel)]="faqAnswer"
+                                                placeholder="Enter the Answer"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="self-stretch h-[100px] flex-col justify-start items-start gap-5 flex">
+                                        <div class="self-stretch h-[60px] flex-col justify-start items-start gap-3 flex">
+                                            <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                                                <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Topic*</div>
+                                            </div>
+                                            <select 
+                                                class="self-stretch h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                                                [(ngModel)]="faqTopic"
+                                            >
+                                                <option *ngFor="let topic of topics" [value]="topic">{{ topic }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <!-- Buttons -->
+                                <div class="self-stretch justify-start items-start gap-3 inline-flex">
+                                    <div 
+                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
+                                        (click)="closeModal()"
+                                    >
+                                        <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+                                    </div>
+                                    <div 
+                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center gap-2 cursor-pointer"
+                                        (click)="saveFAQ()"
+                                    >
+                                        <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Save</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div *ngIf="showDeleteModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+        <div class="w-[400px] h-[200px] p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
+            <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
+                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-2 flex">
+                    <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Delete User</div>
+                    <div class="self-stretch">
+                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Are you sure you want to delete </span>
+                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">{{ userName }}</span>
+                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">? This action cannot be undone.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="self-stretch justify-start items-start gap-3 inline-flex">
+                <div 
+                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
+                    (click)="closeDeleteModal()"
+                >
+                    <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+                </div>
+                <div 
+                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#d92c20] rounded-lg shadow border border-[#d92c20] flex justify-center items-center gap-2 cursor-pointer"
+                    (click)="confirmDelete()"
+                >
+                    <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Delete</span>
+                </div>
             </div>
         </div>
     </div>
+                    </tbody>
+                    
+                    
+                    
+                </table>
+
             </div>
 
 
         </div>
-    </div>
-    <div class="h-[85%] w-[95%] flex  ml-6  ">
-        <div class="h-[100%] w-[30%]  ">
-            <table class="h-[100%] w-full border-collapse flex-col justify-start items-start">
-                <!-- Table Header -->
-                <thead>
-                    <tr class="self-stretch h-14 px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc] justify-start items-center gap-2">
-                        <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Username</th>
-                    </tr>
-                </thead>
-                
-                <!-- Table Body -->
-                <tbody>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="flex items-center gap-4">
-                            <div class="w-12 h-12 p-2 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">OR</span>
-                            </div>
-                            <span class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Jane Cooper</span>
-                        </td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="flex items-center gap-4">
-                            <div class="w-12 h-12 p-2 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">WW</span>
-                            </div>
-                            <span class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Wade Warren</span>
-                        </td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="flex items-center gap-4">
-                            <div class="w-12 h-12 p-2 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">EH</span>
-                            </div>
-                            <span class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Esther Howard</span>
-                        </td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="flex items-center gap-4">
-                            <div class="w-12 h-12 p-2 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">CW</span>
-                            </div>
-                            <span class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Cameron Williamson</span>
-                        </td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="flex items-center gap-4">
-                            <div class="w-12 h-12 p-2 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">BS</span>
-                            </div>
-                            <span class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Brooklyn Simmons</span>
-                        </td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="flex items-center gap-4">
-                            <div class="w-12 h-12 p-2 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">LA</span>
-                            </div>
-                            <span class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Leslie Alexander</span>
-                        </td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="flex items-center gap-4">
-                            <div class="w-12 h-12 p-2 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">JW</span>
-                            </div>
-                            <span class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Jenny Wilson</span>
-                        </td>
-                    </tr>
-                   
-                </tbody>
-            </table>
-            
-        </div>
-        <div class="h-[100%] w-[30%]  ">
-            <table class="h-[100%] w-full border-collapse flex-col justify-start items-start">
-                <!-- Table Header -->
-                <thead>
-                    <tr class="self-stretch h-14 px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc] justify-start items-center gap-2">
-                        <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Email</th>
-                    </tr>
-                </thead>
-                
-                <!-- Table Body -->
-                <tbody>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">janecooper&#64;gmail.com</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">wadewarren&#64;gmail.com</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">estherhoward&#64;gmail.com</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">cameron&#64;gmail.com</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">brooklynsimmons&#64;gmail.com</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">lesliealexander&#64;gmail.com</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">jennywilson&#64;gmail.com</td>
-                    </tr>
-                   
-                    
-                </tbody>
-            </table>
-            
-        </div>
-        <div class="h-[100%] w-[35%]  ">
-            <table class="h-[100%] w-full border-collapse flex-col justify-start items-start">
-                <!-- Table Header -->
-                <thead>
-                    <tr class="self-stretch h-14 px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc] justify-start items-center gap-2">
-                        <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Department</th>
-                    </tr>
-                </thead>
-                
-                <!-- Table Body -->
-                <tbody>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Jane Cooper, Wade Warren, Esther Howard,...</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Jane Cooper, Wade Warren, Esther Howard,...</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Jane Cooper, Wade Warren, Esther Howard,...</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Jane Cooper, Wade Warren, Esther Howard,...</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Jane Cooper, Wade Warren, Esther Howard,...</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Jane Cooper, Wade Warren, Esther Howard,...</td>
-                    </tr>
-                    <tr class="self-stretch h-14 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                        <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Jane Cooper, Wade Warren, Esther Howard,...</td>
-                    </tr>
-                    
-                    
-                </tbody>
-            </table>
-            
-        </div>
-        <div class="h-[100%] w-[20%] ">
-            <table class="w-[100%] h-[100%] border-collapse flex-col justify-start items-start">
-                <!-- Table Header -->
-                <thead>
-                    <tr class="self-stretch h-14 px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc] justify-start items-center gap-2">
-                        <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Action</th>
-                    </tr>
-                </thead>
-                
-                <!-- Table Body -->
-                <tbody>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
-                        <td class="p-2 h-16 flex justify-between items-center ">
-                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
-                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
-                        <td class="p-2 h-16 flex justify-between items-center ">
-                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
-                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
-                        <td class="p-2 h-16 flex justify-between items-center ">
-                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
-                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
-                        <td class="p-2 h-16 flex justify-between items-center ">
-                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
-                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
-                        <td class="p-2 h-16 flex justify-between items-center ">
-                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
-                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
-                        </td>
-                    </tr>
-                    <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
-                        <td class="p-2 h-16 flex justify-between items-center ">
-                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
-                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
-                        </td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tr class="h-14 bg-white border-b border-red-700 self-stretch">
-                        <td class="p-2 h-16 flex justify-between items-center ">
-                            <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded">Edit User</button>
-                            <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded">Delete User</button>
-                        </td>
-                    </tr>
-                    
-                    
-                   
-                    
-                </tbody>
-            </table>
-            
-        </div>
-
-        
-    </div>
-    <div class="h-[40px] w-[95%] ml-6   flex justify-between ">
-        <div class="h-[100%] w-[20%] ">
-            <button (click)="handleButtonClick()" class="h-9 rounded-lg flex justify-start items-start bg-white shadow border border-[#cfd4dc] px-3.5 py-2">
-                <div class="w-5 h-5 relative">
-                    <img src="../../../../assets/arrow-left.svg" alt="">
+        <!-- down -->
+        <div class="h-[40px] w-[95%] flex justify-between items-center">
+            <!-- Previous Button -->
+            <div class="h-full w-[20%]">
+              <button (click)="handleButtonClick()" class="h-9 rounded-lg flex items-center bg-white shadow border border-[#cfd4dc] px-3.5 py-2">
+                <div class="w-5 h-5">
+                  <img src="../../../../assets/arrow-left.svg" alt="Previous">
                 </div>
                 <div class="text-[#344053] text-sm font-medium leading-tight ml-2">Previous</div>
-            </button>
-            
-        </div>
-        <div class="h-[100%] w-[20%] border border-red-700"></div>
-        <div class="h-[100%] w-[20%] flex justify-end border-red-700">
-            <button (click)="handleNextClick()" class="h-9 px-3.5 py-2 bg-white rounded-lg shadow border border-[#feb172] flex justify-center items-center gap-2">
-            <div class="text-[#344053] text-sm font-medium leading-tight">Next</div>
-            <div class="w-5 h-5 relative">
-                <img src="../../../../assets/arrow-right.svg" alt="">
+              </button>
             </div>
-        </button>
-        </div>
+          
+            <!-- Spacer (Optional) -->
+            <div class="h-full w-[20%]"></div>
+          
+            <!-- Next Button -->
+            <div class="h-full w-[20%] flex justify-end">
+              <button (click)="handleNextClick()" class="h-9 px-3.5 py-2 bg-white rounded-lg shadow border border-[#feb172] flex items-center gap-2">
+                <div class="text-[#344053] text-sm font-medium leading-tight">Next</div>
+                <div class="w-5 h-5">
+                  <img src="../../../../assets/arrow-right.svg" alt="Next">
+                </div>
+              </button>
+            </div>
+          </div>
+          
 
 
+      </div>
     </div>
-</div></div>
-
-
-    </div>
-</div>
+  </div>
+  
