@@ -1,0 +1,329 @@
+<div class="w-screen h-screen flex">
+    <!-- Sidebar -->
+    <div class="h-[100%] w-[20%]">
+      <app-sidebar></app-sidebar>
+    </div>
+  
+    <!-- Main Content Area -->
+    <div class="h-[100%] w-screen ">
+      <!-- Top Panel -->
+      <div class="h-[10%] w-[100%] mb-5">
+        <app-top-panel></app-top-panel>
+      </div>
+  
+      <!-- Down Panel -->
+      <div class="h-[87%] w-full flex flex-col items-center gap-4">
+        <!-- first -->
+        <div class="h-[10%] w-[95%] flex justify-between items-center ">
+          <!-- Left Section (Breadcrumbs) -->
+          <div class="h-full w-[30%] flex items-center  ">
+            <div class="text-black text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+              Manage Users /
+            </div>
+            <div class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight ml-1">
+                Admin
+            </div>
+          </div>
+  
+          <!-- Center Section (Search Bar) -->
+          <div class="h-full w-[47%] flex items-center justify-end ">
+            <div class="h-10 bg-white flex items-center gap-2">
+              <div class="w-[300px] h-10 px-4 py-2 rounded-lg border border-[#a6a6ab] flex items-center gap-2">
+                <img src="../../../../assets/search-normal.svg" alt="Search Icon">
+                <input type="text" 
+                       placeholder="Search in table" 
+                       class="w-full h-6 text-[#a6a6ab] text-base font-normal font-['Archivo'] leading-normal tracking-tight outline-none"/>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Right Section (Buttons) -->
+          <div class="h-full w-[22%] flex justify-between items-center ">
+            <button class="h-10 px-5 rounded-lg border-2 border-[#ec4909] flex items-center justify-center">
+              <span class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Bulk Upload</span>
+            </button>
+  
+            <!-- Add Student Button -->
+            <button (click)="toggleForm()" class="h-10 px-5 bg-[#ec4909] rounded-lg flex items-center justify-center">
+              <span class="text-white text-base font-normal font-['Archivo'] leading-normal tracking-tight">Add Admin</span>
+            </button>
+          </div>
+        </div>
+  
+        <!-- Modal Popup -->
+        <div *ngIf="showForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow-lg flex flex-col gap-6">
+              <div class="flex flex-col gap-3">
+                <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Administrator</div>
+                <div class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
+                    Please fill out the form below to send an invite to the administrator
+                </div>
+              </div>
+          
+              <div class="flex flex-col gap-5">
+                <!-- Name Input -->
+                <div class="flex flex-col gap-1.5">
+                  <label for="name" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Name*</label>
+                  <input id="name" type="text" placeholder="Enter name" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                </div>
+          
+                <!-- Email Input -->
+                <div class="flex flex-col gap-1.5">
+                  <label for="email" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</label>
+                  <input id="email" type="email" placeholder="Enter email" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                </div>
+          
+                <!-- Assign Department(s) Input -->
+                <div class="flex flex-col gap-1.5">
+                  <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Department(s)*</label>
+                  <select id="departments" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                    <option value="" disabled selected>Select department</option>
+                    <option value="department1">Department 1</option>
+                    <option value="department2">Department 2</option>
+                    <option value="department3">Department 3</option>
+                  </select>
+                </div>
+              </div>
+          
+              <!-- Buttons -->
+              <div class="flex justify-between mt-5">
+                <button (click)="toggleForm()" class="h-11 w-[48%] bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
+                  <span class="text-[#344053] text-base font-semibold">Cancel</span>
+                </button>
+                <button class="h-11 w-[48%] bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
+                  <span class="text-white text-base font-semibold">Invite</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+        <!-- second -->
+        <div class="h-[80%] w-[95%] flex  items-center border">
+            <!-- first table -->
+            <div class="h-[100%] w-[30%] flex justify-start items-start ">
+                <table class="w-full border-collapse">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Username
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="h-14 bg-white border-b border-[#cfd4dc]">
+                            <td class="flex items-center gap-4 p-2">
+                                <div class="w-12 h-12 bg-[#f2f3f6] rounded-full flex justify-center items-center">
+                                    <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">OR</span>
+                                </div>
+                                <span class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                    Jane Cooper
+                                </span>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+            
+            <!-- second table -->
+            <div class="h-[100%] w-[30%] flex justify-start items-start ">
+                <table class="w-full border-collapse">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Email
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="h-16 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
+                            <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">janecooper&#64;gmail.com</td>
+                        </tr>
+                       
+                </table>
+
+            </div>
+            <!-- third table -->
+            <div class="h-[100%] w-[20%] flex justify-start items-start ">
+                <table class="w-full border-collapse">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Topic
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="h-16 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
+                            <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Department</td>
+                        </tr>
+                       
+                </table>
+
+            </div>
+            <!-- forth table -->
+            <div class="h-[100%] w-[20%] flex justify-start items-start ">
+                <table class="w-full border-collapse ">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    
+                    <!-- Table Body -->
+                    <tbody>
+                        <!-- Row 1 -->
+                        <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                            <td class="p-2 h-16 flex justify-between items-center">
+                                <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
+                                <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
+                            </td>
+                        </tr>
+                        
+                        <!-- Modal Popup -->
+                        <div *ngIf="showModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+                            <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
+                                <!-- Modal Header -->
+                                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
+                                    <div class="h-[76px] flex-col justify-start items-start gap-2 inline-flex">
+                                        <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Edit Administrator Details</div>
+                                        <div class="self-stretch text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Please fill the forms below to edit the administrator's details</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Modal Body -->
+                                <div class="self-stretch h-auto flex-col justify-start items-start gap-5 flex">
+                                    <!-- Username Field -->
+                                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
+                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Username*</div>
+                                        </div>
+                                        <input 
+                                            type="text" 
+                                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                                            [(ngModel)]="studentUsername"
+                                            placeholder="Enter the username"
+                                        />
+                                    </div>
+                        
+                                    <!-- Email Field -->
+                                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
+                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</div>
+                                        </div>
+                                        <input 
+                                            type="email" 
+                                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                                            [(ngModel)]="studentEmail"
+                                            placeholder="Enter the email"
+                                        />
+                                    </div>
+                        
+                                    <!-- Department Field -->
+                                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
+                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Department*</div>
+                                        </div>
+                                        <select 
+                                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                                            [(ngModel)]="studentDepartment"
+                                        >
+                                            <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        
+                                <!-- Buttons -->
+                                <div class="self-stretch justify-start items-start gap-3 inline-flex">
+                                    <div 
+                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
+                                        (click)="closeModal()"
+                                    >
+                                        <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+                                    </div>
+                                    <div 
+                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center gap-2 cursor-pointer"
+                                        (click)="saveStudentDetails()"
+                                    >
+                                        <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Save</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+    <!-- Delete Confirmation Modal -->
+    <div *ngIf="showDeleteModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+        <div class="w-[400px] h-[200px] p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
+            <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
+                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-2 flex">
+                    <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Delete User</div>
+                    <div class="self-stretch">
+                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Are you sure you want to delete </span>
+                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">{{ userName }}</span>
+                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">? This action cannot be undone.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="self-stretch justify-start items-start gap-3 inline-flex">
+                <div 
+                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
+                    (click)="closeDeleteModal()"
+                >
+                    <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+                </div>
+                <div 
+                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#d92c20] rounded-lg shadow border border-[#d92c20] flex justify-center items-center gap-2 cursor-pointer"
+                    (click)="confirmDelete()"
+                >
+                    <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Delete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+                    </tbody>
+                    
+                    
+                    
+                </table>
+
+            </div>
+
+
+        </div>
+        <!-- down -->
+        <div class="h-[40px] w-[95%] flex justify-between items-center">
+            <!-- Previous Button -->
+            <div class="h-full w-[20%]">
+              <button (click)="handleButtonClick()" class="h-9 rounded-lg flex items-center bg-white shadow border border-[#cfd4dc] px-3.5 py-2">
+                <div class="w-5 h-5">
+                  <img src="../../../../assets/arrow-left.svg" alt="Previous">
+                </div>
+                <div class="text-[#344053] text-sm font-medium leading-tight ml-2">Previous</div>
+              </button>
+            </div>
+          
+            <!-- Spacer (Optional) -->
+            <div class="h-full w-[20%]"></div>
+          
+            <!-- Next Button -->
+            <div class="h-full w-[20%] flex justify-end">
+              <button (click)="handleNextClick()" class="h-9 px-3.5 py-2 bg-white rounded-lg shadow border border-[#feb172] flex items-center gap-2">
+                <div class="text-[#344053] text-sm font-medium leading-tight">Next</div>
+                <div class="w-5 h-5">
+                  <img src="../../../../assets/arrow-right.svg" alt="Next">
+                </div>
+              </button>
+            </div>
+          </div>
+          
+
+
+      </div>
+    </div>
+</div>
+  

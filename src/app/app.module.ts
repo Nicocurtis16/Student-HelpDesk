@@ -13,6 +13,7 @@ import { FAQComponent } from './Master-Dashboard/faq/faq.component';
 import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashboard-main.component';
 import { SettingsComponent } from './Master-Dashboard/settings/settings.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.component';
 
 
 
@@ -25,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TopPanelComponent,
     FAQComponent,
     DashboardMainComponent,
-    SettingsComponent
+    SettingsComponent,
+    AdminMainComponent
   ],
   imports: [
     BrowserModule,

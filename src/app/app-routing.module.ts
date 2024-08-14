@@ -5,6 +5,7 @@ import { SidebarComponent } from './Master-Dashboard/Layout/sidebar/sidebar.comp
 import { FAQComponent } from './Master-Dashboard/faq/faq.component';
 import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashboard-main.component';
 import { SettingsComponent } from './Master-Dashboard/settings/settings.component';
+import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.component';
 
 // Define your routes here
 const routes: Routes = [
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'faq', component: FAQComponent },
   { path: 'dashboard', component: DashboardMainComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'admin', component: AdminMainComponent },
+
 
 
 
