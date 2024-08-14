@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { TopPanelComponent } from './Master-Dashboard/Layout/top-panel/top-panel.component';
 import { FAQComponent } from './Master-Dashboard/faq/faq.component';
+import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashboard-main.component';
 
 
 
@@ -20,7 +21,8 @@ import { FAQComponent } from './Master-Dashboard/faq/faq.component';
     SidebarComponent,
     StudentComponent,
     TopPanelComponent,
-    FAQComponent
+    FAQComponent,
+    DashboardMainComponent
   ],
   imports: [
     BrowserModule,
