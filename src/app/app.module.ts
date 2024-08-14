@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopPanelComponent } from './Master-Dashboard/Layout/top-panel/top-panel.component';
 import { FAQComponent } from './Master-Dashboard/faq/faq.component';
 import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashboard-main.component';
+import { SettingsComponent } from './Master-Dashboard/settings/settings.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,10 +24,12 @@ import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashbo
     StudentComponent,
     TopPanelComponent,
     FAQComponent,
-    DashboardMainComponent
+    DashboardMainComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule, // Make sure AppRoutingModule is imported here
     RouterModule, 
     FormsModule // Add FormsModule here

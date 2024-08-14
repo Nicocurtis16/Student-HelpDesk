@@ -1,0 +1,57 @@
+<div class="h-[100%] p-6 bg-gray-100 shadow-lg rounded-lg overflow-auto">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Admin Settings</h2>
+  
+    <!-- Profile Section -->
+    <section class="mb-8">
+      <h3 class="text-xl font-semibold mb-4 text-gray-700">Profile Information</h3>
+      <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()">
+        <div class="mb-4">
+          <label for="fullName" class="block text-gray-600 font-medium mb-2">Full Name</label>
+          <input id="fullName" formControlName="fullName" type="text" class="form-input w-full" />
+        </div>
+  
+        <div class="mb-4">
+          <label for="email" class="block text-gray-600 font-medium mb-2">Email Address</label>
+          <input id="email" formControlName="email" type="email" class="form-input w-full" />
+        </div>
+  
+        <div class="mb-4">
+          <label for="phone" class="block text-gray-600 font-medium mb-2">Phone Number</label>
+          <input id="phone" formControlName="phone" type="text" class="form-input w-full" />
+        </div>
+  
+        <div class="mb-4">
+          <label for="profilePicture" class="block text-gray-600 font-medium mb-2 cursor-pointer flex items-center bg-white border border-gray-300 rounded-lg py-2 px-4">
+            <input id="profilePicture" formControlName="profilePicture" type="file" (change)="onFileChange($event)" class="hidden" />
+            <span class="text-blue-500">Upload Profile Picture</span>
+          </label>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
+    </section>
+  
+    <!-- Password Section -->
+    <section>
+      <h3 class="text-xl font-semibold mb-4 text-gray-700">Change Password</h3>
+      <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
+        <div class="mb-4">
+          <label for="currentPassword" class="block text-gray-600 font-medium mb-2">Current Password</label>
+          <input id="currentPassword" formControlName="currentPassword" type="password" class="form-input w-full" />
+        </div>
+  
+        <div class="mb-4">
+          <label for="newPassword" class="block text-gray-600 font-medium mb-2">New Password</label>
+          <input id="newPassword" formControlName="newPassword" type="password" class="form-input w-full" />
+        </div>
+  
+        <div class="mb-4">
+          <label for="confirmPassword" class="block text-gray-600 font-medium mb-2">Confirm New Password</label>
+          <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-input w-full" />
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Change Password</button>
+      </form>
+    </section>
+  </div>
+  
