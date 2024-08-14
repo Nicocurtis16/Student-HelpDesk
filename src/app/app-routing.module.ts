@@ -4,14 +4,17 @@ import { StudentComponent } from './Master-Dashboard/Layout/student/student.comp
 import { SidebarComponent } from './Master-Dashboard/Layout/sidebar/sidebar.component';
 import { FAQComponent } from './Master-Dashboard/faq/faq.component';
 import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashboard-main.component';
+import { SettingsComponent } from './Master-Dashboard/settings/settings.component';
 
 // Define your routes here
 const routes: Routes = [
-  { path: '', component: SidebarComponent }, // Replace SidebarComponent with the default component or leave it as is.
+  { path: '', component: DashboardMainComponent }, // Replace SidebarComponent with the default component or leave it as is.
   { path: 'Student', component: StudentComponent },
   { path: 'sidebar', component: SidebarComponent },
   { path: 'faq', component: FAQComponent },
   { path: 'dashboard', component: DashboardMainComponent },
+  { path: 'settings', component: SettingsComponent },
+
 
 
 ];
