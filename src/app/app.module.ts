@@ -9,6 +9,7 @@ import { StudentComponent } from './Master-Dashboard/Layout/student/student.comp
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { TopPanelComponent } from './Master-Dashboard/Layout/top-panel/top-panel.component';
+import { FAQComponent } from './Master-Dashboard/faq/faq.component';
 
 
 
@@ -18,7 +19,8 @@ import { TopPanelComponent } from './Master-Dashboard/Layout/top-panel/top-panel
     LoginComponent,
     SidebarComponent,
     StudentComponent,
-    TopPanelComponent
+    TopPanelComponent,
+    FAQComponent
   ],
   imports: [
     BrowserModule,
