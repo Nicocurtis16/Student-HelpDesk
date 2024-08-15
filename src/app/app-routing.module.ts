@@ -6,16 +6,20 @@ import { FAQComponent } from './Master-Dashboard/faq/faq.component';
 import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashboard-main.component';
 import { SettingsComponent } from './Master-Dashboard/settings/settings.component';
 import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.component';
+import { LoginComponent } from './Login/login/login.component';
 
 // Define your routes here
 const routes: Routes = [
-  { path: '', component: DashboardMainComponent }, // Replace SidebarComponent with the default component or leave it as is.
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // Replace SidebarComponent with the default component or leave it as is.
   { path: 'Student', component: StudentComponent },
   { path: 'sidebar', component: SidebarComponent },
   { path: 'faq', component: FAQComponent },
   { path: 'dashboard', component: DashboardMainComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'admin', component: AdminMainComponent },
+  { path: 'login', component: LoginComponent},
+
+
 
 
 
