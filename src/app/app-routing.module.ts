@@ -7,23 +7,17 @@ import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashbo
 import { SettingsComponent } from './Master-Dashboard/settings/settings.component';
 import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.component';
 import { LoginComponent } from './Login/login/login.component';
+import { AuthGuard } from './AuthGuard';
 
-// Define your routes here
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // Replace SidebarComponent with the default component or leave it as is.
-  { path: 'Student', component: StudentComponent },
-  { path: 'sidebar', component: SidebarComponent },
-  { path: 'faq', component: FAQComponent },
-  { path: 'dashboard', component: DashboardMainComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'admin', component: AdminMainComponent },
-  { path: 'login', component: LoginComponent},
-
-
-
-
-
-
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardMainComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminMainComponent, canActivate: [AuthGuard] },
+  { path: 'Student', component: StudentComponent, canActivate: [AuthGuard] },
+  { path: 'sidebar', component: SidebarComponent, canActivate: [AuthGuard] },
+  { path: 'faq', component: FAQComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
