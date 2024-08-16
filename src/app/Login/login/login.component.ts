@@ -25,7 +25,7 @@ export class LoginComponent {
       password: this.password
     };
 
-    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/login', loginPayload)
+    this.http.post('http://godinberto.pythonanywhere.com//api/v1/staff/login', loginPayload)
       .subscribe(
         (response: any) => {
           console.log('Login Response:', response);
