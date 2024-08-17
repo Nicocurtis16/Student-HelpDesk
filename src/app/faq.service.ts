@@ -1,113 +1,131 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+// <div class="w-screen h-screen flex">
+//   <div class="h-[100%] w-[20%]">
+//     <app-sidebar></app-sidebar>
+//   </div>
 
-@Injectable({
-  providedIn: 'root',
-})
-export class FaqService {
-  private baseUrl = 'http://godinberto.pythonanywhere.com/api';
+//   <div class="h-[100%] w-screen">
+//     <div class="h-[10%] w-[100%] mb-5">
+//       <app-top-panel></app-top-panel>
+//     </div>
+//     <div class="h-[87%] w-[100%] flex flex-col items-center">
 
-  constructor(private http: HttpClient) {}
+//       <!-- Add FAQ Button -->
+//       <div class="h-[48px] w-[95%] flex items-center justify-end">
+//         <button
+//           class="h-10 px-5 bg-[#ec4909] rounded-lg flex justify-center items-center gap-2"
+//           (click)="openAddModal()"
+//         >
+//           <span class="text-white text-base font-normal">Add FAQ</span>
+//         </button>
+//       </div>
 
-  getFaqs(): Observable<any> {
-    const token = localStorage.getItem('authToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http
-      .get<any>(`${this.baseUrl}/getAllFaqQuestions`, { headers })
-      .pipe(
-        map((response) => {
-          console.log('Success fetching FAQs:', response);
-          return response;
-        }),
-        catchError((error) => {
-          console.error(
-            'Error fetching FAQs:',
-            this.extractErrorMessage(error)
-          );
-          return throwError(() => error);
-        })
-      );
-  }
+//       <!-- Add FAQ Modal -->
+//       <div *ngIf="showModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+//         <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow">
+//           <h3>Add FAQ</h3>
+//           <p>Please fill in the forms below to add an FAQ:</p>
+//           <input [(ngModel)]="faqQuestion" placeholder="Enter the question" class="mb-2 w-full p-2 border">
+//           <input [(ngModel)]="faqAnswer" placeholder="Enter the answer" class="mb-2 w-full p-2 border">
+//           <select [(ngModel)]="faqTopic" class="mb-2 w-full p-2 border">
+//             <option *ngFor="let topic of topics" [value]="topic">{{ topic }}</option>
+//           </select>
+//           <button (click)="addFAQ()" class="mr-2 bg-green-500 text-white px-4 py-2 rounded">Add FAQ</button>
+//           <button (click)="closeModal()" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+//         </div>
+//       </div>
 
-  addFaq(faq: any, topic: string): Observable<any> {
-    const url = `${this.baseUrl}/addFaqQuestions/${encodeURIComponent(topic)}`;
-    const token = localStorage.getItem('authToken');
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`)
-      .set('Content-Type', 'application/json');
+//       <!-- FAQs Table -->
+//       <div class="h-[80%] w-[95%] border mt-5">
+//         <div class="h-[100%] w-[100%] flex">
+//           <!-- Questions Column -->
+//           <div class="h-[100%] w-[30%]">
+//             <table class="w-full">
+//               <thead>
+//                 <tr>
+//                   <th>Questions</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 <tr *ngFor="let faq of faqs" (click)="editFAQ(faq)">
+//                   <td>{{ faq.Question }}</td>
+//                 </tr>
+//               </tbody>
+//             </table>
+//           </div>
+//           <!-- Answers Column -->
+//           <div class="h-[100%] w-[40%]">
+//             <table class="w-full">
+//               <thead>
+//                 <tr>
+//                   <th>Answers</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 <tr *ngFor="let faq of faqs">
+//                   <td>{{ faq.Answer }}</td>
+//                 </tr>
+//               </tbody>
+//             </table>
+//           </div>
+//           <!-- Topics Column -->
+//           <div class="h-[100%] w-[20%]">
+//             <table class="w-full">
+//               <thead>
+//                 <tr>
+//                   <th>Topic</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 <tr *ngFor="let faq of faqs">
+//                   <td>{{ faq.Topic }}</td>
+//                 </tr>
+//               </tbody>
+//             </table>
+//           </div>
+//           <!-- Actions Column -->
+//           <div class="h-[100%] w-[20%]">
+//             <table class="w-full">
+//               <thead>
+//                 <tr>
+//                   <th>Action</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 <tr *ngFor="let faq of faqs">
+//                   <td>
+//                     <button (click)="editFAQ(faq)" class="mr-2 bg-blue-500 text-white px-4 py-2 rounded">Edit</button>
+//                     <button (click)="deleteFAQ(faq.QuestionID)" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+//                   </td>
+//                 </tr>
+//               </tbody>
+//             </table>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </div>
 
-    const payload = {
-      question: faq.Question,
-      answer: faq.Answer,
-    };
+// <!-- Edit FAQ Modal -->
+// <div *ngIf="showEditModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+//   <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow">
+//     <h3>Edit FAQ</h3>
+//     <input [(ngModel)]="selectedFAQ.Question" placeholder="Enter the question" class="mb-2 w-full p-2 border">
+//     <input [(ngModel)]="selectedFAQ.Answer" placeholder="Enter the answer" class="mb-2 w-full p-2 border">
+//     <select [(ngModel)]="selectedFAQ.Topic" class="mb-2 w-full p-2 border">
+//       <option *ngFor="let topic of topics" [value]="topic">{{ topic }}</option>
+//     </select>
+//     <button (click)="updateFAQ()" class="mr-2 bg-green-500 text-white px-4 py-2 rounded">Save</button>
+//     <button (click)="closeEditModal()" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+//   </div>
+// </div>
 
-    return this.http.post<any>(url, payload, { headers }).pipe(
-      map((response) => {
-        console.log('Success adding FAQ:', response);
-        return response;
-      }),
-      catchError((error) => {
-        console.error('Error adding FAQ:', this.extractErrorMessage(error));
-        return throwError(() => error);
-      })
-    );
-  }
-
-  editFaq(faq: any): Observable<any> {
-    const url = `${this.baseUrl}/updateFaqQuestion/${faq.QuestionID}`;
-    const token = localStorage.getItem('authToken');
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`)
-      .set('Content-Type', 'application/json');
-
-    // Create a payload to match the API requirements
-    const payload = {
-      question: faq.Question,
-      answer: faq.Answer,
-      topic: faq.Topic, // Include the topic if the API requires it
-    };
-
-    return this.http.put<any>(url, payload, { headers }).pipe(
-      map((response) => {
-        console.log('Success updating FAQ:', response);
-        return response;
-      }),
-      catchError((error) => {
-        console.error('Error updating FAQ:', this.extractErrorMessage(error));
-        return throwError(() => error);
-      })
-    );
-  }
-
-  deleteFaq(faqId: number): Observable<any> {
-    // Note: Updated the endpoint with the correct format for deleting FAQ
-    const url = `${this.baseUrl}/deleteFaqQuestion/${faqId}`;
-    const token = localStorage.getItem('authToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete<any>(url, { headers }).pipe(
-      map((response) => {
-        console.log('Success deleting FAQ:', response);
-        return response;
-      }),
-      catchError((error) => {
-        console.error('Error deleting FAQ:', this.extractErrorMessage(error));
-        return throwError(() => error);
-      })
-    );
-  }
-
-  private extractErrorMessage(error: any): string {
-    if (error.error) {
-      if (typeof error.error === 'string') {
-        return error.error;
-      } else if (typeof error.error === 'object' && error.error.error) {
-        return error.error.error;
-      } else {
-        return JSON.stringify(error.error);
-      }
-    }
-    return error.message || 'An unknown error occurred';
-  }
-}
+// <!-- Delete Confirmation Modal -->
+// <div *ngIf="showDeleteModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+//   <div class="w-[400px] h-[200px] p-6 bg-white rounded-xl shadow">
+//     <h3>Delete FAQ</h3>
+//     <p>Are you sure you want to delete "{{ selectedFAQ.Question }}"? This action cannot be undone.</p>
+//     <button (click)="confirmDeleteFAQ()" class="mr-2 bg-red-500 text-white px-4 py-2 rounded">Confirm</button>
+//     <button (click)="closeDeleteModal()" class="bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
+//   </div>
+// </div>
