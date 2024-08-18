@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './admin-main.component.html',
   styleUrls: ['./admin-main.component.css']
 })
-export class AdminMainComponent implements OnInit {
+export class AdminMainComponent implements OnInit, OnDestroy {
   showDeleteModal = false;
   showModal = false;
   showForm = false;
@@ -27,10 +27,24 @@ export class AdminMainComponent implements OnInit {
   adminDataList: any[] = [];
   adminEdit: any; // Define adminEdit property
 
+  // Interval reference
+  private intervalId: any;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.loadAdminData();
+    // Set interval to refresh admin data every 10 seconds
+    this.intervalId = setInterval(() => {
+      this.loadAdminData();
+    }, 10000); // 10000 milliseconds = 10 seconds
+  }
+
+  ngOnDestroy() {
+    // Clear interval when component is destroyed
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   loadAdminData() {
