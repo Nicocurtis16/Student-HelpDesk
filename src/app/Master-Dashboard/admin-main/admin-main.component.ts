@@ -27,6 +27,10 @@ export class AdminMainComponent implements OnInit, OnDestroy {
   adminDataList: any[] = [];
   adminEdit: any; // Define adminEdit property
 
+  // Properties for delete confirmation
+  userName: string = '';
+  userId: number | null = null;
+
   // Interval reference
   private intervalId: any;
 
@@ -90,8 +94,31 @@ export class AdminMainComponent implements OnInit, OnDestroy {
   }
 
   deleteUser(adminData: any) {
-    console.log('Deleting user:', adminData);
-    this.showDeleteModal = true;
+    this.userName = adminData.Username; // Set the username for confirmation
+    this.userId = adminData.UserID; // Set the user ID for deletion
+    this.showDeleteModal = true; // Show the delete confirmation modal
+  }
+
+  confirmDelete() {
+    if (this.userId === null) return; // Ensure userId is set
+
+    // Retrieve the token from local storage
+    const token = localStorage.getItem('token');
+
+    // Create HttpHeaders object with Authorization header
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.delete(`http://godinberto.pythonanywhere.com/api/v1/users/${this.userId}`, { headers })
+      .subscribe(response => {
+        console.log('User deleted successfully', response);
+        this.loadAdminData(); // Refresh admin data
+        this.showDeleteModal = false; // Hide the delete confirmation modal
+      }, error => {
+        console.error('Error deleting user', error);
+        this.showDeleteModal = false; // Hide the delete confirmation modal
+      });
   }
 
   closeDeleteModal() {
