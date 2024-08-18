@@ -1,81 +1,78 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-main',
   templateUrl: './admin-main.component.html',
-  styleUrl: './admin-main.component.css'
+  styleUrls: ['./admin-main.component.css']
 })
 export class AdminMainComponent {
   showDeleteModal = false;
-  showModal = false; // Controls modal visibility
-  faqQuestion = '';
-  faqAnswer = '';
-  faqTopic = '';
-  topics = ['Admission', 'Portal', 'Department']; // Example topics
+  showModal = false;
+  showForm = false;
 
-  
+  // Input fields for admin account creation
+  adminData = {
+    username: '',
+    email: '',
+    password: '',
+    phone_number: '',
+    department: ''
+  };
 
-  editUser() {
-    this.isEditUserVisible = true;
-    // Your logic for editing a user
-    console.log('Edit User button clicked');
-    this.showModal=true;
+  // Dummy data for demonstration
+  adminEdit: any = {};
+  adminDataList = [
+    { username: 'Jane Cooper', email: 'janecooper@gmail.com', topic: 'IT Department' }
+  ];
+
+  constructor(private http: HttpClient) {}
+
+  editUser(adminData: any) {
+    this.adminEdit = adminData; // Populate form with selected admin data
+    this.showModal = true;
   }
-  saveFAQ(){
-    console.log('saved sucessfully')
+
+  saveFAQ() {
+    console.log('FAQ saved successfully');
   }
 
-
- 
   handleNextClick() {
-    // Your logic for handling the button click
     console.log('Next button clicked');
   }
 
   handleButtonClick() {
-    // Your logic for handling button click
     console.log('Button clicked');
   }
-  isEditUserVisible: boolean = false;
 
-  
-
-  
-
-  showForm = false;
-
- 
   closeModal() {
     this.showModal = false;
   }
-  deleteUser() {
+
+  deleteUser(adminData: any) {
+    console.log('Deleting user:', adminData);
     this.showDeleteModal = true;
-    console.log('Delete User button clicked');
   }
 
-  // Method to hide the Delete confirmation modal
   closeDeleteModal() {
     this.showDeleteModal = false;
   }
 
-
-
- 
-
- 
-  
-
-
-  
   cancelEdit() {
-    this.isEditUserVisible = false;
+    this.showModal = false;
   }
-  
-
 
   toggleForm() {
     this.showForm = !this.showForm;
   }
 
-
+  inviteAdmin() {
+    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', this.adminData)
+      .subscribe(response => {
+        console.log('Admin invited successfully', response);
+        this.showForm = false;
+      }, error => {
+        console.error('Error inviting admin', error);
+      });
+  }
 }

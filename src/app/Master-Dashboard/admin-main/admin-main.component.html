@@ -53,49 +53,62 @@
         <!-- Modal Popup -->
         <div *ngIf="showForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow-lg flex flex-col gap-6">
-              <div class="flex flex-col gap-3">
-                <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Administrator</div>
-                <div class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
-                    Please fill out the form below to send an invite to the administrator
+                <div class="flex flex-col gap-3">
+                    <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Administrator</div>
+                    <div class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
+                        Please fill out the form below to send an invite to the administrator
+                    </div>
                 </div>
-              </div>
-          
-              <div class="flex flex-col gap-5">
-                <!-- Name Input -->
-                <div class="flex flex-col gap-1.5">
-                  <label for="name" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Name*</label>
-                  <input id="name" type="text" placeholder="Enter name" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+  
+                
+                <!-- Username Input -->
+                    <div class="flex flex-col gap-1.5">
+                    <label for="username" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Username*</label>
+                    <input id="username" type="text" placeholder="Enter username" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
                 </div>
-          
+  
                 <!-- Email Input -->
                 <div class="flex flex-col gap-1.5">
-                  <label for="email" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</label>
-                  <input id="email" type="email" placeholder="Enter email" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                    <label for="email" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</label>
+                    <input id="email" type="email" placeholder="Enter email" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
                 </div>
-          
+  
+                <!-- Password Input -->
+                <div class="flex flex-col gap-1.5">
+                    <label for="password" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Password*</label>
+                    <input id="password" type="password" placeholder="Enter password" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                </div>
+  
+                <!-- Phone Number Input -->
+                <div class="flex flex-col gap-1.5">
+                    <label for="phone_number" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Phone Number*</label>
+                    <input id="phone_number" type="tel" placeholder="Enter phone number" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                </div>
+  
                 <!-- Assign Department(s) Input -->
                 <div class="flex flex-col gap-1.5">
-                  <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Department(s)*</label>
-                  <select id="departments" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                    <option value="" disabled selected>Select department</option>
-                    <option value="department1">Department 1</option>
-                    <option value="department2">Department 2</option>
-                    <option value="department3">Department 3</option>
-                  </select>
+                    <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Department(s)*</label>
+                    <select id="departments" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                        <option value="" disabled selected>Select department</option>
+                        <option value="department1">Department 1</option>
+                        <option value="department2">Department 2</option>
+                        <option value="department3">Department 3</option>
+                    </select>
                 </div>
-              </div>
-          
-              <!-- Buttons -->
-              <div class="flex justify-between mt-5">
-                <button (click)="toggleForm()" class="h-11 w-[48%] bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
-                  <span class="text-[#344053] text-base font-semibold">Cancel</span>
-                </button>
-                <button class="h-11 w-[48%] bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
-                  <span class="text-white text-base font-semibold">Invite</span>
-                </button>
-              </div>
+                
+  
+                <!-- Buttons -->
+                <div class="flex justify-between mt-5">
+                    <button (click)="toggleForm()" class="h-11 w-[48%] bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
+                        <span class="text-[#344053] text-base font-semibold">Cancel</span>
+                    </button>
+                    <button class="h-11 w-[48%] bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
+                         <span class="text-white text-base font-semibold">Invite</span>
+                    </button>
+                </div>
             </div>
-          </div>
+        </div>
+  
           
         <!-- second -->
         <div class="h-[80%] w-[95%] flex  items-center border">
@@ -179,8 +192,8 @@
                         <!-- Row 1 -->
                         <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                             <td class="p-2 h-16 flex justify-between items-center">
-                                <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
-                                <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
+                                <button  class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
+                                <button  class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
                             </td>
                         </tr>
                         
@@ -323,7 +336,7 @@
           
 
 
-      </div>
+        </div>
     </div>
 </div>
   
