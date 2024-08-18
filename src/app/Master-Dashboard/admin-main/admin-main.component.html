@@ -125,11 +125,10 @@
   
           
         <!-- second -->
-        <div class="h-[80%] w-[95%] flex  items-center border">
-            <!-- first table -->
-            <div class="h-[100%] w-[30%] flex justify-start items-start ">
+        <div class="h-[80%] w-[95%] flex items-center border">
+            <!-- First Table -->
+            <div class="h-[100%] w-[15%] flex justify-start items-start ">
                 <table class="w-full border-collapse">
-                    <!-- Table Header -->
                     <thead>
                         <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
                             <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
@@ -138,23 +137,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="h-14 bg-white border-b border-[#cfd4dc]">
+                        <tr *ngFor="let admin of adminDataList" class="h-14 bg-white border-b border-[#cfd4dc]">
                             <td class="flex items-center gap-4 p-2">
                                 <div class="w-12 h-12 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                    <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">OR</span>
+                                    <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">
+                                        {{ (admin.Username.length > 1 ? admin.Username.slice(0, 2) : admin.Username) | uppercase }}
+                                    </span>
                                 </div>
                                 <span class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                                    Jane Cooper
+                                    {{ admin.Username }}
                                 </span>
                             </td>
                         </tr>
+                    </tbody>
+                    
                 </table>
             </div>
-            
-            <!-- second table -->
-            <div class="h-[100%] w-[30%] flex justify-start items-start ">
+        
+            <!-- Email Column -->
+            <div class="h-[100%] w-[20%] flex justify-start items-start ">
                 <table class="w-full border-collapse">
-                    <!-- Table Header -->
                     <thead>
                         <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
                             <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
@@ -163,36 +165,77 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="h-16 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                            <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">janecooper&#64;gmail.com</td>
+                        <tr *ngFor="let admin of adminDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                            <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                {{ admin.Email }}
+                            </td>
                         </tr>
-                       
+                    </tbody>
                 </table>
-
             </div>
-            <!-- third table -->
+        
+            <!-- Department Column -->
             <div class="h-[100%] w-[20%] flex justify-start items-start ">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Department
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let admin of adminDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                            <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                {{ admin.Department }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <!-- Phone Number Column -->
+            <div class="h-[100%] w-[20%] flex justify-start items-start ">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                Phone Number
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let admin of adminDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                            <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                {{ admin.Phone_Number }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="h-[100%] w-[15%] flex justify-start items-start ">
                 <table class="w-full border-collapse">
                     <!-- Table Header -->
                     <thead>
                         <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
                             <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                                Topic
+                                Date/Time
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="h-16 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                            <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Department</td>
+                        <tr *ngFor="let admin of adminDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                            <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                {{ admin.CreatedAt }}
+                            </td>
                         </tr>
-                       
+                    </tbody>
                 </table>
-
             </div>
-            <!-- forth table -->
+        
+            <!-- Action Column -->
             <div class="h-[100%] w-[20%] flex justify-start items-start ">
-                <table class="w-full border-collapse ">
-                    <!-- Table Header -->
+                <table class="w-full border-collapse">
                     <thead>
                         <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
                             <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
@@ -200,128 +243,140 @@
                             </th>
                         </tr>
                     </thead>
-                    
-                    <!-- Table Body -->
                     <tbody>
-                        <!-- Row 1 -->
-                        <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                        <tr *ngFor="let admin of adminDataList" class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                             <td class="p-2 h-16 flex justify-between items-center">
-                                <button  class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
-                                <button  class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
+                                <button 
+                                    class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]"
+                                    (click)="editUser(admin)"
+                                >
+                                    Edit
+                                </button>
+                                <button 
+                                    class="bg-red-500 text-white px-3 py-1 rounded w-[100px]"
+                                    (click)="deleteUser(admin)"
+                                >
+                                    Delete
+                                </button>
                             </td>
                         </tr>
-                        
-                        <!-- Modal Popup -->
-                        <div *ngIf="showModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-                            <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
-                                <!-- Modal Header -->
-                                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
-                                    <div class="h-[76px] flex-col justify-start items-start gap-2 inline-flex">
-                                        <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Edit Administrator Details</div>
-                                        <div class="self-stretch text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Please fill the forms below to edit the administrator's details</div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Modal Body -->
-                                <div class="self-stretch h-auto flex-col justify-start items-start gap-5 flex">
-                                    <!-- Username Field -->
-                                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
-                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
-                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Username*</div>
-                                        </div>
-                                        <input 
-                                            type="text" 
-                                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
-                                            [(ngModel)]="studentUsername"
-                                            placeholder="Enter the username"
-                                        />
-                                    </div>
-                        
-                                    <!-- Email Field -->
-                                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
-                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
-                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</div>
-                                        </div>
-                                        <input 
-                                            type="email" 
-                                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
-                                            [(ngModel)]="studentEmail"
-                                            placeholder="Enter the email"
-                                        />
-                                    </div>
-                        
-                                    <!-- Department Field -->
-                                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
-                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
-                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Department*</div>
-                                        </div>
-                                        <select 
-                                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
-                                            [(ngModel)]="studentDepartment"
-                                        >
-                                            <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                        
-                                <!-- Buttons -->
-                                <div class="self-stretch justify-start items-start gap-3 inline-flex">
-                                    <div 
-                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
-                                        (click)="closeModal()"
-                                    >
-                                        <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
-                                    </div>
-                                    <div 
-                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center gap-2 cursor-pointer"
-                                        (click)="saveStudentDetails()"
-                                    >
-                                        <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Save</span>
-                                    </div>
-                                </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Edit User Modal -->
+        <div *ngIf="showModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+            <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
+                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
+                    <div class="h-[76px] flex-col justify-start items-start gap-2 inline-flex">
+                        <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">
+                            Edit Administrator Details
+                        </div>
+                        <div class="self-stretch text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
+                            Please fill the forms below to edit the administrator's details
+                        </div>
+                    </div>
+                </div>
+                <div class="self-stretch h-auto flex-col justify-start items-start gap-5 flex">
+                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
+                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">
+                                Username*
                             </div>
                         </div>
-                        
-
-    <!-- Delete Confirmation Modal -->
-    <div *ngIf="showDeleteModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-        <div class="w-[400px] h-[200px] p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
-            <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
-                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-2 flex">
-                    <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Delete User</div>
-                    <div class="self-stretch">
-                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Are you sure you want to delete </span>
-                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">{{ userName }}</span>
-                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">? This action cannot be undone.</span>
+                        <input 
+                            type="text" 
+                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                            [(ngModel)]="adminEdit.Username"
+                            placeholder="Enter the username"
+                        />
+                    </div>
+                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
+                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">
+                                Email*
+                            </div>
+                        </div>
+                        <input 
+                            type="email" 
+                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                            [(ngModel)]="adminEdit.Email"
+                            placeholder="Enter the email"
+                        />
+                    </div>
+                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
+                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
+                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">
+                                Department*
+                            </div>
+                        </div>
+                        <select 
+                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
+                            [(ngModel)]="adminEdit.Department"
+                        >
+                            <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="self-stretch justify-start items-start gap-3 inline-flex">
+                    <div 
+                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
+                        (click)="closeModal()"
+                    >
+                        <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+                    </div>
+                    <div 
+                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center gap-2 cursor-pointer"
+                        (click)="saveAdminDetails()"
+                    >
+                        <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Save</span>
                     </div>
                 </div>
             </div>
-            <div class="self-stretch justify-start items-start gap-3 inline-flex">
-                <div 
-                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
-                    (click)="closeDeleteModal()"
-                >
-                    <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+        </div>
+        
+        <!-- Delete Confirmation Modal -->
+        <div *ngIf="showDeleteModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+            <div class="w-[400px] h-[200px] p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
+                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
+                    <div class="self-stretch h-[76px] flex-col justify-start items-start gap-2 flex">
+                        <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">
+                            Delete User
+                        </div>
+                        <div class="self-stretch">
+                            <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Are you sure you want to delete </span>
+                            <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">{{ userName }}</span>
+                            <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">? This action cannot be undone.</span>
+                        </div>
+                    </div>
                 </div>
-                <div 
-                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#d92c20] rounded-lg shadow border border-[#d92c20] flex justify-center items-center gap-2 cursor-pointer"
-                    (click)="confirmDelete()"
-                >
-                    <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Delete</span>
+                <div class="self-stretch justify-start items-start gap-3 inline-flex">
+                    <div 
+                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
+                        (click)="closeDeleteModal()"
+                    >
+                        <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+                    </div>
+                    <div 
+                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#d92c20] rounded-lg shadow border border-[#d92c20] flex justify-center items-center gap-2 cursor-pointer"
+                        (click)="confirmDelete()"
+                    >
+                        <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Delete</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-                    </tbody>
-                    
-                    
-                    
-                </table>
-
-            </div>
-
-
+        
+        
+        <!-- Popup -->
+        <div *ngIf="showPopup" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+          <div class="bg-white p-4 rounded shadow-md">
+            <p>{{ popupMessage }}</p>
+            <button (click)="closePopup()" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+          </div>
         </div>
+        
         <!-- down -->
         <div class="h-[40px] w-[95%] flex justify-between items-center">
             <!-- Previous Button -->

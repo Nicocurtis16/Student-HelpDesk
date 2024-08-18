@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './admin-main.component.html',
   styleUrls: ['./admin-main.component.css']
 })
-export class AdminMainComponent {
+export class AdminMainComponent implements OnInit {
   showDeleteModal = false;
   showModal = false;
   showForm = false;
@@ -23,13 +23,36 @@ export class AdminMainComponent {
     role: 'Admin' // Added role field
   };
 
-  // Dummy data for demonstration
-  adminEdit: any = {};
-  adminDataList = [
-    { username: 'Jane Cooper', email: 'janecooper@gmail.com', topic: 'IT Department' }
-  ];
+  // Data from the API
+  adminDataList: any[] = [];
+  adminEdit: any; // Define adminEdit property
 
   constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.loadAdminData();
+  }
+
+  loadAdminData() {
+    // Retrieve the token from local storage
+    const token = localStorage.getItem('token');
+
+    // Create HttpHeaders object with Authorization header
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.get<any>('http://godinberto.pythonanywhere.com/api/v1/usersAdmin', { headers })
+      .subscribe(response => {
+        if (response.Users && Array.isArray(response.Users)) {
+          this.adminDataList = response.Users;
+        } else {
+          console.error('API response does not contain expected data:', response);
+        }
+      }, error => {
+        console.error('Error fetching admin data', error);
+      });
+  }
 
   editUser(adminData: any) {
     this.adminEdit = adminData; // Populate form with selected admin data
