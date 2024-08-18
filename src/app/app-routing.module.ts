@@ -6,6 +6,7 @@ import { FAQComponent } from './Master-Dashboard/faq/faq.component';
 import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashboard-main.component';
 import { SettingsComponent } from './Master-Dashboard/settings/settings.component';
 import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.component';
+import { AdminSidebarComponent } from './Admin-Dashboard/admin-sidebar/admin-sidebar.component';
 import { LoginComponent } from './Login/login/login.component';
 import { AdministratorComponent } from './Admin-Dashboard/administrator/administrator.component';
 import { AuthGuard } from './AuthGuard';
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'sidebar', component: SidebarComponent, canActivate: [AuthGuard] },
   { path: 'faq', component: FAQComponent, canActivate: [AuthGuard] },
   { path: 'admin-dashboard', component: AdministratorComponent, canActivate: [AuthGuard] },
-
+  { path: 'admin-sidebar', component: AdminSidebarComponent, canActivate: [AuthGuard] }, // Added comma here
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] }
 ];
 

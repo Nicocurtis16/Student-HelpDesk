@@ -16,6 +16,7 @@ import { SettingsComponent } from './Master-Dashboard/settings/settings.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.component';
 import { AdministratorComponent } from './Admin-Dashboard/administrator/administrator.component';
+import { AdminSidebarComponent } from './Admin-Dashboard/admin-sidebar/admin-sidebar.component';
 
 
 
@@ -30,7 +31,8 @@ import { AdministratorComponent } from './Admin-Dashboard/administrator/administ
     DashboardMainComponent,
     SettingsComponent,
     AdminMainComponent,
-    AdministratorComponent
+    AdministratorComponent,
+    AdminSidebarComponent
   ],
   imports: [
     BrowserModule,
