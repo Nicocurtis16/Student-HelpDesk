@@ -15,8 +15,8 @@ export class TopPanelComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Fetch the username when the component initializes
-    this.fetchUsernameFromApi();
+    // Fetch the username from localStorage when the component initializes
+    this.fetchUsernameFromLocalStorage();
 
     // Subscribe to route changes
     this.router.events.subscribe(event => {
@@ -29,20 +29,15 @@ export class TopPanelComponent implements OnInit {
     this.setActiveRouteName();
   }
 
-  private fetchUsernameFromApi(): void {
-    // Simulated API response
-    const apiResponse = {
-      access_token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6Z…k4OX0.ViI2Ztf9Kjdb7hxjzBYKVtinIR2EtRB1u4fPlcf_CJU',
-      role: 'Super Admin',
-      username: 'SuperAdmin',
-      username_exists: true
-    };
-
-    this.username = apiResponse.username;
-
-    // Extract the first two letters of the username
-    this.firstLetter = this.username.charAt(0).toUpperCase();
-    this.secondLetter = this.username.charAt(1) ? this.username.charAt(1).toUpperCase() : '';
+  private fetchUsernameFromLocalStorage(): void {
+    const username = localStorage.getItem('username');
+    if (username) {
+      this.username = username;
+      this.firstLetter = this.username.charAt(0).toUpperCase();
+      this.secondLetter = this.username.charAt(1) ? this.username.charAt(1).toUpperCase() : '';
+    } else {
+      console.error('Username not found in local storage');
+    }
   }
 
   private setActiveRouteName(): void {

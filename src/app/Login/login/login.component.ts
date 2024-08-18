@@ -28,6 +28,8 @@ export class LoginComponent {
     this.http.post('http://godinberto.pythonanywhere.com//api/v1/staff/login', loginPayload)
       .subscribe(
         (response: any) => {
+          localStorage.setItem('token', response.access_token);
+          localStorage.setItem('username', response.username);
           console.log('Login Response:', response);
           if (response.access_token) {
             localStorage.setItem('token', response.access_token);
