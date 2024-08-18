@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-main',
@@ -10,6 +10,8 @@ export class AdminMainComponent {
   showDeleteModal = false;
   showModal = false;
   showForm = false;
+  showPopup = false; // Controls the visibility of the popup
+  popupMessage = ''; // Stores the message from the API
 
   // Input fields for admin account creation
   adminData = {
@@ -17,7 +19,8 @@ export class AdminMainComponent {
     email: '',
     password: '',
     phone_number: '',
-    department: ''
+    department: '',
+    role: 'Admin' // Added role field
   };
 
   // Dummy data for demonstration
@@ -67,12 +70,38 @@ export class AdminMainComponent {
   }
 
   inviteAdmin() {
-    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', this.adminData)
+    // Retrieve the token from local storage
+    const token = localStorage.getItem('token');
+
+    // Create HttpHeaders object with Authorization header
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', this.adminData, { headers })
       .subscribe(response => {
         console.log('Admin invited successfully', response);
         this.showForm = false;
+        this.popupMessage = 'Admin registered successfully!'; // Update message
+        this.showPopup = true; // Show popup
+        // Optionally reset form data
+        this.adminData = {
+          username: '',
+          email: '',
+          password: '',
+          phone_number: '',
+          department: '',
+          role: 'Admin'
+        };
       }, error => {
         console.error('Error inviting admin', error);
+        this.popupMessage = 'Error inviting admin. Please try again.'; // Update message
+        this.showPopup = true; // Show popup
       });
+  }
+
+  closePopup() {
+    this.showPopup = false;
+    this.popupMessage = ''; // Clear message
   }
 }

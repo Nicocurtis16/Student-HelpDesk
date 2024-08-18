@@ -43,9 +43,9 @@
               <span class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Bulk Upload</span>
             </button>
   
-            <!-- Add Student Button -->
+            <!-- Add Admin Button -->
             <button (click)="toggleForm()" class="h-10 px-5 bg-[#ec4909] rounded-lg flex items-center justify-center">
-              <span class="text-white text-base font-normal font-['Archivo'] leading-normal tracking-tight">Add Admin</span>
+                <span class="text-white text-base font-normal font-['Archivo'] leading-normal tracking-tight">Add Admin</span>
             </button>
           </div>
         </div>
@@ -53,60 +53,74 @@
         <!-- Modal Popup -->
         <div *ngIf="showForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow-lg flex flex-col gap-6">
-                <div class="flex flex-col gap-3">
-                    <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Administrator</div>
-                    <div class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
-                        Please fill out the form below to send an invite to the administrator
+              <div class="flex flex-col gap-3">
+                <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Administrator</div>
+                <div class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
+                  Please fill out the form below to send an invite to the administrator
+                </div>
+              </div>
+          
+              <!-- Username Input -->
+              <div class="flex flex-col gap-1.5">
+                <label for="username" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Username*</label>
+                <input id="username" [(ngModel)]="adminData.username" type="text" placeholder="Enter username" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+              </div>
+          
+              <!-- Email Input -->
+              <div class="flex flex-col gap-1.5">
+                <label for="email" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</label>
+                <input id="email" [(ngModel)]="adminData.email" type="email" placeholder="Enter email" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+              </div>
+          
+              <!-- Password Input -->
+              <div class="flex flex-col gap-1.5">
+                <label for="password" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Password*</label>
+                <input id="password" [(ngModel)]="adminData.password" type="password" placeholder="Enter password" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+              </div>
+          
+              <!-- Phone Number Input -->
+              <div class="flex flex-col gap-1.5">
+                <label for="phone_number" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Phone Number*</label>
+                <input id="phone_number" [(ngModel)]="adminData.phone_number" type="tel" placeholder="Enter phone number" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+              </div>
+          
+              <!-- Assign Department(s) Input -->
+              <div class="flex flex-col gap-1.5">
+                <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Department(s)*</label>
+                <select id="departments" [(ngModel)]="adminData.department" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                  <option value="" disabled selected>Select department</option>
+                  <option value="department1">Department 1</option>
+                  <option value="department2">Department 2</option>
+                  <option value="department3">Department 3</option>
+                </select>
+              </div>
+          
+              <!-- Buttons -->
+              <div class="flex justify-between mt-5">
+                <button (click)="toggleForm()" class="h-11 w-[48%] bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
+                  <span class="text-[#344053] text-base font-semibold">Cancel</span>
+                </button>
+                <button (click)="inviteAdmin()" class="h-11 w-[48%] bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
+                  <span class="text-white text-base font-semibold">Invite</span>
+                </button>
+              </div>
+            </div>
+            
+
+            <!-- Popup for showing API response message -->
+            <div *ngIf="showPopup" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div class="w-[300px] h-auto p-6 bg-white rounded-lg shadow-lg flex flex-col items-center">
+                    <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">
+                        {{ popupMessage }}
                     </div>
-                </div>
-  
-                
-                <!-- Username Input -->
-                    <div class="flex flex-col gap-1.5">
-                    <label for="username" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Username*</label>
-                    <input id="username" type="text" placeholder="Enter username" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                </div>
-  
-                <!-- Email Input -->
-                <div class="flex flex-col gap-1.5">
-                    <label for="email" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</label>
-                    <input id="email" type="email" placeholder="Enter email" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                </div>
-  
-                <!-- Password Input -->
-                <div class="flex flex-col gap-1.5">
-                    <label for="password" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Password*</label>
-                    <input id="password" type="password" placeholder="Enter password" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                </div>
-  
-                <!-- Phone Number Input -->
-                <div class="flex flex-col gap-1.5">
-                    <label for="phone_number" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Phone Number*</label>
-                    <input id="phone_number" type="tel" placeholder="Enter phone number" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                </div>
-  
-                <!-- Assign Department(s) Input -->
-                <div class="flex flex-col gap-1.5">
-                    <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Department(s)*</label>
-                    <select id="departments" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                        <option value="" disabled selected>Select department</option>
-                        <option value="department1">Department 1</option>
-                        <option value="department2">Department 2</option>
-                        <option value="department3">Department 3</option>
-                    </select>
-                </div>
-                
-  
-                <!-- Buttons -->
-                <div class="flex justify-between mt-5">
-                    <button (click)="toggleForm()" class="h-11 w-[48%] bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
-                        <span class="text-[#344053] text-base font-semibold">Cancel</span>
-                    </button>
-                    <button class="h-11 w-[48%] bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
-                         <span class="text-white text-base font-semibold">Invite</span>
+                    <button (click)="closePopup()" class="mt-4 px-4 py-2 bg-[#ec4909] text-white rounded-lg">
+                     Close
                     </button>
                 </div>
             </div>
+  
+  <!-- Existing content -->
+  
         </div>
   
           

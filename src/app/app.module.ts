@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http';
@@ -42,6 +42,8 @@ import { AdminSidebarComponent } from './Admin-Dashboard/admin-sidebar/admin-sid
     HttpClientModule,
     FormsModule // Add FormsModule here
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   providers: [],
   bootstrap: [AppComponent]
 })
