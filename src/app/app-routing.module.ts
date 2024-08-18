@@ -7,6 +7,7 @@ import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashbo
 import { SettingsComponent } from './Master-Dashboard/settings/settings.component';
 import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.component';
 import { LoginComponent } from './Login/login/login.component';
+import { AdministratorComponent } from './Admin-Dashboard/administrator/administrator.component';
 import { AuthGuard } from './AuthGuard';
 
 const routes: Routes = [
@@ -17,6 +18,8 @@ const routes: Routes = [
   { path: 'Student', component: StudentComponent, canActivate: [AuthGuard] },
   { path: 'sidebar', component: SidebarComponent, canActivate: [AuthGuard] },
   { path: 'faq', component: FAQComponent, canActivate: [AuthGuard] },
+  { path: 'admin-dashboard', component: AdministratorComponent, canActivate: [AuthGuard] },
+
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] }
 ];
 
