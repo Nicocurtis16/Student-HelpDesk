@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.component';
 import { AdministratorComponent } from './Admin-Dashboard/administrator/administrator.component';
 import { AdminSidebarComponent } from './Admin-Dashboard/admin-sidebar/admin-sidebar.component';
+import { AdminInboxComponent } from './Admin-Dashboard/admin-inbox/admin-inbox.component';
+import { AdminSettingsComponent } from './Admin-Dashboard/admin-settings/admin-settings.component';
 
 
 
@@ -32,7 +34,9 @@ import { AdminSidebarComponent } from './Admin-Dashboard/admin-sidebar/admin-sid
     SettingsComponent,
     AdminMainComponent,
     AdministratorComponent,
-    AdminSidebarComponent
+    AdminSidebarComponent,
+    AdminInboxComponent,
+    AdminSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,3 +52,4 @@ import { AdminSidebarComponent } from './Admin-Dashboard/admin-sidebar/admin-sid
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 

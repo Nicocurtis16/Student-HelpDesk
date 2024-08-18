@@ -34,7 +34,7 @@ export class LoginComponent {
             if (response.role === 'Super Admin') {
               this.router.navigate(['/dashboard']); // Redirect to Super Admin dashboard
             } else if (response.role === 'Admin') {
-              this.router.navigate(['/admin-dashboard']); // Redirect to Admin dashboard
+              this.router.navigate(['/Admin/dashboard']); // Redirect to Admin dashboard
             }
           }
         },

@@ -9,6 +9,8 @@ import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.com
 import { AdminSidebarComponent } from './Admin-Dashboard/admin-sidebar/admin-sidebar.component';
 import { LoginComponent } from './Login/login/login.component';
 import { AdministratorComponent } from './Admin-Dashboard/administrator/administrator.component';
+import { AdminInboxComponent } from './Admin-Dashboard/admin-inbox/admin-inbox.component';
+import { AdminSettingsComponent } from './Admin-Dashboard/admin-settings/admin-settings.component';
 import { AuthGuard } from './AuthGuard';
 
 const routes: Routes = [
@@ -19,7 +21,11 @@ const routes: Routes = [
   { path: 'Student', component: StudentComponent, canActivate: [AuthGuard] },
   { path: 'sidebar', component: SidebarComponent, canActivate: [AuthGuard] },
   { path: 'faq', component: FAQComponent, canActivate: [AuthGuard] },
-  { path: 'admin-dashboard', component: AdministratorComponent, canActivate: [AuthGuard] },
+  { path: 'Admin/dashboard', component: AdministratorComponent, canActivate: [AuthGuard] },
+  { path: 'Admin/inbox', component: AdminInboxComponent, canActivate: [AuthGuard] },
+  { path: 'Admin/settings', component: AdminSettingsComponent, canActivate: [AuthGuard] },
+
+
   { path: 'admin-sidebar', component: AdminSidebarComponent, canActivate: [AuthGuard] }, // Added comma here
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] }
 ];
