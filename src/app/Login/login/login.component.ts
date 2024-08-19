@@ -32,7 +32,6 @@ export class LoginComponent {
           localStorage.setItem('username', response.username);
           console.log('Login Response:', response);
           if (response.access_token) {
-            localStorage.setItem('token', response.access_token);
             if (response.role === 'Super Admin') {
               this.router.navigate(['/dashboard']);
             } else if (response.role === 'Admin') {
@@ -47,4 +46,3 @@ export class LoginComponent {
       );
   }
 }
-

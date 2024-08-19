@@ -24,9 +24,7 @@ const routes: Routes = [
   { path: 'Admin/dashboard', component: AdministratorComponent, canActivate: [AuthGuard] },
   { path: 'Admin/inbox', component: AdminInboxComponent, canActivate: [AuthGuard] },
   { path: 'Admin/settings', component: AdminSettingsComponent, canActivate: [AuthGuard] },
-
-
-  { path: 'admin-sidebar', component: AdminSidebarComponent, canActivate: [AuthGuard] }, // Added comma here
+  { path: 'admin-sidebar', component: AdminSidebarComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] }
 ];
 
