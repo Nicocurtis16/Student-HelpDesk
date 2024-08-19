@@ -15,19 +15,9 @@ export class SidebarComponent {
   toggleExpand() {
     this.isExpanded = !this.isExpanded;
   }
-
   logout() {
-    // Remove token or any other authentication data
     localStorage.removeItem('token');
-
-    // Optionally, you can also clear session storage or other related data
-    sessionStorage.clear();
-
-    // Redirect to login page
+    localStorage.removeItem('username');
     this.router.navigate(['/login']);
-    
-      
-    
-    
   }
 }

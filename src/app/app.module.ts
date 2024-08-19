@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { TopPanelComponent } from './Master-Dashboard/Layout/top-panel/top-panel
 import { FAQComponent } from './Master-Dashboard/faq/faq.component';
 import { DashboardMainComponent } from './Master-Dashboard/dashboard-main/dashboard-main.component';
 import { SettingsComponent } from './Master-Dashboard/settings/settings.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AdminMainComponent } from './Master-Dashboard/admin-main/admin-main.component';
 import { AdministratorComponent } from './Admin-Dashboard/administrator/administrator.component';
 import { AdminSidebarComponent } from './Admin-Dashboard/admin-sidebar/admin-sidebar.component';
@@ -40,7 +41,7 @@ import { AuthInterceptor } from './../app/Master-Dashboard/settings/auth.interce
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    RouterModule,
+    RouterModule, 
     HttpClientModule,
     FormsModule
   ],
