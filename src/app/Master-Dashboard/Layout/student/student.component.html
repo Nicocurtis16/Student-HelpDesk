@@ -52,249 +52,314 @@
   
         <!-- Modal Popup -->
         <div *ngIf="showForm" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow-lg flex flex-col gap-6">
-              <div class="flex flex-col gap-3">
-                <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Student</div>
-                <div class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
-                  Please fill out the form below to send an invite to the trainer
-                </div>
-              </div>
-          
-              <div class="flex flex-col gap-5">
-                <!-- Name Input -->
-                <div class="flex flex-col gap-1.5">
-                  <label for="name" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Name*</label>
-                  <input id="name" type="text" placeholder="Enter name" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                </div>
-          
-                <!-- Email Input -->
-                <div class="flex flex-col gap-1.5">
-                  <label for="email" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</label>
-                  <input id="email" type="email" placeholder="Enter email" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                </div>
-          
-                <!-- Assign Department(s) Input -->
-                <div class="flex flex-col gap-1.5">
-                  <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Department(s)*</label>
-                  <select id="departments" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
-                    <option value="" disabled selected>Select department</option>
-                    <option value="department1">Department 1</option>
-                    <option value="department2">Department 2</option>
-                    <option value="department3">Department 3</option>
-                  </select>
-                </div>
-              </div>
-          
-              <!-- Buttons -->
-              <div class="flex justify-between mt-5">
-                <button (click)="toggleForm()" class="h-11 w-[48%] bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
-                  <span class="text-[#344053] text-base font-semibold">Cancel</span>
-                </button>
-                <button class="h-11 w-[48%] bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
-                  <span class="text-white text-base font-semibold">Invite</span>
-                </button>
+          <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow-lg flex flex-col gap-6">
+            <div class="flex flex-col gap-3">
+              <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Add Student</div>
+              <div class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">
+                Please fill out the form below to send an invite to the student
               </div>
             </div>
+          
+            <!-- Username Input -->
+            <div class="flex flex-col gap-1.5">
+              <label for="username" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Username*</label>
+              <input id="username" [(ngModel)]="studentData.username" type="text" placeholder="Enter username" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+            </div>
+          
+            <!-- Email Input -->
+            <div class="flex flex-col gap-1.5">
+              <label for="email" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</label>
+              <input id="email" [(ngModel)]="studentData.email" type="email" placeholder="Enter email" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+            </div>
+          
+            <!-- Password Input -->
+            <div class="flex flex-col gap-1.5">
+              <label for="password" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Password*</label>
+              <input id="password" [(ngModel)]="studentData.password" type="password" placeholder="Enter password" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+            </div>
+          
+            <!-- Phone Number Input -->
+            <div class="flex flex-col gap-1.5">
+              <label for="phone_number" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Phone Number*</label>
+              <input id="phone_number" [(ngModel)]="studentData.phone_number" type="tel" placeholder="Enter phone number" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+            </div>
+          
+            <!-- Index Number Input -->
+            <div class="flex flex-col gap-1.5">
+              <label for="index_number" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Index Number*</label>
+              <input id="index_number" [(ngModel)]="studentData.index_number" type="text" placeholder="Enter index number" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+            </div>
+          
+            <!-- Assign Department(s) Input -->
+            <div class="flex flex-col gap-1.5">
+              <label for="departments" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Assign Department(s)*</label>
+              <select id="departments" [(ngModel)]="studentData.department" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                  <option value="computer-science">Computer Science</option>
+                  <option value="mathematics">Mathematics</option>
+                  <option value="statistics">Statistics</option>
+                  <option value="environmental-science">Environmental Science</option>
+                  <option value="civil-engineering">Civil Engineering</option>
+                  <option value="mechanical-engineering">Mechanical Engineering</option>
+                  <option value="electrical-engineering">Electrical/Electronic Engineering</option>
+                  <option value="chemical-engineering">Chemical Engineering</option>
+                  <option value="accounting">Accounting</option>
+                  <option value="banking-finance">Banking and Finance</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="business-administration">Business Administration</option>
+                  <option value="human-resource-management">Human Resource Management</option>
+                  <option value="building-technology">Building Technology</option>
+                  <option value="quantity-surveying">Quantity Surveying</option>
+                  <option value="estate-management">Estate Management</option>
+                  <option value="fashion-design-textiles">Fashion Design and Textiles</option>
+                  <option value="industrial-design">Industrial Design</option>
+                  <option value="interior-design">Interior Design</option>
+                  <option value="technical-education">Technical Education</option>
+                  <option value="vocational-education">Vocational Education</option>
+              </select>
+            </div>
+          
+            <!-- Buttons -->
+            <div class="flex justify-between mt-5">
+              <button (click)="toggleForm()" class="h-11 w-[48%] bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center">
+                <span class="text-[#344053] text-base font-semibold">Cancel</span>
+              </button>
+              <button (click)="inviteStudent()" class="h-11 w-[48%] bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center">
+                <span class="text-white text-base font-semibold">Invite</span>
+              </button>
+            </div>
+            
+            <!-- Popup for showing API response message -->
+            <div *ngIf="showPopup" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+              <div class="w-[300px] h-auto p-6 bg-white rounded-lg shadow-lg flex flex-col items-center">
+                  <div class="text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">
+                      {{ popupMessage }}
+                  </div>
+                  <button (click)="closePopup()" class="mt-4 px-4 py-2 bg-[#ec4909] text-white rounded-lg">
+                   Close
+                  </button>
+              </div>
+          </div>
+          </div>
+          
           </div>
           
         <!-- second -->
-        <div class="h-[80%] w-[95%] flex  items-center border">
-            <!-- first table -->
-            <div class="h-[100%] w-[30%] flex justify-start items-start ">
-                <table class="w-full border-collapse">
-                    <!-- Table Header -->
-                    <thead>
-                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
-                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                                Username
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="h-14 bg-white border-b border-[#cfd4dc]">
-                            <td class="flex items-center gap-4 p-2">
-                                <div class="w-12 h-12 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                    <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">OR</span>
-                                </div>
-                                <span class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                                    Jane Cooper
-                                </span>
-                            </td>
-                        </tr>
-                </table>
-            </div>
-            
-            <!-- second table -->
-            <div class="h-[100%] w-[30%] flex justify-start items-start ">
-                <table class="w-full border-collapse">
-                    <!-- Table Header -->
-                    <thead>
-                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
-                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                                Email
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="h-16 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                            <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">janecooper&#64;gmail.com</td>
-                        </tr>
-                       
-                </table>
-
-            </div>
-            <!-- third table -->
-            <div class="h-[100%] w-[20%] flex justify-start items-start ">
-                <table class="w-full border-collapse">
-                    <!-- Table Header -->
-                    <thead>
-                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
-                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                                Topic
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="h-16 p-2 bg-white border-b border-[#cfd4dc] justify-start items-center gap-4">
-                            <td class="grow shrink basis-0 text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Department</td>
-                        </tr>
-                       
-                </table>
-
-            </div>
-            <!-- forth table -->
-            <div class="h-[100%] w-[20%] flex justify-start items-start ">
-                <table class="w-full border-collapse ">
-                    <!-- Table Header -->
-                    <thead>
-                        <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
-                            <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    
-                    <!-- Table Body -->
-                    <tbody>
-                        <!-- Row 1 -->
-                        <tr class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
-                            <td class="p-2 h-16 flex justify-between items-center">
-                                <button (click)="editUser()" class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]">Edit</button>
-                                <button (click)="deleteUser()" class="bg-red-500 text-white px-3 py-1 rounded w-[100px]">Delete</button>
-                            </td>
-                        </tr>
-                        
-                        <!-- Modal Popup -->
-                        <div *ngIf="showModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-                            <div class="w-[400px] h-auto p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
-                                <!-- Modal Header -->
-                                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
-                                    <div class="h-[76px] flex-col justify-start items-start gap-2 inline-flex">
-                                        <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Edit Student Details</div>
-                                        <div class="self-stretch text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Please fill the forms below to edit the student's details</div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Modal Body -->
-                                <div class="self-stretch h-auto flex-col justify-start items-start gap-5 flex">
-                                    <!-- Username Field -->
-                                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
-                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
-                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Username*</div>
-                                        </div>
-                                        <input 
-                                            type="text" 
-                                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
-                                            [(ngModel)]="studentUsername"
-                                            placeholder="Enter the username"
-                                        />
-                                    </div>
-                        
-                                    <!-- Email Field -->
-                                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
-                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
-                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Email*</div>
-                                        </div>
-                                        <input 
-                                            type="email" 
-                                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
-                                            [(ngModel)]="studentEmail"
-                                            placeholder="Enter the email"
-                                        />
-                                    </div>
-                        
-                                    <!-- Department Field -->
-                                    <div class="self-stretch flex-col justify-start items-start gap-3 flex">
-                                        <div class="h-5 flex-col justify-start items-start gap-1.5 inline-flex">
-                                            <div class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Department*</div>
-                                        </div>
-                                        <select 
-                                            class="self-stretch h-[50px] px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc]"
-                                            [(ngModel)]="studentDepartment"
-                                        >
-                                            <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                        
-                                <!-- Buttons -->
-                                <div class="self-stretch justify-start items-start gap-3 inline-flex">
-                                    <div 
-                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
-                                        (click)="closeModal()"
-                                    >
-                                        <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
-                                    </div>
-                                    <div 
-                                        class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#ec4909] rounded-lg shadow border border-[#ec4909] flex justify-center items-center gap-2 cursor-pointer"
-                                        (click)="saveStudentDetails()"
-                                    >
-                                        <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Save</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-
-    <!-- Delete Confirmation Modal -->
-    <div *ngIf="showDeleteModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-        <div class="w-[400px] h-[200px] p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
+        <div class="h-[80%] w-[95%] flex items-center border">
+          <!-- Username Column -->
+          <div class="h-[100%] w-[15%] flex justify-start items-start">
+              <table class="w-full border-collapse">
+                  <thead>
+                      <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                          <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              Username
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let student of studentDataList" class="h-14 bg-white border-b border-[#cfd4dc]">
+                          <td class="flex items-center gap-4 p-2">
+                              <div class="w-12 h-12 bg-[#f2f3f6] rounded-full flex justify-center items-center">
+                                  <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">
+                                      {{ (student.Username?.length > 1 ? student.Username.slice(0, 2) : student.Username) | uppercase }}
+                                  </span>
+                              </div>
+                              <span class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                                  {{ student.Username }}
+                              </span>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      
+          <!-- Email Column -->
+          <div class="h-[100%] w-[20%] flex justify-start items-start">
+              <table class="w-full border-collapse">
+                  <thead>
+                      <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                          <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              Email
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                          <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              {{ student.Email }}
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      
+          <!-- Department Column -->
+          <div class="h-[100%] w-[20%] flex justify-start items-start">
+              <table class="w-full border-collapse">
+                  <thead>
+                      <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                          <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              Department
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                          <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              {{ student.Department }}
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      
+          <!-- Phone Number Column -->
+          <div class="h-[100%] w-[20%] flex justify-start items-start">
+              <table class="w-full border-collapse">
+                  <thead>
+                      <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                          <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              Phone Number
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                          <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              {{ student.Phone_Number }}
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      
+          <!-- Index Number Column -->
+          <div class="h-[100%] w-[15%] flex justify-start items-start">
+              <table class="w-full border-collapse">
+                  <thead>
+                      <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                          <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              Index Number
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                          <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              {{ student.Index_Number }}
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      
+          <!-- Date/Time Column -->
+          <div class="h-[100%] w-[15%] flex justify-start items-start">
+              <table class="w-full border-collapse">
+                  <thead>
+                      <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                          <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              Date/Time
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                          <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              {{ student.CreatedAt }}
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      
+          <!-- Action Column -->
+          <div class="h-[100%] w-[20%] flex justify-start items-start">
+              <table class="w-full border-collapse">
+                  <thead>
+                      <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
+                          <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                              Action
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let student of studentDataList" class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                          <td class="p-2 h-16 flex justify-between items-center">
+                              <button 
+                                  class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]"
+                                  (click)="editUser(student)"
+                              >
+                                  Edit
+                              </button>
+                              <button 
+                                  class="bg-red-500 text-white px-3 py-1 rounded w-[100px]"
+                                  (click)="deleteUser(student)"
+                              >
+                                  Delete
+                              </button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      
+        
+        <!-- Popup for Notifications -->
+        <div *ngIf="showPopup" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div class="bg-white p-4 rounded shadow-lg">
+            <p>{{ popupMessage }}</p>
+            <button (click)="closePopup()" class="mt-2 bg-blue-500 text-white p-2 rounded">Close</button>
+          </div>
+        </div>
+        
+        <!-- Edit User Modal -->
+        <div *ngIf="showModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div class="bg-white p-4 rounded shadow-lg">
+            <h2 class="text-lg font-bold mb-4">Edit User</h2>
+            <!-- Form fields for editing user -->
+            <button (click)="closeModal()" class="mt-2 bg-red-500 text-white p-2 rounded">Cancel</button>
+          </div>
+        </div>
+        
+        <!-- Delete Confirmation Modal -->
+        <div *ngIf="showDeleteModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+          <div class="w-[400px] h-[200px] p-6 bg-white rounded-xl shadow flex-col justify-start items-center gap-8 inline-flex">
             <div class="self-stretch h-[76px] flex-col justify-start items-start gap-5 flex">
-                <div class="self-stretch h-[76px] flex-col justify-start items-start gap-2 flex">
-                    <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">Delete User</div>
-                    <div class="self-stretch">
-                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Are you sure you want to delete </span>
-                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">{{ userName }}</span>
-                        <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">? This action cannot be undone.</span>
-                    </div>
+              <div class="self-stretch h-[76px] flex-col justify-start items-start gap-2 flex">
+                <div class="self-stretch text-[#0f1728] text-lg font-semibold font-['Inter'] leading-7">
+                  Delete User
                 </div>
+                <div class="self-stretch">
+                  <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">Are you sure you want to delete </span>
+                  <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">{{ userName }}</span>
+                  <span class="text-[#667084] text-sm font-normal font-['Inter'] leading-tight">? This action cannot be undone.</span>
+                </div>
+              </div>
             </div>
             <div class="self-stretch justify-start items-start gap-3 inline-flex">
-                <div 
-                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
-                    (click)="closeDeleteModal()"
-                >
-                    <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
-                </div>
-                <div 
-                    class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#d92c20] rounded-lg shadow border border-[#d92c20] flex justify-center items-center gap-2 cursor-pointer"
-                    (click)="confirmDelete()"
-                >
-                    <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Delete</span>
-                </div>
+              <div 
+                class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] flex justify-center items-center gap-2 cursor-pointer" 
+                (click)="closeDeleteModal()"
+              >
+                <span class="text-[#344053] text-base font-semibold font-['Inter'] leading-normal">Cancel</span>
+              </div>
+              <div 
+                class="grow shrink basis-0 h-11 px-[18px] py-2.5 bg-[#d92c20] rounded-lg shadow border border-[#d92c20] flex justify-center items-center gap-2 cursor-pointer"
+                (click)="confirmDelete()"
+              >
+                <span class="text-white text-base font-semibold font-['Inter'] leading-normal">Delete</span>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-                    </tbody>
-                    
-                    
-                    
-                </table>
-
-            </div>
-
-
-        </div>
+        
+        
+        
+        
+        
+      
+      
         <!-- down -->
         <div class="h-[40px] w-[95%] flex justify-between items-center">
             <!-- Previous Button -->

@@ -1,81 +1,161 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-export class StudentComponent {
+export class StudentComponent implements OnInit {
+  showPopup = false;
+  popupMessage = '';
   showDeleteModal = false;
-  showModal = false; // Controls modal visibility
+  showModal = false;
+  isEditUserVisible = false;
+  showForm = false;
+  studentDataList: any[] = [];
+
+  studentData = {
+    username: '',
+    email: '',
+    password: '',
+    phone_number: '',
+    index_number: '',
+    department: '',
+    role: 'Student'
+  };
+
+  topics = ['Admission', 'Portal', 'Department'];
   faqQuestion = '';
   faqAnswer = '';
   faqTopic = '';
-  topics = ['Admission', 'Portal', 'Department']; // Example topics
 
-  
+  userId: string | null = null; // Ensure userId is initialized
+  userName: string = '';
 
-  editUser() {
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.fetchStudentData();
+  }
+
+  fetchStudentData(): void {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.get<any>('http://godinberto.pythonanywhere.com/api/v1/usersStudent', { headers })
+      .subscribe(response => {
+        console.log('API Response:', response); // Log the response
+        if (response.Users && Array.isArray(response.Users)) {
+          this.studentDataList = response.Users;
+        } else {
+          console.error('API response does not contain expected data:', response);
+        }
+      }, error => {
+        console.error('Error fetching student data', error);
+      });
+  }
+
+  inviteStudent(): void {
+    const apiUrl = 'http://godinberto.pythonanywhere.com/api/v1/superadmin/register';
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.post(apiUrl, this.studentData, { headers })
+      .subscribe(
+        response => {
+          this.toggleForm();
+          this.popupMessage = 'Student registered successfully!';
+          this.showPopup = true;
+          this.studentData = {
+            username: '',
+            email: '',
+            password: '',
+            phone_number: '',
+            index_number: '',
+            department: '',
+            role: 'Student'
+          };
+        },
+        error => {
+          console.error('Error adding student', error);
+          this.popupMessage = error.status === 400 && error.error.message 
+            ? error.error.message 
+            : 'Error adding student. Please try again.';
+          this.showPopup = true;
+        }
+      );
+  }
+
+  closePopup(): void {
+    this.showPopup = false;
+  }
+
+  toggleForm(): void {
+    this.showForm = !this.showForm;
+  }
+
+  editUser(student: any): void {
     this.isEditUserVisible = true;
-    // Your logic for editing a user
-    console.log('Edit User button clicked');
-    this.showModal=true;
-  }
-  saveFAQ(){
-    console.log('saved sucessfully')
+    this.showModal = true;
+    console.log('Editing user:', student);
   }
 
-
- 
-  handleNextClick() {
-    // Your logic for handling the button click
-    console.log('Next button clicked');
+  deleteUser(student: any): void {
+    this.userName = student.username; // Set the username for confirmation
+    this.userId = student.userId; // Set the user ID for deletion
+    this.showDeleteModal = true; // Show the delete confirmation modal
   }
-
-  handleButtonClick() {
-    // Your logic for handling button click
-    console.log('Button clicked');
+  confirmDelete(): void {
+    if (!this.userId) return; // Ensure userId is set
+  
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    console.log('Attempting to delete user with ID:', this.userId); // Debugging line
+  
+    this.http.delete(`http://godinberto.pythonanywhere.com/api/v1/usersStudent/${this.userId}`, { headers })
+      .subscribe(response => {
+        console.log('User deleted successfully', response);
+        this.fetchStudentData(); // Refresh student data
+        this.closeDeleteModal(); // Hide the delete confirmation modal
+      }, error => {
+        console.error('Error deleting user', error);
+        this.closeDeleteModal(); // Hide the delete confirmation modal
+      });
   }
-  isEditUserVisible: boolean = false;
-
   
 
-  
-
-  showForm = false;
-
- 
-  closeModal() {
+  closeModal(): void {
     this.showModal = false;
   }
-  deleteUser() {
-    this.showDeleteModal = true;
-    console.log('Delete User button clicked');
-  }
 
-  // Method to hide the Delete confirmation modal
-  closeDeleteModal() {
+  closeDeleteModal(): void {
     this.showDeleteModal = false;
   }
 
-
-
- 
-
- 
-  
-
-
-  
-  cancelEdit() {
+  cancelEdit(): void {
     this.isEditUserVisible = false;
   }
-  
 
-
-  toggleForm() {
-    this.showForm = !this.showForm;
+  saveFAQ(): void {
+    // Logic for saving FAQ
+    console.log('Save FAQ:', this.faqQuestion, this.faqAnswer, this.faqTopic);
   }
-  
-}
 
+  handleNextClick(): void {
+    // Handle 'Next' button click
+    console.log('Next button clicked');
+  }
+
+  handleButtonClick(): void {
+    // Handle button click
+    console.log('Button clicked');
+  }
+}
