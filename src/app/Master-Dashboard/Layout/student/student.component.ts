@@ -106,31 +106,38 @@ export class StudentComponent implements OnInit {
   }
 
   deleteUser(student: any): void {
-    this.userName = student.username; // Set the username for confirmation
-    this.userId = student.userId; // Set the user ID for deletion
+    this.userName = student.Username; // Set the username for confirmation
+    this.userId = student.UserID; // Set the user ID for deletion (you can change this to student.AdminID if you prefer)
     this.showDeleteModal = true; // Show the delete confirmation modal
-  }
-  confirmDelete(): void {
-    if (!this.userId) return; // Ensure userId is set
-  
+}
+
+confirmDelete(): void {
+    if (this.userId === null) return; // Ensure userId is set
+
+    // Retrieve the token from local storage
     const token = localStorage.getItem('token');
+
+    // Create HttpHeaders object with Authorization header
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-  
-    console.log('Attempting to delete user with ID:', this.userId); // Debugging line
-  
-    this.http.delete(`http://godinberto.pythonanywhere.com/api/v1/usersStudent/${this.userId}`, { headers })
+
+    // Make the delete request using the user ID
+    this.http.delete(`http://godinberto.pythonanywhere.com/api/v1/users/${this.userId}`, { headers })
       .subscribe(response => {
         console.log('User deleted successfully', response);
-        this.fetchStudentData(); // Refresh student data
-        this.closeDeleteModal(); // Hide the delete confirmation modal
+
+        // Remove the deleted user from the studentDataList array
+        this.studentDataList = this.studentDataList.filter(student => student.UserID !== this.userId);
+
+        this.showDeleteModal = false; // Hide the delete confirmation modal
       }, error => {
         console.error('Error deleting user', error);
-        this.closeDeleteModal(); // Hide the delete confirmation modal
+        this.showDeleteModal = false; // Hide the delete confirmation modal
       });
-  }
-  
+}
+
+
 
   closeModal(): void {
     this.showModal = false;
