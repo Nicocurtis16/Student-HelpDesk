@@ -53,6 +53,8 @@ export class TopPanelComponent implements OnInit {
       this.activeRouteName = 'Administrator';
     } else if (currentRoute.includes('/settings')) {
       this.activeRouteName = 'Settings';
+    }  else if (currentRoute.includes('/Admin/inbox')) {
+    this.activeRouteName = 'Inbox';
     } else {
       this.activeRouteName = 'Manage Users';
     }
