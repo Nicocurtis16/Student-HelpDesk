@@ -1,0 +1,41 @@
+<div *ngIf="isVisible" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+    <div class="w-[50%] h-[80%] flex flex-col justify-between  gap-4 bg-white p-4 rounded-lg ">
+      <div class="w-full h-24 p-2 bg-[#fbfcfc] border-b border-[#cfd4dc] flex-col justify-center items-center gap-2 inline-flex">
+        <div class="w-full flex justify-between items-center">
+          <div class="text-black text-[23.04px] font-semibold font-['Archivo'] leading-[28.80px]">Student</div>
+          <button (click)="closePopup()" class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Close</button>
+        </div>
+      </div>
+      <div class="h-6 justify-start items-center inline-flex">
+        <div class="text-black text-base font-normal font-['Archivo'] leading-normal tracking-tight">Manage users / </div>
+        <div class="text-black text-base font-normal font-['Archivo'] leading-normal tracking-tight">Student / </div>
+        <div class="text-[#ec4909] text-base font-normal font-['Archivo'] leading-normal tracking-tight">Bulk upload</div>
+      </div>
+      <div class="h-[404px] bg-white flex-col justify-start items-start gap-[46px] inline-flex">
+        <div class="text-[#1a1a2a] text-[23.04px] font-semibold font-['Archivo'] leading-[28.80px]">Bulk Upload for Trainers</div>
+        <div class="flex-col justify-start items-start gap-[40px] flex">
+            <div class="h-[133px] flex-col justify-start items-start gap-2 flex">
+                <div class="text-[#1a1a2a] text-[23.04px] font-semibold font-['Archivo'] leading-[28.80px]">Instructions</div>
+                <div class="self-stretch text-[#333441] text-base font-medium font-['Archivo'] leading-normal tracking-tight">Fill in the required information in the following format: Username, Email address, Phone number, Department, <br/>Upload the completed Excel file</div>
+            </div>
+            
+            <div class="self-stretch h-[50px] flex-col justify-start items-start gap-2 flex">
+                <div class="text-[#1a1a2a] text-[23.04px] font-semibold font-['Archivo'] leading-[28.80px]">Upload Excel File</div>
+                <div class="text-[#333441] text-base font-medium font-['Archivo'] leading-normal tracking-tight">Choose a Excel file from your computer to initiate the bulk upload process.</div>
+                <div class="relative">
+                  <!-- File Input -->
+                  <input id="fileUpload" type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" class="sr-only" />
+                  <label for="fileUpload" class="w-[197px] h-11 px-5 bg-[#ec4909] rounded-lg flex justify-center items-center gap-2 cursor-pointer text-white text-base font-normal font-['Archivo'] leading-normal tracking-tight">
+                      Browse
+                  </label>
+              </div>
+              
+            </div>
+            
+        </div>
+    </div>
+        
+        
+    </div>
+      
+</div>

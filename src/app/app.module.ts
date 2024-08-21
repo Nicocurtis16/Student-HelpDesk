@@ -20,6 +20,10 @@ import { AdminSidebarComponent } from './Admin-Dashboard/admin-sidebar/admin-sid
 import { AdminInboxComponent } from './Admin-Dashboard/admin-inbox/admin-inbox.component';
 import { AdminSettingsComponent } from './Admin-Dashboard/admin-settings/admin-settings.component';
 import { AuthInterceptor } from './../app/Master-Dashboard/settings/auth.interceptor';
+import * as ExcelJS from 'exceljs';
+
+import { StudentUploadPopupComponent } from './Master-Dashboard/student-upload-popup/student-upload-popup.component';
+import { AdminUploadPopupComponent } from './Master-Dashboard/admin-upload-popup/admin-upload-popup.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,9 @@ import { AuthInterceptor } from './../app/Master-Dashboard/settings/auth.interce
     AdministratorComponent,
     AdminSidebarComponent,
     AdminInboxComponent,
-    AdminSettingsComponent
+    AdminSettingsComponent,
+    StudentUploadPopupComponent,
+    AdminUploadPopupComponent
   ],
   imports: [
     BrowserModule,
