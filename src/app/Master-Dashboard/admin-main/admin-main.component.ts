@@ -10,52 +10,46 @@ export class AdminMainComponent implements OnInit, OnDestroy {
   showDeleteModal = false;
   showModal = false;
   showForm = false;
-  showPopup = false; // Controls the visibility of the popup
-  popupMessage = ''; // Stores the message from the API
+  showPopup = false;
+  popupMessage = '';
 
-  // Input fields for admin account creation
   adminData = {
     username: '',
     email: '',
     password: '',
     phone_number: '',
     department: '',
-    role: 'Admin' // Added role field
+    role: 'Admin'
   };
 
-  // Data from the API
   adminDataList: any[] = [];
-  adminEdit: any; // Define adminEdit property
-
-  // Properties for delete confirmation
+  paginatedAdminList: any[] = [];
+  adminEdit: any;
+  
   userName: string = '';
   userId: number | null = null;
-
-  // Interval reference
+  
   private intervalId: any;
+  public currentPage: number = 0;  // Changed from private to public
+  public pageSize: number = 7;     // Changed from private to public
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.loadAdminData();
-    // Set interval to refresh admin data every 10 seconds
     this.intervalId = setInterval(() => {
       this.loadAdminData();
-    }, 10000); // 10000 milliseconds = 10 seconds
+    }, 10000);
   }
 
   ngOnDestroy() {
-    // Clear interval when component is destroyed
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
   }
 
   loadAdminData() {
-    // Retrieve the token from local storage
     const token = localStorage.getItem('token');
-
-    // Create HttpHeaders object with Authorization header
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -64,6 +58,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       .subscribe(response => {
         if (response.Users && Array.isArray(response.Users)) {
           this.adminDataList = response.Users;
+          this.paginateData();
         } else {
           console.error('API response does not contain expected data:', response);
         }
@@ -72,8 +67,28 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       });
   }
 
+  paginateData() {
+    const start = this.currentPage * this.pageSize;
+    const end = start + this.pageSize;
+    this.paginatedAdminList = this.adminDataList.slice(start, end);
+  }
+
+  nextPage() {
+    if ((this.currentPage + 1) * this.pageSize < this.adminDataList.length) {
+      this.currentPage++;
+      this.paginateData();
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.paginateData();
+    }
+  }
+
   editUser(adminData: any) {
-    this.adminEdit = adminData; // Populate form with selected admin data
+    this.adminEdit = adminData;
     this.showModal = true;
   }
 
@@ -81,31 +96,20 @@ export class AdminMainComponent implements OnInit, OnDestroy {
     console.log('FAQ saved successfully');
   }
 
-  handleNextClick() {
-    console.log('Next button clicked');
-  }
-
-  handleButtonClick() {
-    console.log('Button clicked');
-  }
-
   closeModal() {
     this.showModal = false;
   }
 
   deleteUser(adminData: any) {
-    this.userName = adminData.Username; // Set the username for confirmation
-    this.userId = adminData.UserID; // Set the user ID for deletion
-    this.showDeleteModal = true; // Show the delete confirmation modal
+    this.userName = adminData.Username;
+    this.userId = adminData.UserID;
+    this.showDeleteModal = true;
   }
 
   confirmDelete() {
-    if (this.userId === null) return; // Ensure userId is set
+    if (this.userId === null) return;
 
-    // Retrieve the token from local storage
     const token = localStorage.getItem('token');
-
-    // Create HttpHeaders object with Authorization header
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -113,11 +117,11 @@ export class AdminMainComponent implements OnInit, OnDestroy {
     this.http.delete(`http://godinberto.pythonanywhere.com/api/v1/users/${this.userId}`, { headers })
       .subscribe(response => {
         console.log('User deleted successfully', response);
-        this.loadAdminData(); // Refresh admin data
-        this.showDeleteModal = false; // Hide the delete confirmation modal
+        this.loadAdminData();
+        this.showDeleteModal = false;
       }, error => {
         console.error('Error deleting user', error);
-        this.showDeleteModal = false; // Hide the delete confirmation modal
+        this.showDeleteModal = false;
       });
   }
 
@@ -134,10 +138,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
   }
 
   inviteAdmin() {
-    // Retrieve the token from local storage
     const token = localStorage.getItem('token');
-
-    // Create HttpHeaders object with Authorization header
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -146,9 +147,8 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       .subscribe(response => {
         console.log('Admin invited successfully', response);
         this.showForm = false;
-        this.popupMessage = 'Admin registered successfully!'; // Update message
-        this.showPopup = true; // Show popup
-        // Optionally reset form data
+        this.popupMessage = 'Admin registered successfully!';
+        this.showPopup = true;
         this.adminData = {
           username: '',
           email: '',
@@ -159,13 +159,13 @@ export class AdminMainComponent implements OnInit, OnDestroy {
         };
       }, error => {
         console.error('Error inviting admin', error);
-        this.popupMessage = 'Error inviting admin. Please try again.'; // Update message
-        this.showPopup = true; // Show popup
+        this.popupMessage = 'Error inviting admin. Please try again.';
+        this.showPopup = true;
       });
   }
 
   closePopup() {
     this.showPopup = false;
-    this.popupMessage = ''; // Clear message
+    this.popupMessage = '';
   }
 }

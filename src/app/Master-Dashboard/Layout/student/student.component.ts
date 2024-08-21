@@ -30,8 +30,12 @@ export class StudentComponent implements OnInit {
   faqAnswer = '';
   faqTopic = '';
 
-  userId: string | null = null; // Ensure userId is initialized
+  userId: string | null = null;
   userName: string = '';
+
+  // Pagination properties
+  currentPage = 1;
+  itemsPerPage = 10;
 
   constructor(private http: HttpClient) {}
 
@@ -47,7 +51,7 @@ export class StudentComponent implements OnInit {
 
     this.http.get<any>('http://godinberto.pythonanywhere.com/api/v1/usersStudent', { headers })
       .subscribe(response => {
-        console.log('API Response:', response); // Log the response
+        console.log('API Response:', response);
         if (response.Users && Array.isArray(response.Users)) {
           this.studentDataList = response.Users;
         } else {
@@ -80,6 +84,7 @@ export class StudentComponent implements OnInit {
             department: '',
             role: 'Student'
           };
+          this.fetchStudentData(); // Refresh the list after adding a student
         },
         error => {
           console.error('Error adding student', error);
@@ -106,38 +111,29 @@ export class StudentComponent implements OnInit {
   }
 
   deleteUser(student: any): void {
-    this.userName = student.Username; // Set the username for confirmation
-    this.userId = student.UserID; // Set the user ID for deletion (you can change this to student.AdminID if you prefer)
-    this.showDeleteModal = true; // Show the delete confirmation modal
-}
+    this.userName = student.Username;
+    this.userId = student.UserID;
+    this.showDeleteModal = true;
+  }
 
-confirmDelete(): void {
-    if (this.userId === null) return; // Ensure userId is set
+  confirmDelete(): void {
+    if (this.userId === null) return;
 
-    // Retrieve the token from local storage
     const token = localStorage.getItem('token');
-
-    // Create HttpHeaders object with Authorization header
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    // Make the delete request using the user ID
     this.http.delete(`http://godinberto.pythonanywhere.com/api/v1/users/${this.userId}`, { headers })
       .subscribe(response => {
         console.log('User deleted successfully', response);
-
-        // Remove the deleted user from the studentDataList array
         this.studentDataList = this.studentDataList.filter(student => student.UserID !== this.userId);
-
-        this.showDeleteModal = false; // Hide the delete confirmation modal
+        this.showDeleteModal = false;
       }, error => {
         console.error('Error deleting user', error);
-        this.showDeleteModal = false; // Hide the delete confirmation modal
+        this.showDeleteModal = false;
       });
-}
-
-
+  }
 
   closeModal(): void {
     this.showModal = false;
@@ -152,17 +148,14 @@ confirmDelete(): void {
   }
 
   saveFAQ(): void {
-    // Logic for saving FAQ
     console.log('Save FAQ:', this.faqQuestion, this.faqAnswer, this.faqTopic);
   }
 
   handleNextClick(): void {
-    // Handle 'Next' button click
     console.log('Next button clicked');
   }
 
   handleButtonClick(): void {
-    // Handle button click
     console.log('Button clicked');
   }
 }
