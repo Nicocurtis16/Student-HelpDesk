@@ -13,7 +13,8 @@ export class StudentComponent implements OnInit {
   showModal = false;
   isEditUserVisible = false;
   showForm = false;
-  studentDataList: any[] = [];
+  studentDataList: any[] = []; // Array to store all student data
+  displayedStudents: any[] = []; // Array to store students to be displayed on the current page
 
   studentData = {
     username: '',
@@ -34,8 +35,8 @@ export class StudentComponent implements OnInit {
   userName: string = '';
 
   // Pagination properties
-  currentPage = 1;
-  itemsPerPage = 10;
+  currentPage = 0; // Track the current page
+  itemsPerPage = 7; // Number of items to display per page
 
   constructor(private http: HttpClient) {}
 
@@ -54,12 +55,33 @@ export class StudentComponent implements OnInit {
         console.log('API Response:', response);
         if (response.Users && Array.isArray(response.Users)) {
           this.studentDataList = response.Users;
+          this.updateDisplayedStudents(); // Initialize the displayed students
         } else {
           console.error('API response does not contain expected data:', response);
         }
       }, error => {
         console.error('Error fetching student data', error);
       });
+  }
+
+  updateDisplayedStudents(): void {
+    const startIndex = this.currentPage * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.displayedStudents = this.studentDataList.slice(startIndex, endIndex);
+  }
+
+  nextPage(): void {
+    if ((this.currentPage + 1) * this.itemsPerPage < this.studentDataList.length) {
+      this.currentPage++;
+      this.updateDisplayedStudents();
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.updateDisplayedStudents();
+    }
   }
 
   inviteStudent(): void {
@@ -128,6 +150,7 @@ export class StudentComponent implements OnInit {
       .subscribe(response => {
         console.log('User deleted successfully', response);
         this.studentDataList = this.studentDataList.filter(student => student.UserID !== this.userId);
+        this.updateDisplayedStudents(); // Update displayed students after deletion
         this.showDeleteModal = false;
       }, error => {
         console.error('Error deleting user', error);

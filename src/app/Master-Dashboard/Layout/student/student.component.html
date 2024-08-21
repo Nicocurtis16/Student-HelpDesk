@@ -160,7 +160,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let student of studentDataList" class="h-14 bg-white border-b border-[#cfd4dc]">
+                      <tr *ngFor="let student of displayedStudents" class="h-14 bg-white border-b border-[#cfd4dc]">
                           <td class="flex items-center gap-4 p-2">
                               <div class="w-12 h-12 bg-[#f2f3f6] rounded-full flex justify-center items-center">
                                   <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">
@@ -187,7 +187,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                      <tr *ngFor="let student of displayedStudents" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
                           <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
                               {{ student.Email }}
                           </td>
@@ -207,7 +207,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                      <tr *ngFor="let student of displayedStudents" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
                           <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
                               {{ student.Department }}
                           </td>
@@ -227,7 +227,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                      <tr *ngFor="let student of displayedStudents" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
                           <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
                               {{ student.Phone_Number }}
                           </td>
@@ -247,7 +247,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                      <tr *ngFor="let student of displayedStudents" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
                           <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
                               {{ student.Index_Number }}
                           </td>
@@ -267,7 +267,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let student of studentDataList" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
+                      <tr *ngFor="let student of displayedStudents" class="h-16 p-2 bg-white border-b border-[#cfd4dc]">
                           <td class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
                               {{ student.CreatedAt }}
                           </td>
@@ -287,7 +287,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let student of studentDataList" class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
+                      <tr *ngFor="let student of displayedStudents" class="h-14 bg-white border-b border-[#cfd4dc] self-stretch">
                           <td class="p-2 h-16 flex justify-between items-center">
                               <button 
                                   class="bg-blue-500 text-white px-3 py-1 rounded w-[100px]"
@@ -368,7 +368,7 @@
         <div class="h-[40px] w-[95%] flex justify-between items-center">
             <!-- Previous Button -->
             <div class="h-full w-[20%]">
-              <button (click)="handleButtonClick()" class="h-9 rounded-lg flex items-center bg-white shadow border border-[#cfd4dc] px-3.5 py-2">
+              <button  (click)="previousPage()" [disabled]="currentPage === 0" class="h-9 rounded-lg flex items-center bg-white shadow border border-[#cfd4dc] px-3.5 py-2">
                 <div class="w-5 h-5">
                   <img src="../../../../assets/arrow-left.svg" alt="Previous">
                 </div>
@@ -381,7 +381,7 @@
           
             <!-- Next Button -->
             <div class="h-full w-[20%] flex justify-end">
-              <button (click)="handleNextClick()" class="h-9 px-3.5 py-2 bg-white rounded-lg shadow border border-[#feb172] flex items-center gap-2">
+              <button  (click)="nextPage()" [disabled]="(currentPage + 1) * itemsPerPage >= studentDataList.length" class="h-9 px-3.5 py-2 bg-white rounded-lg shadow border border-[#feb172] flex items-center gap-2">
                 <div class="text-[#344053] text-sm font-medium leading-tight">Next</div>
                 <div class="w-5 h-5">
                   <img src="../../../../assets/arrow-right.svg" alt="Next">
