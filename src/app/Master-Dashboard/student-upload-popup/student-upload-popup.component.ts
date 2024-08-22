@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as ExcelJS from 'exceljs';
+import * as XLSX from 'xlsx';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -30,34 +30,35 @@ export class StudentUploadPopupComponent {
   }
 
   async readExcelFile(file: File): Promise<void> {
-    const workbook = new ExcelJS.Workbook();
     const reader = new FileReader();
 
     reader.onload = async (e: any) => {
-      const buffer = e.target.result;
-      await workbook.xlsx.load(buffer);
+      const binaryStr = e.target.result;
+      const workbook = XLSX.read(binaryStr, { type: 'binary' });
 
-      const worksheet = workbook.worksheets[0];
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
+      const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
       const studentDataArray: any[] = [];
 
-      worksheet.eachRow((row, rowNumber) => {
-        if (rowNumber > 1) {  // Assuming the first row is the header
-          const rowValues = row.values as Array<string>;
-          studentDataArray.push({
-            username: rowValues[1],  // Assuming 1st column for username
-            email: rowValues[2],     // Assuming 2nd column for email
-            phone_number: rowValues[3], // Assuming 3rd column for phone
-            department: rowValues[4], // Assuming 4th column for department
-            index_number: rowValues[5] // Assuming 5th column for index number
-          });
-        }
-      });
+      // Skip header row
+      for (let i = 1; i < data.length; i++) {
+        const row = data[i];
+        studentDataArray.push({
+          username: row[0],  // Assuming 1st column for username
+          email: row[1],     // Assuming 2nd column for email
+          phone_number: row[2], // Assuming 3rd column for phone
+          department: row[3], // Assuming 4th column for department
+          index_number: row[4] // Assuming 5th column for index number
+        });
+      }
 
       console.log(studentDataArray);
       this.uploadStudents(studentDataArray);
     };
 
-    reader.readAsArrayBuffer(file);
+    reader.readAsBinaryString(file);
   }
 
   uploadStudents(studentDataArray: any[]): void {
