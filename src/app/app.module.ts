@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Login/login/login.component';
@@ -25,36 +25,30 @@ import * as ExcelJS from 'exceljs';
 import { StudentUploadPopupComponent } from './Master-Dashboard/student-upload-popup/student-upload-popup.component';
 import { AdminUploadPopupComponent } from './Master-Dashboard/admin-upload-popup/admin-upload-popup.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SidebarComponent,
-    StudentComponent,
-    TopPanelComponent,
-    FAQComponent,
-    DashboardMainComponent,
-    SettingsComponent,
-    AdminMainComponent,
-    AdministratorComponent,
-    AdminSidebarComponent,
-    AdminInboxComponent,
-    AdminSettingsComponent,
-    StudentUploadPopupComponent,
-    AdminUploadPopupComponent
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    RouterModule, 
-    HttpClientModule,
-    FormsModule
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        LoginComponent,
+        SidebarComponent,
+        StudentComponent,
+        TopPanelComponent,
+        FAQComponent,
+        DashboardMainComponent,
+        SettingsComponent,
+        AdminMainComponent,
+        AdministratorComponent,
+        AdminSidebarComponent,
+        AdminInboxComponent,
+        AdminSettingsComponent,
+        StudentUploadPopupComponent,
+        AdminUploadPopupComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        RouterModule,
+        FormsModule], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
