@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class StudentUploadPopupComponent {
   isVisible = false;
   selectedFile: File | null = null;
+  popupMessage = '';
 
   constructor(private http: HttpClient) {}
 
@@ -51,8 +52,8 @@ export class StudentUploadPopupComponent {
           phone_number: row[2], // Assuming 3rd column for phone
           department: row[3], // Assuming 4th column for department
           index_number: row[4], // Assuming 5th column for index number
-          password: row[5],
-          role: row[6]
+          password: row[5], // Assuming 6th column for password
+          role: 'Student'  // Set role to 'Student'
         });
       }
 
@@ -66,8 +67,16 @@ export class StudentUploadPopupComponent {
   uploadStudents(studentDataArray: any[]): void {
     this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', { users: studentDataArray })
       .subscribe(
-        response => console.log('Students registered:', response),
-        error => console.error('Failed to register students:', error)
+        response => {
+          this.popupMessage = 'Students registered successfully!';
+          console.log('Students registered:', response);
+          this.showPopup();
+        },
+        error => {
+          console.error('Failed to register students:', error);
+          this.popupMessage = 'Failed to register students. Please try again.';
+          this.showPopup();
+        }
       );
   }
 }
