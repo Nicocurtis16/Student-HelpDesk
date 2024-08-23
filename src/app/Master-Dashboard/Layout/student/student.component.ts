@@ -88,10 +88,25 @@ export class StudentComponent implements OnInit {
     const apiUrl = 'http://godinberto.pythonanywhere.com/api/v1/superadmin/register';
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
     });
-
-    this.http.post(apiUrl, this.studentData, { headers })
+  
+    const userPayload = {
+      users: [
+        {
+          username: this.studentData.username,
+          index_number: this.studentData.index_number,
+          department: this.studentData.department,
+          email: this.studentData.email,
+          password: this.studentData.password,
+          role: 'Student', // Ensure the role is set to Student
+          phone_number: this.studentData.phone_number
+        }
+      ]
+    };
+  
+    this.http.post(apiUrl, userPayload, { headers })
       .subscribe(
         response => {
           this.toggleForm();
@@ -117,7 +132,7 @@ export class StudentComponent implements OnInit {
         }
       );
   }
-
+  
   closePopup(): void {
     this.showPopup = false;
   }

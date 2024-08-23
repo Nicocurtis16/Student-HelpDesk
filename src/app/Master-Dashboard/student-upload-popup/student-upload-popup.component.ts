@@ -50,7 +50,9 @@ export class StudentUploadPopupComponent {
           email: row[1],     // Assuming 2nd column for email
           phone_number: row[2], // Assuming 3rd column for phone
           department: row[3], // Assuming 4th column for department
-          index_number: row[4] // Assuming 5th column for index number
+          index_number: row[4], // Assuming 5th column for index number
+          password: row[5],
+          role: row[6]
         });
       }
 
@@ -62,21 +64,10 @@ export class StudentUploadPopupComponent {
   }
 
   uploadStudents(studentDataArray: any[]): void {
-    studentDataArray.forEach(studentData => {
-      const student = {
-        username: studentData['username'],
-        email: studentData['email'],
-        password: 'defaultPassword', // Set a default or generated password
-        phone_number: studentData['phone_number'],
-        index_number: studentData['index_number'],
-        department: studentData['department'],
-        role: 'Student'
-      };
-
-      this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', student).subscribe(
-        response => console.log('Student registered:', response),
-        error => console.error('Failed to register student:', student.email, error)
+    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', { users: studentDataArray })
+      .subscribe(
+        response => console.log('Students registered:', response),
+        error => console.error('Failed to register students:', error)
       );
-    });
   }
 }
