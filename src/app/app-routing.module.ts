@@ -12,6 +12,8 @@ import { AdministratorComponent } from './Admin-Dashboard/administrator/administ
 import { AdminInboxComponent } from './Admin-Dashboard/admin-inbox/admin-inbox.component';
 import { AdminSettingsComponent } from './Admin-Dashboard/admin-settings/admin-settings.component';
 import { AuthGuard } from './AuthGuard';
+import { MessageFormComponent } from './message-form/message-form.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: 'faq', component: FAQComponent, canActivate: [AuthGuard] },
   { path: 'Admin/dashboard', component: AdministratorComponent, canActivate: [AuthGuard] },
   { path: 'Admin/inbox', component: AdminInboxComponent, canActivate: [AuthGuard] },
+  { path: 'send-message', component: MessageFormComponent },
+
   { path: 'Admin/settings', component: AdminSettingsComponent, canActivate: [AuthGuard] },
   { path: 'admin-sidebar', component: AdminSidebarComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] }

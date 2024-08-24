@@ -24,6 +24,21 @@ import * as ExcelJS from 'exceljs';
 
 import { StudentUploadPopupComponent } from './Master-Dashboard/student-upload-popup/student-upload-popup.component';
 import { AdminUploadPopupComponent } from './Master-Dashboard/admin-upload-popup/admin-upload-popup.component';
+import { MessageFormComponent } from './message-form/message-form.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+
+const config: SocketIoConfig = { 
+  url: 'http://godinberto.pythonanywhere.com', 
+  options: {
+    extraHeaders: {
+      Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
+    }
+  }
+};
+
+
+
 
 @NgModule({ declarations: [
         AppComponent,
@@ -40,10 +55,15 @@ import { AdminUploadPopupComponent } from './Master-Dashboard/admin-upload-popup
         AdminInboxComponent,
         AdminSettingsComponent,
         StudentUploadPopupComponent,
-        AdminUploadPopupComponent
+        AdminUploadPopupComponent,
+        MessageFormComponent
     ],
+    
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent], imports: [BrowserModule,
+        SocketIoModule.forRoot(config),
+    
+
         ReactiveFormsModule,
         AppRoutingModule,
         RouterModule,
