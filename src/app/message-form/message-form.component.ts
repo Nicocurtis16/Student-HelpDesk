@@ -25,25 +25,29 @@ export class MessageFormComponent implements OnInit {
       'Authorization': `Bearer ${localStorage.getItem('access_token')}`, 
       'Content-Type': 'application/json'
     };
+
     this.http.get('http://godinberto.pythonanywhere.com/api/v1/studentsForAdmin', { headers }).subscribe(
       (response: any) => {
-        console.log('API Response:', response); // Log the entire response
-        this.students = response.students; // Ensure the correct property is being accessed
+        console.log('Full API Response:', response); // Log the entire response object
+        if (response.Students) {
+          this.students = response.Students;
+          console.log('Assigned Students:', this.students);
+        } else {
+          console.error('No students found in response.');
+        }
       },
       (error) => {
-        console.error('Error fetching students:', error);
+        console.error('Error fetching students:', error.message || error);
       }
     );
   }
-  
 
-  // Add the missing sendMessage method here
   sendMessage(): void {
     const messageData = {
       receiver_id: this.selectedStudentId,
       subject: this.subject,
       content: this.content
-   
-    }
+    };
+    // Add code to send the message
   }
 }
