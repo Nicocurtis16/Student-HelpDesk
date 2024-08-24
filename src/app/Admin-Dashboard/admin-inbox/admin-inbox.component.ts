@@ -1,29 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MessageService } from '../../message.service';
 import { SocketService } from '../../socket.service';
 
 @Component({
   selector: 'app-admin-inbox',
   templateUrl: './admin-inbox.component.html',
-  styleUrls: ['./admin-inbox.component.css'] // Ensure this points to the correct CSS file
+  styleUrls: ['./admin-inbox.component.css']
 })
 export class AdminInboxComponent implements OnInit {
   messages: any[] = [];
 
-  constructor(private messageService: MessageService, private socketService: SocketService) {}
+  constructor(private messageService: MessageService, private socketService: SocketService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.loadMessages();
 
-    // Listening for new messages using SocketService
+    // Listen for new messages and refresh the message list
     this.socketService.onNewMessage().subscribe(message => {
-      this.messages.push(message);
+      console.log('New message event received:', message);
+      this.loadMessages(); // Reload messages when a new one arrives
+      this.cdr.detectChanges(); // Manually trigger change detection
     });
   }
 
   loadMessages(): void {
     this.messageService.getMessages().subscribe(data => {
-      this.messages = data.message_list; // Ensure your data structure is correct here
+      console.log('Messages loaded:', data.message_list);
+      this.messages = data.message_list; // Update message list
     });
   }
 }

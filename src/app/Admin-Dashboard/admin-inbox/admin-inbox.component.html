@@ -1,33 +1,29 @@
 <div class="w-screen h-screen flex">
-    <!-- Sidebar -->
-    <div class="h-[100%] w-[20%]">
-      <app-admin-sidebar></app-admin-sidebar>
+  <!-- Sidebar -->
+  <div class="h-[100%] w-[20%]">
+    <app-admin-sidebar></app-admin-sidebar>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="h-[100%] w-screen ">
+    <!-- Top Panel -->
+    <div class="h-[10%] w-[100%] mb-5">
+      <app-top-panel></app-top-panel>
     </div>
-  
-    <!-- Main Content Area -->
-    <div class="h-[100%] w-screen ">
-      <!-- Top Panel -->
-      <div class="h-[10%] w-[100%] mb-5">
-        <app-top-panel></app-top-panel>
+    <div class="p-6 bg-gray-100 min-h-screen">
+      <h1 class="text-2xl font-bold mb-4">Messages</h1>
+      <div class="bg-white shadow-md rounded-lg p-4">
+        <ul>
+          <li *ngFor="let message of messages" class="border-b last:border-b-0 py-2">
+            <div class="flex justify-between">
+              <span class="font-semibold">{{ message.SenderName }}</span>
+              <span class="text-sm text-gray-500">{{ message.CreatedAt | date:'short' }}</span>
+            </div>
+            <p class="mt-2">{{ message.Content }}</p>
+          </li>
+        </ul>
       </div>
-      <div class="p-6 bg-gray-100 min-h-screen">
-        <h1 class="text-2xl font-bold mb-4">Messages</h1>
-        <div class="bg-white shadow-md rounded-lg p-4">
-          <ul>
-            <li *ngFor="let message of messages" class="border-b last:border-b-0 py-2">
-              <div class="flex justify-between">
-                <span class="font-semibold">{{ message.SenderName }}</span>
-                <span class="text-sm text-gray-500">{{ message.CreatedAt | date:'short' }}</span>
-              </div>
-              <p class="mt-2">{{ message.Content }}</p>
-            </li>
-          </ul>
-        </div>
-        <app-message-form></app-message-form>
-      </div>
-      
+      <app-message-form></app-message-form>
     </div>
-  
-     
+  </div>
 </div>
-  

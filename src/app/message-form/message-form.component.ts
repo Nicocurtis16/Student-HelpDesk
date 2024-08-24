@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketService } from '../socket.service'; // Ensure correct service is imported
+import { SocketService } from '../socket.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,7 +11,7 @@ export class MessageFormComponent implements OnInit {
   subject: string = '';
   content: string = '';
   students: any[] = [];
-  selectedStudentId: string = '';
+  selectedStudentIndex: string = ''; // Use Index_Number instead of ID
 
   constructor(private socketService: SocketService, private http: HttpClient) {}
 
@@ -28,7 +28,7 @@ export class MessageFormComponent implements OnInit {
 
     this.http.get('http://godinberto.pythonanywhere.com/api/v1/studentsForAdmin', { headers }).subscribe(
       (response: any) => {
-        console.log('Full API Response:', response); // Log the entire response object
+        console.log('Full API Response:', response);
         if (response.Students) {
           this.students = response.Students;
           console.log('Assigned Students:', this.students);
@@ -44,10 +44,24 @@ export class MessageFormComponent implements OnInit {
 
   sendMessage(): void {
     const messageData = {
-      receiver_id: this.selectedStudentId,
+      receiver_index: this.selectedStudentIndex, // Use Index_Number
       subject: this.subject,
       content: this.content
     };
-    // Add code to send the message
+
+    const headers = {
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      'Content-Type': 'application/json'
+    };
+
+    this.http.post('http://godinberto.pythonanywhere.com/api/v1/sendMessageAdmin', messageData, { headers }).subscribe(
+      (response: any) => {
+        console.log('Message sent response:', response);
+        // Optionally handle WebSocket events here if needed
+      },
+      (error) => {
+        console.error('Error sending message:', error.message || error);
+      }
+    );
   }
 }

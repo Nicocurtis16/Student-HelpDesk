@@ -3,9 +3,9 @@
   <form (ngSubmit)="sendMessage()" class="bg-white shadow-md rounded-lg p-4">
     <div class="mb-4">
       <label for="student" class="block text-gray-700 font-semibold mb-2">Select Student</label>
-      <select id="student" [(ngModel)]="selectedStudentId" name="student" required
+      <select id="student" [(ngModel)]="selectedStudentIndex" name="student" required
               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <option *ngFor="let student of students" [value]="student.AdminID">{{ student.Index_Number }}</option>
+        <option *ngFor="let student of students" [value]="student.Index_Number">{{ student.Index_Number }}</option>
       </select>
     </div>
     <div class="mb-4">

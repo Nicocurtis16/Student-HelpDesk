@@ -1,40 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { io, Socket } from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
-  constructor(private socket: Socket) {}
+  private socket: Socket;
+  private newMessageSubject = new Subject<any>();
 
-  
-  connect() {
-    this.socket.connect();
+  constructor() {
+    this.socket = io('http://godinberto.pythonanywhere.com'); // Your backend URL
+    this.initializeSocketEvents();
+  }
 
-    this.socket.on('connect', () => {
-      console.log('Successfully connected to WebSocket');
+  private initializeSocketEvents(): void {
+    this.socket.on('new_message', (message: any) => {
+      console.log('New message received:', message); // Log received message
+      this.newMessageSubject.next(message);
     });
-
-    this.socket.on('disconnect', () => {
-      console.log('Disconnected from WebSocket');
-    });
   }
 
-  disconnect() {
-    this.socket.disconnect();
+  connect(): void {
+    if (!this.socket) {
+      this.socket = io('http://godinberto.pythonanywhere.com'); // Your backend URL
+      this.initializeSocketEvents();
+    }
   }
 
-  joinRoom(room: string) {
-    this.socket.emit('join', room);
+  disconnect(): void {
+    if (this.socket) {
+      this.socket.disconnect();
+    }
   }
 
-  leaveRoom(room: string) {
-    this.socket.emit('leave', room);
-  }
-
-  // New method to listen for new messages
   onNewMessage(): Observable<any> {
-    return this.socket.fromEvent('new_message');
+    return this.newMessageSubject.asObservable();
   }
 }
