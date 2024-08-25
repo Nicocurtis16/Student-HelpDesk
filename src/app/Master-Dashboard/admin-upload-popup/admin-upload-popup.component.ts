@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as ExcelJS from 'exceljs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-upload-popup',
@@ -44,11 +44,12 @@ export class AdminUploadPopupComponent {
         if (rowNumber > 1) {  // Assuming the first row is the header
           const rowValues = row.values as Array<string>;
           adminDataArray.push({
-            username: rowValues[1],  // Assuming 1st column for username
-            email: rowValues[2],     // Assuming 2nd column for email
-            phone_number: rowValues[3], // Assuming 3rd column for phone
-            department: rowValues[4] // Assuming 4th column for department
-            // Removed index_number field
+            username: row[0],  // Assuming 1st column for username
+          email: row[1],     // Assuming 2nd column for email
+          phone_number: row[2], // Assuming 3rd column for phone
+          department: row[3], // Assuming 4th column for department
+          password: row[4], // Assuming 6th column for password
+          role: 'Student'  // Set role to 'Student'
           });
         }
       });
@@ -61,20 +62,20 @@ export class AdminUploadPopupComponent {
   }
 
   uploadAdmins(adminDataArray: any[]): void {
-    adminDataArray.forEach(adminData => {
-      const admin = {
-        username: adminData['username'],
-        email: adminData['email'],
-        password: 'defaultPassword', // Set a default or generated password
-        phone_number: adminData['phone_number'],
-        department: adminData['department'],
-        role: 'Admin'
-      };
-
-      this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', admin).subscribe(
-        response => console.log('Admin registered:', response),
-        error => console.error('Failed to register admin:', admin.email, error)
-      );
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
     });
+
+    const payload = {
+      users: adminDataArray
+    };
+
+    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', payload, { headers })
+      .subscribe(
+        response => console.log('Admins registered:', response),
+        error => console.error('Failed to register admins:', error)
+      );
   }
 }
