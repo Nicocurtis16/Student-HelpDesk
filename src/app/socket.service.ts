@@ -7,7 +7,7 @@ import { io, Socket } from 'socket.io-client';
 })
 export class SocketService {
   private socket: Socket;
-  private newMessageSubject = new Subject<any>();
+  private newMessageSubject = new Subject<any>(); 
 
   constructor() {
     this.socket = io('http://godinberto.pythonanywhere.com'); // Your backend URL

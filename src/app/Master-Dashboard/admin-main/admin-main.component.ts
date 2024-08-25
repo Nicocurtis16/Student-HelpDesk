@@ -140,15 +140,23 @@ export class AdminMainComponent implements OnInit, OnDestroy {
   inviteAdmin() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json' // Ensure the content type is set
     });
-
-    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', this.adminData, { headers })
+  
+    // Prepare the payload as per API's expected format
+    const payload = {
+      users: [this.adminData]
+    };
+  
+    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', payload, { headers })
       .subscribe(response => {
         console.log('Admin invited successfully', response);
         this.showForm = false;
         this.popupMessage = 'Admin registered successfully!';
         this.showPopup = true;
+        
+        // Reset adminData including index_number
         this.adminData = {
           username: '',
           email: '',
@@ -163,6 +171,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
         this.showPopup = true;
       });
   }
+  
 
   closePopup() {
     this.showPopup = false;
