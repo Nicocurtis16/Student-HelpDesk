@@ -58,7 +58,6 @@
 
         
       </div>
-      <!-- third -->
       <!-- Message Component -->
 <div *ngFor="let message of messages" class="w-[100%] h-[191px] border border-[#e7e7e7] rounded-[4px] overflow-y-auto">
   <!-- Message Header -->
@@ -105,6 +104,7 @@
 <div *ngIf="showReplyPanelVisible" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
   <div class="bg-white p-5 rounded-lg w-1/2">
     <h2 class="text-lg font-semibold mb-4">Reply to {{ replyToSenderName }}</h2>
+    <p *ngIf="senderIndexNumber" class="mb-2 text-sm text-gray-700">Sender Index Number: {{ senderIndexNumber }}</p>
     <form (ngSubmit)="sendReply()">
       <div class="mb-4">
         <label for="subject" class="block text-sm font-medium mb-1">Subject:</label>
@@ -119,6 +119,12 @@
     </form>
   </div>
 </div>
+
+
+
+
+
+
 
       
     
