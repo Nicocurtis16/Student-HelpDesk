@@ -44,12 +44,13 @@ export class AdminUploadPopupComponent {
         if (rowNumber > 1) {  // Assuming the first row is the header
           const rowValues = row.values as Array<string>;
           adminDataArray.push({
-            username: row[0],  // Assuming 1st column for username
-          email: row[1],     // Assuming 2nd column for email
-          phone_number: row[2], // Assuming 3rd column for phone
-          department: row[3], // Assuming 4th column for department
-          password: row[4], // Assuming 6th column for password
-          role: 'Student'  // Set role to 'Student'
+            username: rowValues[1],     // Assuming 1st column for username
+            department: rowValues[2],   // Assuming 3rd column for department
+            email: rowValues[3],        // Assuming 4th column for email
+            password: rowValues[4], // Set a default or generated password
+            phone_number: rowValues[5],  // Assuming 5th column for phone number
+
+            role: 'Admin'             // Default role
           });
         }
       });

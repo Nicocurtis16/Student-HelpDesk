@@ -7,6 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./admin-main.component.css']
 })
 export class AdminMainComponent implements OnInit, OnDestroy {
+
+  
   showDeleteModal = false;
   showModal = false;
   showForm = false;
