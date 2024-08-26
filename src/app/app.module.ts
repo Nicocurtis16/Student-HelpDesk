@@ -26,6 +26,7 @@ import { StudentUploadPopupComponent } from './Master-Dashboard/student-upload-p
 import { AdminUploadPopupComponent } from './Master-Dashboard/admin-upload-popup/admin-upload-popup.component';
 import { MessageFormComponent } from './message-form/message-form.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { AdminOutboxComponent } from './Admin-Dashboard/admin-outbox/admin-outbox.component';
 
 
 const config: SocketIoConfig = { 
@@ -56,7 +57,8 @@ const config: SocketIoConfig = {
         AdminSettingsComponent,
         StudentUploadPopupComponent,
         AdminUploadPopupComponent,
-        MessageFormComponent
+        MessageFormComponent,
+        AdminOutboxComponent
     ],
     
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

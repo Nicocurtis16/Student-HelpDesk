@@ -13,6 +13,7 @@ import { AdminInboxComponent } from './Admin-Dashboard/admin-inbox/admin-inbox.c
 import { AdminSettingsComponent } from './Admin-Dashboard/admin-settings/admin-settings.component';
 import { AuthGuard } from './AuthGuard';
 import { MessageFormComponent } from './message-form/message-form.component';
+import { AdminOutboxComponent } from './Admin-Dashboard/admin-outbox/admin-outbox.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,8 @@ const routes: Routes = [
   { path: 'faq', component: FAQComponent, canActivate: [AuthGuard] },
   { path: 'Admin/dashboard', component: AdministratorComponent, canActivate: [AuthGuard] },
   { path: 'Admin/inbox', component: AdminInboxComponent, canActivate: [AuthGuard] },
+  { path: 'Admin/outbox', component: AdminOutboxComponent, canActivate: [AuthGuard] },
+
   { path: 'send-message', component: MessageFormComponent },
 
   { path: 'Admin/settings', component: AdminSettingsComponent, canActivate: [AuthGuard] },
