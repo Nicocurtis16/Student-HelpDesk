@@ -116,7 +116,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.delete(`http://godinberto.pythonanywhere.com/api/v1/users/${this.userId}`, { headers })
+    this.http.delete(`https://godinberto.pythonanywhere.com/api/v1/users/${this.userId}`, { headers })
       .subscribe(response => {
         console.log('User deleted successfully', response);
         this.loadAdminData();
@@ -151,7 +151,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       users: [this.adminData]
     };
   
-    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', payload, { headers })
+    this.http.post('https://godinberto.pythonanywhere.com/api/v1/superadmin/register', payload, { headers })
       .subscribe(response => {
         console.log('Admin invited successfully', response);
         this.showForm = false;

@@ -65,7 +65,7 @@ export class StudentUploadPopupComponent {
   }
 
   uploadStudents(studentDataArray: any[]): void {
-    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', { users: studentDataArray })
+    this.http.post('https://godinberto.pythonanywhere.com/api/v1/superadmin/register', { users: studentDataArray })
       .subscribe(
         response => {
           this.popupMessage = 'Students registered successfully!';

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MessageService {
-  private apiUrl = 'http://godinberto.pythonanywhere.com/api/v1/getReceivedMessages';
+  private apiUrl = 'https://godinberto.pythonanywhere.com/api/v1/getReceivedMessages';
 
   constructor(private http: HttpClient) {}
 

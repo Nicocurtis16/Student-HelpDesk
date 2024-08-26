@@ -91,7 +91,7 @@ export class AdminInboxComponent implements OnInit {
     if (this.replyToSenderID === null || !this.senderIndexNumber) return;
 
     // Send the message using the sender's index number
-    this.http.post('http://godinberto.pythonanywhere.com/api/v1/sendMessageAdmin', {
+    this.http.post('https://godinberto.pythonanywhere.com/api/v1/sendMessageAdmin', {
       receiver_index: this.senderIndexNumber,
       content: this.replyContent,
       subject: this.replySubject

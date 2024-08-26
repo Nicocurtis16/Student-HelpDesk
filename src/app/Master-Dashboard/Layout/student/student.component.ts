@@ -161,7 +161,7 @@ export class StudentComponent implements OnInit {
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.delete(`http://godinberto.pythonanywhere.com/api/v1/users/${this.userId}`, { headers })
+    this.http.delete(`https://godinberto.pythonanywhere.com/api/v1/users/${this.userId}`, { headers })
       .subscribe(response => {
         console.log('User deleted successfully', response);
         this.studentDataList = this.studentDataList.filter(student => student.UserID !== this.userId);

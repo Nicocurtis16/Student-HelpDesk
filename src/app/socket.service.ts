@@ -10,7 +10,7 @@ export class SocketService {
   private newMessageSubject = new Subject<any>(); 
 
   constructor() {
-    this.socket = io('http://godinberto.pythonanywhere.com'); // Your backend URL
+    this.socket = io('https://godinberto.pythonanywhere.com'); // Your backend URL
     this.initializeSocketEvents();
   }
 

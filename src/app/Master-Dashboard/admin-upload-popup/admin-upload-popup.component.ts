@@ -73,7 +73,7 @@ export class AdminUploadPopupComponent {
       users: adminDataArray
     };
 
-    this.http.post('http://godinberto.pythonanywhere.com/api/v1/superadmin/register', payload, { headers })
+    this.http.post('https://godinberto.pythonanywhere.com/api/v1/superadmin/register', payload, { headers })
       .subscribe(
         response => console.log('Admins registered:', response),
         error => console.error('Failed to register admins:', error)

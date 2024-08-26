@@ -18,7 +18,7 @@ export class FAQComponent implements OnInit {
   selectedFAQ: any = {};
   showForm = false;
 
-  private baseUrl = 'http://godinberto.pythonanywhere.com/api/v1'; // Base URL for your API
+  private baseUrl = 'https://godinberto.pythonanywhere.com/api/v1'; // Base URL for your API
 
   constructor(private http: HttpClient) {}
 

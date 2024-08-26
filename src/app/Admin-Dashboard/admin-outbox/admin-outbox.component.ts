@@ -39,7 +39,7 @@ export class AdminOutboxComponent implements OnInit, OnDestroy {
       'Content-Type': 'application/json'
     });
 
-    this.http.get('http://godinberto.pythonanywhere.com/api/v1/getSentMessages', { headers }).subscribe(
+    this.http.get('https://godinberto.pythonanywhere.com/api/v1/getSentMessages', { headers }).subscribe(
       (response: any) => {
         this.messages = response.message_list || [];
         console.log('Fetched sent messages:', this.messages);

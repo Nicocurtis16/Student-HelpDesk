@@ -70,7 +70,7 @@ export class MessageFormComponent implements OnInit {
       'Content-Type': 'application/json'
     };
 
-    this.http.post('http://godinberto.pythonanywhere.com/api/v1/sendMessageAdmin', messageData, { headers }).subscribe(
+    this.http.post('https://godinberto.pythonanywhere.com/api/v1/sendMessageAdmin', messageData, { headers }).subscribe(
       (response: any) => {
         console.log('Message sent response:', response);
         this.showPopup('Message sent successfully!');
