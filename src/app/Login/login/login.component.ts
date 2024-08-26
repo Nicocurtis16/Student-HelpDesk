@@ -25,7 +25,7 @@ export class LoginComponent {
       password: this.password,
     };
 
-    this.http.post('http://godinberto.pythonanywhere.com/api/v1/staff/login', loginPayload)
+    this.http.post('https://godinberto.pythonanywhere.com/api/v1/staff/login', loginPayload)
       .subscribe(
         (response: any) => {
           localStorage.setItem('token', response.access_token);
