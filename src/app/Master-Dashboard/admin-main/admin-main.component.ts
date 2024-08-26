@@ -56,7 +56,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.get<any>('http://godinberto.pythonanywhere.com/api/v1/usersAdmin', { headers })
+    this.http.get<any>('https://godinberto.pythonanywhere.com/api/v1/usersAdmin', { headers })
       .subscribe(response => {
         if (response.Users && Array.isArray(response.Users)) {
           this.adminDataList = response.Users;

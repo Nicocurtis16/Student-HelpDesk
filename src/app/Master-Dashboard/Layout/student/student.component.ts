@@ -50,7 +50,7 @@ export class StudentComponent implements OnInit {
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.get<any>('http://godinberto.pythonanywhere.com/api/v1/usersStudent', { headers })
+    this.http.get<any>('https://godinberto.pythonanywhere.com/api/v1/usersStudent', { headers })
       .subscribe(response => {
         console.log('API Response:', response);
         if (response.Users && Array.isArray(response.Users)) {
@@ -85,7 +85,7 @@ export class StudentComponent implements OnInit {
   }
 
   inviteStudent(): void {
-    const apiUrl = 'http://godinberto.pythonanywhere.com/api/v1/superadmin/register';
+    const apiUrl = 'https://godinberto.pythonanywhere.com/api/v1/superadmin/register';
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
