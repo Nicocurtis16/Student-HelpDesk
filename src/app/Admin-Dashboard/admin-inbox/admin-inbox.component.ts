@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./admin-inbox.component.css']
 })
 export class AdminInboxComponent implements OnInit {
+
+
   messages: any[] = [];
   showReplyPanelVisible: boolean = false;
   replyToSenderID: number | null = null;
@@ -102,5 +104,21 @@ export class AdminInboxComponent implements OnInit {
         console.error('Failed to send message:', error);
       }
     );
+  }
+ 
+
+  isMessageFormVisible: boolean = false;
+
+
+  showMessageForm(): void {
+    this.isMessageFormVisible = true; // Show the message form
+  }
+  
+  hideMessageForm(): void {
+    this.isMessageFormVisible = false; // Hide the message form
+  }
+
+  handleFormClose(): void {
+    this.hideMessageForm(); // Handle form close
   }
 }

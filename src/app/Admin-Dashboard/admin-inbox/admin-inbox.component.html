@@ -36,23 +36,29 @@
           </div>
           <div class="h-[100%] w-[50%] flex items-center justify-end">
            
-            <!-- button  -->
-            <button
-              class="w-[157px] h-11 p-2.5 bg-[#7f56d8] rounded inline-flex items-center justify-center gap-2.5 ml-3"
-            >
-              <div class="w-6 h-6 relative">
-                <div class="w-6 h-6 left-0 top-0 absolute">
-                  <div class="w-6 h-6 left-[0px] absolute">
-                    <!-- Optional inner content or icon -->
-                    <img src="../../../assets/message-edit.svg" alt="" />
-                  </div>
-                </div>
-              </div>
-              <span
-                class="text-center text-white text-sm font-semibold font-['Montserrat']"
-                >New Message</span
-              >
-            </button>
+            <!-- Button to trigger the form -->
+<button (click)="showMessageForm()" 
+class="w-[157px] h-11 p-2.5 bg-[#7f56d8] rounded inline-flex items-center justify-center gap-2.5 ml-3">
+<div class="w-6 h-6 relative">
+  <div class="w-6 h-6 left-0 top-0 absolute">
+    <div class="w-6 h-6 left-[0px] absolute">
+      <img src="../../../assets/message-edit.svg" alt="" />
+    </div>
+  </div>
+</div>
+<span class="text-center text-white text-sm font-semibold font-['Montserrat']">
+  New Message
+</span>
+</button>
+
+<app-message-form 
+  *ngIf="isMessageFormVisible"
+  (close)="handleFormClose()">
+</app-message-form>
+
+<!-- Message Form Component -->
+<app-message-form *ngIf="isMessageFormVisible"></app-message-form>
+
           </div>
         </div>
 

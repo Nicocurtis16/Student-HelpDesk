@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { SocketService } from '../socket.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,16 +7,33 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./message-form.component.css']
 })
 export class MessageFormComponent implements OnInit {
+  @Output() close = new EventEmitter<void>(); // Emit event to close the form
+
   subject: string = '';
   content: string = '';
   students: any[] = [];
   selectedStudentIndex: string = ''; // Use Index_Number instead of ID
+  isPopupVisible: boolean = false; // Track popup visibility
+  popupMessage: string = ''; // Message to display in the popup
 
-  constructor(private socketService: SocketService, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.socketService.connect(); // Ensure socket connection is established
     this.getAssignedStudents(); // Load assigned students for messaging
+  }
+
+  hideMessageForm(): void {
+    this.close.emit(); // Emit close event
+  }
+
+  showPopup(message: string): void {
+    this.popupMessage = message;
+    this.isPopupVisible = true;
+    setTimeout(() => this.closePopup(), 3000); // Automatically close popup after 3 seconds
+  }
+
+  closePopup(): void {
+    this.isPopupVisible = false;
   }
 
   getAssignedStudents(): void {
@@ -57,11 +73,13 @@ export class MessageFormComponent implements OnInit {
     this.http.post('http://godinberto.pythonanywhere.com/api/v1/sendMessageAdmin', messageData, { headers }).subscribe(
       (response: any) => {
         console.log('Message sent response:', response);
-        // Optionally handle WebSocket events here if needed
+        this.showPopup('Message sent successfully!');
       },
       (error) => {
         console.error('Error sending message:', error.message || error);
+        this.showPopup('Failed to send message. Please try again.');
       }
     );
+    this.hideMessageForm(); // Close the modal after message is sent
   }
 }
