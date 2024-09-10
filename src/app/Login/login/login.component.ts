@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username: string = '';
+  email: string = '';
   password: string = '';
   isPasswordVisible: boolean = false;
   errorMessage: string = ''; // Add this property
@@ -21,7 +21,7 @@ export class LoginComponent {
 
   login() {
     const loginPayload = {
-      username: this.username,
+      email: this.email,
       password: this.password,
     };
 
@@ -29,7 +29,7 @@ export class LoginComponent {
       .subscribe(
         (response: any) => {
           localStorage.setItem('token', response.access_token);
-          localStorage.setItem('username', response.username);
+          localStorage.setItem('email', response.email);
           console.log('Login Response:', response);
           if (response.access_token) {
             if (response.role === 'Super Admin') {
@@ -41,7 +41,7 @@ export class LoginComponent {
         },
         (error: any) => {
           console.error('Login Error:', error);
-          this.errorMessage = 'Invalid username or password'; // Set the error message
+          this.errorMessage = 'Invalid email or password'; // Set the error message
         }
       );
   }

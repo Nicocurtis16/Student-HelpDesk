@@ -16,7 +16,8 @@ export class AdminMainComponent implements OnInit, OnDestroy {
   popupMessage = '';
 
   adminData = {
-    username: '',
+    first_name: " ",
+    last_name: " ",
     email: '',
     password: '',
     phone_number: '',
@@ -160,7 +161,8 @@ export class AdminMainComponent implements OnInit, OnDestroy {
         
         // Reset adminData including index_number
         this.adminData = {
-          username: '',
+          first_name: " ",
+          last_name: " ",
           email: '',
           password: '',
           phone_number: '',
