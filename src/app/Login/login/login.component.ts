@@ -29,6 +29,13 @@ export class LoginComponent {
       .subscribe(
         (response: any) => {
           localStorage.setItem('token', response.access_token);
+          if (response.FullName) {
+            localStorage.setItem('FullName', response.FullName);
+            console.log('FullName stored:', response.FullName);
+          } else {
+            console.error('FullName not found in the login response');
+          }
+
           localStorage.setItem('email', response.email);
           console.log('Login Response:', response);
           if (response.access_token) {

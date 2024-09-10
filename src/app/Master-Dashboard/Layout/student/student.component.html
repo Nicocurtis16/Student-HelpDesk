@@ -150,7 +150,7 @@
         <!-- second -->
         <div class="h-[80%] w-[95%] flex items-center border">
           <!-- Username Column -->
-          <div class="h-[100%] w-[15%] flex justify-start items-start">
+          <!-- <div class="h-[100%] w-[15%] flex justify-start items-start">
               <table class="w-full border-collapse">
                   <thead>
                       <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
@@ -164,17 +164,17 @@
                           <td class="flex items-center gap-4 p-2">
                               <div class="w-12 h-12 bg-[#f2f3f6] rounded-full flex justify-center items-center">
                                   <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">
-                                      {{ (student.Username?.length > 1 ? student.Username.slice(0, 2) : student.Username) | uppercase }}
+                                      {{ (student.fullname?.length > 1 ? student.Username.slice(0, 2) : student.fullname) | uppercase }}
                                   </span>
                               </div>
                               <span class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                                  {{ student.Username }}
+                                  {{ student.fullname}}
                               </span>
                           </td>
                       </tr>
                   </tbody>
               </table>
-          </div>
+          </div> -->
       
           <!-- Email Column -->
           <div class="h-[100%] w-[25%] flex justify-start items-start">

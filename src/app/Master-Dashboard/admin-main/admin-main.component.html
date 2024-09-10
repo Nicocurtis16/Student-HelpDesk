@@ -69,8 +69,13 @@
           
               <!-- Username Input -->
               <div class="flex flex-col gap-1.5">
-                <label for="username" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Username*</label>
-                <input id="username" [(ngModel)]="adminData.username" type="text" placeholder="Enter username" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+                <label for="first_name" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">First Name*</label>
+                <input id="first_name" [(ngModel)]="adminData.first_name" type="text" placeholder="Enter First Name" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
+              </div>
+
+              <div class="flex flex-col gap-1.5">
+                <label for="last_name" class="text-[#344053] text-sm font-medium font-['Inter'] leading-tight">Last Name*</label>
+                <input id="last_name" [(ngModel)]="adminData.last_name" type="text" placeholder="Enter Last Name" class="h-11 px-4 py-2.5 bg-white rounded-lg shadow border border-[#cfd4dc] text-[#344053] text-base font-normal font-['Archivo'] leading-normal">
               </div>
           
               <!-- Email Input -->
@@ -157,7 +162,7 @@
                 <thead>
                   <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
                     <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                      Username
+                      Full Name
                     </th>
                   </tr>
                 </thead>
@@ -166,11 +171,19 @@
                     <td class="flex items-center gap-4 p-2">
                       <div class="w-12 h-12 bg-[#f2f3f6] rounded-full flex justify-center items-center">
                         <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">
-                          {{ (admin.Username.length > 1 ? admin.Username.slice(0, 2) : admin.Username) | uppercase }}
+                          {{ (admin.
+                            FullName
+                            .length > 1 ? admin.
+FullName
+.slice(0, 2) : admin.
+FullName
+) | uppercase }}
                         </span>
                       </div>
                       <span class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                        {{ admin.Username }}
+                        {{ admin.
+                          FullName
+                           }}
                       </span>
                     </td>
                   </tr>

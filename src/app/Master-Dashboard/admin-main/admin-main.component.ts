@@ -18,6 +18,9 @@ export class AdminMainComponent implements OnInit, OnDestroy {
   adminData = {
     first_name: " ",
     last_name: " ",
+    
+FullName:'',
+
     email: '',
     password: '',
     phone_number: '',
@@ -139,15 +142,18 @@ export class AdminMainComponent implements OnInit, OnDestroy {
   toggleForm() {
     this.showForm = !this.showForm;
   }
-
+  
   inviteAdmin() {
+    // Log adminData before sending
+    console.log('Admin Data being sent:', this.adminData);
+  
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json' // Ensure the content type is set
     });
   
-    // Prepare the payload as per API's expected format
+    // Prepare the payload
     const payload = {
       users: [this.adminData]
     };
@@ -158,11 +164,12 @@ export class AdminMainComponent implements OnInit, OnDestroy {
         this.showForm = false;
         this.popupMessage = 'Admin registered successfully!';
         this.showPopup = true;
-        
-        // Reset adminData including index_number
+  
+        // Reset adminData after a successful invite
         this.adminData = {
-          first_name: " ",
-          last_name: " ",
+          FullName: '',
+          first_name: '',
+          last_name: '',
           email: '',
           password: '',
           phone_number: '',
@@ -175,6 +182,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
         this.showPopup = true;
       });
   }
+  
   
 
   closePopup() {

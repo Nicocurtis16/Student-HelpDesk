@@ -7,16 +7,16 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./top-panel.component.css']
 })
 export class TopPanelComponent implements OnInit {
-  username: string = '';
+  fullName: string = '';
   firstLetter: string = '';
-  secondLetter: string = '';
+  lastLetter: string = '';
   activeRouteName: string = '';
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Fetch the username from localStorage when the component initializes
-    this.fetchUsernameFromLocalStorage();
+    // Fetch the full name from localStorage when the component initializes
+    this.fetchNameFromLocalStorage();
 
     // Subscribe to route changes
     this.router.events.subscribe(event => {
@@ -29,16 +29,19 @@ export class TopPanelComponent implements OnInit {
     this.setActiveRouteName();
   }
 
-  private fetchUsernameFromLocalStorage(): void {
-    const username = localStorage.getItem('username');
-    if (username) {
-      this.username = username;
-      this.firstLetter = this.username.charAt(0).toUpperCase();
-      this.secondLetter = this.username.charAt(1) ? this.username.charAt(1).toUpperCase() : '';
+  private fetchNameFromLocalStorage(): void {
+    const fullName = localStorage.getItem('FullName');
+    console.log('FullName from localStorage:', fullName);  // Log for debugging
+    if (fullName) {
+      this.fullName = fullName;
+      const nameParts = this.fullName.split(' ');
+      this.firstLetter = nameParts[0].charAt(0).toUpperCase();
+      this.lastLetter = nameParts[1] ? nameParts[1].charAt(0).toUpperCase() : '';
     } else {
-      console.error('Username not found in local storage');
+      console.error('Full name not found in local storage');
     }
   }
+  
 
   private setActiveRouteName(): void {
     const currentRoute = this.router.url.toLowerCase();
@@ -53,8 +56,8 @@ export class TopPanelComponent implements OnInit {
       this.activeRouteName = 'Administrator';
     } else if (currentRoute.includes('/settings')) {
       this.activeRouteName = 'Settings';
-    }  else if (currentRoute.includes('/Admin/inbox')) {
-    this.activeRouteName = 'Inbox';
+    } else if (currentRoute.includes('/Admin/inbox')) {
+      this.activeRouteName = 'Inbox';
     } else {
       this.activeRouteName = 'Manage Users';
     }

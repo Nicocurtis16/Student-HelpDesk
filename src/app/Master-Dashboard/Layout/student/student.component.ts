@@ -17,7 +17,7 @@ export class StudentComponent implements OnInit {
   displayedStudents: any[] = []; // Array to store students to be displayed on the current page
 
   studentData = {
-    username: '',
+    fullname: '',
     email: '',
     password: '',
     phone_number: '',
@@ -95,7 +95,7 @@ export class StudentComponent implements OnInit {
     const userPayload = {
       users: [
         {
-          username: this.studentData.username,
+          fullname: this.studentData.fullname,
           index_number: this.studentData.index_number,
           department: this.studentData.department,
           email: this.studentData.email,
@@ -113,7 +113,7 @@ export class StudentComponent implements OnInit {
           this.popupMessage = 'Student registered successfully!';
           this.showPopup = true;
           this.studentData = {
-            username: '',
+            fullname: '',
             email: '',
             password: '',
             phone_number: '',
