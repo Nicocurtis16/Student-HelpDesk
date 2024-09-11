@@ -86,6 +86,17 @@ export class AdminInboxComponent implements OnInit {
     this.replyContent = '';
     this.senderIndexNumber = ''; // Clear sender index number
   }
+  onSearch(query: string): void {
+    if (query.trim()) {
+      this.messageService.searchMessages(query).subscribe(data => {
+        console.log('Search results:', data.message_list);
+        this.messages = data.message_list; // Update message list with search results
+      });
+    } else {
+      // If query is empty, load all messages
+      this.loadMessages();
+    }
+  }
 
   sendReply(): void {
     if (this.replyToSenderID === null || !this.senderIndexNumber) return;

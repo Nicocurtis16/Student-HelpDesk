@@ -28,10 +28,12 @@
                 </div>
               </div>
               <input
-                type="text"
-                placeholder="Search for Inbox"
-                class="w-[187px] h-[13px] text-[#b5b5b5] text-xs font-medium font-['Montserrat'] bg-neutral-50 focus:outline-none"
-              />
+  type="text"
+  placeholder="Search for Inbox"
+  class="w-[187px] h-[13px] text-[#b5b5b5] text-xs font-medium font-['Montserrat'] bg-neutral-50 focus:outline-none"
+  (input)="onSearch($event.target.value)"
+/>
+
             </div>
           </div>
           <div class="h-[100%] w-[50%] flex items-center justify-end">
