@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent implements OnInit {
-  searchTerm: string = ''; // Binding for the search input
+  searchText: string = ''; // Binding for the search input
 
   showPopup = false;
   popupMessage = '';
@@ -66,24 +66,47 @@ export class StudentComponent implements OnInit {
       });
   }
 
-  updateDisplayedStudents(): void {
-    const startIndex = this.currentPage * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.displayedStudents = this.studentDataList.slice(startIndex, endIndex);
-  }
+  // updateDisplayedStudents(): void {
+  //   const startIndex = this.currentPage * this.itemsPerPage;
+  //   const endIndex = startIndex + this.itemsPerPage;
+  //   this.displayedStudents = this.studentDataList.slice(startIndex, endIndex);
+  // }
   filterStudents(): void {
-    // Apply search filtering
-    const filteredStudents = this.studentDataList.filter(student => {
-      return Object.values(student).some(value =>
-        value.toString().toLowerCase().includes(this.searchTerm.toLowerCase())
+    const searchTerm = this.searchText.toLowerCase();
+  
+    // Filter the studentDataList based on the search term
+    const filteredStudents = this.studentDataList.filter((student) => {
+      const fullName = student.fullname?.toLowerCase() || '';
+      const email = student.email?.toLowerCase() || '';
+      const department = student.department?.toLowerCase() || '';
+      const phoneNumber = student.phone_number ? String(student.phone_number).toLowerCase() : '';
+      const indexNumber = student.index_number ? String(student.index_number).toLowerCase() : '';
+  
+      return (
+        fullName.includes(searchTerm) ||
+        email.includes(searchTerm) ||
+        department.includes(searchTerm) ||
+        phoneNumber.includes(searchTerm) ||
+        indexNumber.includes(searchTerm)
       );
     });
-
-    // Update the list of displayed students based on the filtered results
-    this.currentPage = 0; // Reset to the first page when filtering
-    this.studentDataList = filteredStudents; // Update the studentDataList with filtered results
-    this.updateDisplayedStudents(); // Update the displayed students
+  
+    // Reset pagination to the first page
+    this.currentPage = 0;
+    
+    // Update the displayed students based on the filtered results
+    this.updateDisplayedStudents(filteredStudents);
   }
+  
+  updateDisplayedStudents(filteredList: any[] = this.studentDataList): void {
+    const startIndex = this.currentPage * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.displayedStudents = filteredList.slice(startIndex, endIndex);
+  }
+  
+  
+  
+  
 
   nextPage(): void {
     if ((this.currentPage + 1) * this.itemsPerPage < this.studentDataList.length) {
