@@ -7,6 +7,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./admin-main.component.css']
 })
 export class AdminMainComponent implements OnInit, OnDestroy {
+  searchText: string = '';
+  searchTerm: string = '';
+ 
 
   
   showDeleteModal = false;
@@ -53,6 +56,31 @@ FullName:'',
       clearInterval(this.intervalId);
     }
   }
+  filterAdminList() {
+    const searchTerm = this.searchText.toLowerCase();
+  
+    const filteredList = this.adminDataList.filter((admin) => {
+      const fullName = admin.FullName?.toLowerCase() || '';
+      const email = admin.Email?.toLowerCase() || '';
+      const department = admin.Department?.toLowerCase() || '';
+      const phoneNumber = admin.Phone_Number ? String(admin.Phone_Number).toLowerCase() : '';
+  
+      return (
+        fullName.includes(searchTerm) ||
+        email.includes(searchTerm) ||
+        department.includes(searchTerm) ||
+        phoneNumber.includes(searchTerm)
+      );
+    });
+  
+    this.paginatedAdminList = filteredList.slice(
+      this.currentPage * this.pageSize,
+      (this.currentPage + 1) * this.pageSize
+    );
+  }
+  
+  
+  
 
   loadAdminData() {
     const token = localStorage.getItem('token');

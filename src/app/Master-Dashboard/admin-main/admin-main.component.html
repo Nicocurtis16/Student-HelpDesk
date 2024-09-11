@@ -31,8 +31,10 @@
               <div class="w-[300px] h-10 px-4 py-2 rounded-lg border border-[#a6a6ab] flex items-center gap-2">
                 <img src="../../../../assets/search-normal.svg" alt="Search Icon">
                 <input type="text" 
-                       placeholder="Search in table" 
-                       class="w-full h-6 text-[#a6a6ab] text-base font-normal font-['Archivo'] leading-normal tracking-tight outline-none"/>
+                    placeholder="Search in table" 
+                    [(ngModel)]="searchText" 
+                    (input)="filterAdminList()" 
+                    class="w-full h-6 text-[#a6a6ab] text-base font-normal font-['Archivo'] leading-normal tracking-tight outline-none"/>
               </div>
             </div>
           </div>
