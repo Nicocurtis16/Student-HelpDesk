@@ -26,16 +26,19 @@
           </div>
   
           <!-- Center Section (Search Bar) -->
-          <div class="h-full w-[47%]  flex items-center justify-end ">
+          <div class="h-full w-[47%] flex items-center justify-end">
             <div class="h-10 bg-white flex items-center gap-2">
               <div class="w-[300px] h-10 px-4 py-2 rounded-lg border border-[#a6a6ab] flex items-center gap-2">
                 <img src="../../../../assets/search-normal.svg" alt="Search Icon">
-                <input type="text" 
-                       placeholder="Search in table" 
-                       class="w-full h-6 text-[#a6a6ab] text-base font-normal font-['Archivo'] leading-normal tracking-tight outline-none"/>
+                <input type="text"
+                       placeholder="Search in table"
+                       class="w-full h-6 text-[#a6a6ab] text-base font-normal font-['Archivo'] leading-normal tracking-tight outline-none"
+                       [(ngModel)]="searchTerm" 
+                       (input)="filterStudents()" />
               </div>
             </div>
           </div>
+          
   
     
         </div>
@@ -135,32 +138,7 @@
           
         <!-- second -->
         <div class="h-[80%] w-[95%] flex items-center border">
-          <!-- Username Column -->
-          <!-- <div class="h-[100%] w-[15%] flex justify-start items-start">
-              <table class="w-full border-collapse">
-                  <thead>
-                      <tr class="h-[56px] px-2 py-4 bg-[#cfd4dc] border-b border-[#cfd4dc]">
-                          <th class="text-left text-[#1d2838] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                              Username
-                          </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let student of displayedStudents" class="h-14 bg-white border-b border-[#cfd4dc]">
-                          <td class="flex items-center gap-4 p-2">
-                              <div class="w-12 h-12 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                                  <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">
-                                      {{ (student.fullname?.length > 1 ? student.Username.slice(0, 2) : student.fullname) | uppercase }}
-                                  </span>
-                              </div>
-                              <span class="text-[#667084] text-base font-normal font-['Archivo'] leading-normal tracking-tight">
-                                  {{ student.fullname}}
-                              </span>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div> -->
+         
       
           <!-- Email Column -->
           <div class="h-[100%] w-[25%] flex justify-start items-start">

@@ -7,6 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent implements OnInit {
+  searchTerm: string = ''; // Binding for the search input
+
   showPopup = false;
   popupMessage = '';
   showDeleteModal = false;
@@ -68,6 +70,19 @@ export class StudentComponent implements OnInit {
     const startIndex = this.currentPage * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.displayedStudents = this.studentDataList.slice(startIndex, endIndex);
+  }
+  filterStudents(): void {
+    // Apply search filtering
+    const filteredStudents = this.studentDataList.filter(student => {
+      return Object.values(student).some(value =>
+        value.toString().toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    });
+
+    // Update the list of displayed students based on the filtered results
+    this.currentPage = 0; // Reset to the first page when filtering
+    this.studentDataList = filteredStudents; // Update the studentDataList with filtered results
+    this.updateDisplayedStudents(); // Update the displayed students
   }
 
   nextPage(): void {
