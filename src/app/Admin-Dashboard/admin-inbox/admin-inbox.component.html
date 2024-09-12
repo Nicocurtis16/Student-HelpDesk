@@ -56,9 +56,8 @@
         <div *ngFor="let message of messages" class="w-[100%] h-[191px] border border-[#e7e7e7] rounded-[4px] mb-4">
           <!-- Message Header -->
           <div class="w-[100%] h-[50px] flex items-center">
-            <div class="w-[287.74px] h-[22px] relative ml-5">
-              <div class="w-[22px] h-[22px] left-0 top-0 absolute bg-[#f7a433]/60 rounded-full"></div>
-              <div class="w-[248.74px] h-[15.22px] left-10 top-[4.35px] absolute text-[#2e2c34] text-base font-semibold">
+            <div class="w-[287.74px] h-[22px] relative">
+              <div class="w-[248.74px] h-[15.22px] ml-5  top-[4.35px] absolute text-[#2e2c34] text-base font-semibold">
                 Ticket# {{ message.MessageID }}
               </div>
             </div>
@@ -67,24 +66,27 @@
           <!-- Message Body -->
           <div class="w-[100%] h-[80px] flex justify-center flex-col">
             <div class="w-[411.93px] h-[15.22px] ml-5 text-[#2e2c34] text-sm font-medium">{{ message.Subject }}</div>
-            <div class="w-[964px] h-[30.43px] ml-5 mt-3 text-[#84818a] text-xs font-medium">{{ message.Content }}</div>
+            <div class="w-[98%] h-[40px] flex justify-between ml-5 mt-3 text-[#84818a] text-xs font-medium ">
+              {{ message.Content }}
+              <div >
+                <a (click)="showReplyPanel(message.SenderID)" class="text-[#7f56d8] text-sm font-bold underline">Reply</a>
+              </div>
+
+            </div>
           </div>
 
           <!-- Message Footer -->
           <div class="w-[100%] h-[50px] flex justify-between border-t border-[#e7e7e7]">
-            <div class="w-[200px] h-[50px] flex items-center">
-              <div class="w-12 h-12 mr-4 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                <span class="text-[#667084] text-base font-semibold">
-                  {{ (message.SenderName?.length > 1 ? message.SenderName.slice(0, 2) : message.SenderName) | uppercase }}
-                </span>
+            <div class="w-[100%] h-[50px] flex items-center justify-between ">
+             
+              <div class="text-[#84818a] text-sm font-medium ml-5 ">
+                {{ message.SenderName }} 
               </div>
               <div class="text-[#84818a] text-sm font-medium">
-                {{ message.SenderName }} - {{ message.CreatedAt }}
+                 {{ message.CreatedAt }}
               </div>
             </div>
-            <div class="w-[100px] h-[50px] flex items-center">
-              <a (click)="showReplyPanel(message.SenderID)" class="text-[#7f56d8] text-sm font-bold underline">Reply</a>
-            </div>
+           
           </div>
         </div>
       </div>
