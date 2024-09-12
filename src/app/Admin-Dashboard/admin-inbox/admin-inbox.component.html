@@ -5,137 +5,109 @@
   </div>
 
   <!-- Main Content Area -->
-  <div class="h-[100%] w-screen ">
+  <div class="h-[100%] w-screen">
     <!-- Top Panel -->
     <div class="h-[10%] w-[100%] mb-5">
       <app-top-panel></app-top-panel>
     </div>
-    <div class="h-[85%] w-[100%] ">
-      <div
-        class="border-b border-[#e7e7e7] h-[15%] w-[100%] justify-start flex flex-col"
-      >
-        <!-- top -->
+
+    <!-- Content Area -->
+    <div class="h-[85%] w-[100%]">
+      <!-- Search and Button Section -->
+      <div class="border-b border-[#e7e7e7] h-[15%] w-[100%] flex flex-col justify-start">
+        <!-- Search Box -->
         <div class="h-[50%] w-[100%] flex items-center justify-between">
           <div class="h-[100%] w-[50%] flex items-center">
-            <div
-              class="w-[254px] h-11 pl-[22px] pr-[14.65px] py-[13px] bg-neutral-50 rounded border border-[#e7e7e7] inline-flex items-center gap-[12.35px]"
-            >
-              <div
-                class="w-[18px] h-[18px] inline-flex items-center justify-center"
-              >
+            <div class="w-[254px] h-11 pl-[22px] pr-[14.65px] py-[13px] bg-neutral-50 rounded border border-[#e7e7e7] inline-flex items-center gap-[12.35px]">
+              <div class="w-[18px] h-[18px] inline-flex items-center justify-center">
                 <div class="w-[18px] h-[18px] relative">
                   <img src="../../../assets/search-normal.svg" alt="" />
                 </div>
               </div>
               <input
-  type="text"
-  placeholder="Search for Inbox"
-  class="w-[187px] h-[13px] text-[#b5b5b5] text-xs font-medium font-['Montserrat'] bg-neutral-50 focus:outline-none"
-  (input)="onSearch($event.target.value)"
-/>
-
+                type="text"
+                placeholder="Search for Inbox"
+                class="w-[187px] h-[13px] text-[#b5b5b5] text-xs font-medium font-['Montserrat'] bg-neutral-50 focus:outline-none"
+                (input)="onSearch($event.target.value)"
+              />
             </div>
           </div>
+
+          <!-- New Message Button -->
           <div class="h-[100%] w-[50%] flex items-center justify-end">
-           
-            <!-- Button to trigger the form -->
-<button (click)="showMessageForm()" 
-class="w-[157px] h-11 p-2.5 bg-[#7f56d8] rounded inline-flex items-center justify-center gap-2.5 ml-3">
-<div class="w-6 h-6 relative">
-  <div class="w-6 h-6 left-0 top-0 absolute">
-    <div class="w-6 h-6 left-[0px] absolute">
-      <img src="../../../assets/message-edit.svg" alt="" />
-    </div>
-  </div>
-</div>
-<span class="text-center text-white text-sm font-semibold font-['Montserrat']">
-  New Message
-</span>
-</button>
-
-<app-message-form 
-  *ngIf="isMessageFormVisible"
-  (close)="handleFormClose()">
-</app-message-form>
-
-<!-- Message Form Component -->
-<app-message-form *ngIf="isMessageFormVisible"></app-message-form>
-
+            <button
+              (click)="showMessageForm()"
+              class="w-[157px] h-11 p-2.5 bg-[#7f56d8] rounded inline-flex items-center justify-center gap-2.5 ml-3"
+            >
+              <div class="w-6 h-6 relative">
+                <img src="../../../assets/message-edit.svg" alt="" />
+              </div>
+              <span class="text-white text-sm font-semibold">New Message</span>
+            </button>
+            
+            <!-- Message Form -->
+            <app-message-form *ngIf="isMessageFormVisible" (close)="handleFormClose()"></app-message-form>
           </div>
         </div>
-
-        
       </div>
-      <!-- Message Component -->
 
-<div class="h-[85%] w-[100%]  overflow-y-auto">
-  <div *ngFor="let message of messages" class="w-[100%] h-[191px] border border-[#e7e7e7] rounded-[4px] mb-4">
-    <div class="w-[100%] h-[50px] flex items-center">
-      <div class="w-[287.74px] h-[22px] relative ml-5">
-        <div class="w-[22px] h-[22px] left-0 top-0 absolute bg-[#f7a433]/60 rounded-full"></div>
-        <div class="w-[248.74px] h-[15.22px] left-10 top-[4.35px] absolute text-[#2e2c34] text-base font-semibold font-['Montserrat'] leading-[14px]">
-          Ticket# {{ message.MessageID }}
+      <!-- Messages Section -->
+      <div class="h-[85%] w-[100%] overflow-y-auto">
+        <div *ngFor="let message of messages" class="w-[100%] h-[191px] border border-[#e7e7e7] rounded-[4px] mb-4">
+          <!-- Message Header -->
+          <div class="w-[100%] h-[50px] flex items-center">
+            <div class="w-[287.74px] h-[22px] relative ml-5">
+              <div class="w-[22px] h-[22px] left-0 top-0 absolute bg-[#f7a433]/60 rounded-full"></div>
+              <div class="w-[248.74px] h-[15.22px] left-10 top-[4.35px] absolute text-[#2e2c34] text-base font-semibold">
+                Ticket# {{ message.MessageID }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Message Body -->
+          <div class="w-[100%] h-[80px] flex justify-center flex-col">
+            <div class="w-[411.93px] h-[15.22px] ml-5 text-[#2e2c34] text-sm font-medium">{{ message.Subject }}</div>
+            <div class="w-[964px] h-[30.43px] ml-5 mt-3 text-[#84818a] text-xs font-medium">{{ message.Content }}</div>
+          </div>
+
+          <!-- Message Footer -->
+          <div class="w-[100%] h-[50px] flex justify-between border-t border-[#e7e7e7]">
+            <div class="w-[200px] h-[50px] flex items-center">
+              <div class="w-12 h-12 mr-4 bg-[#f2f3f6] rounded-full flex justify-center items-center">
+                <span class="text-[#667084] text-base font-semibold">
+                  {{ (message.SenderName?.length > 1 ? message.SenderName.slice(0, 2) : message.SenderName) | uppercase }}
+                </span>
+              </div>
+              <div class="text-[#84818a] text-sm font-medium">
+                {{ message.SenderName }} - {{ message.CreatedAt }}
+              </div>
+            </div>
+            <div class="w-[100px] h-[50px] flex items-center">
+              <a (click)="showReplyPanel(message.SenderID)" class="text-[#7f56d8] text-sm font-bold underline">Reply</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reply Panel -->
+      <div *ngIf="showReplyPanelVisible" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+        <div class="bg-white p-5 rounded-lg w-1/2">
+          <h2 class="text-lg font-semibold mb-4">Reply to {{ replyToSenderName }}</h2>
+          <p *ngIf="senderIndexNumber" class="mb-2 text-sm text-gray-700">Sender Index Number: {{ senderIndexNumber }}</p>
+          <form (ngSubmit)="sendReply()">
+            <div class="mb-4">
+              <label for="subject" class="block text-sm font-medium mb-1">Subject:</label>
+              <input id="subject" [(ngModel)]="replySubject" name="subject" class="border border-gray-300 rounded p-2 w-full" required />
+            </div>
+            <div class="mb-4">
+              <label for="content" class="block text-sm font-medium mb-1">Message:</label>
+              <textarea id="content" [(ngModel)]="replyContent" name="content" class="border border-gray-300 rounded p-2 w-full h-32" required></textarea>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Send</button>
+            <button type="button" (click)="hideReplyPanel()" class="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded">Cancel</button>
+          </form>
         </div>
       </div>
     </div>
-    <div class="w-[100%] h-[80px] flex justify-center flex-col">
-      <div class="w-[411.93px] h-[15.22px] ml-5 text-[#2e2c34] text-sm font-medium font-['Montserrat'] leading-[14px]">
-        {{ message.Subject }}
-      </div>
-      <div class="w-[964px] h-[30.43px] ml-5 mt-3 text-[#84818a] text-xs font-medium font-['Montserrat'] leading-[14px]">
-        {{ message.Content }}
-      </div>
-    </div>
-    <div class="w-[100%] h-[50px] flex justify-between border-t border-[#e7e7e7]">
-      <div class="w-[200px] h-[50px] flex items-center">
-        <div class="w-12 h-12 mr-4 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-          <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">
-              {{ (message.SenderName?.length > 1 ? message.SenderName.slice(0, 2) : message.SenderName) | uppercase }}
-          </span>
-        </div>        
-        <div class="left-5 text-[#84818a] text-sm font-medium font-['Montserrat'] leading-[14px]">
-          {{ message.SenderName }} - {{ message.CreatedAt }}
-        </div>
-      </div>
-      <div class="w-[100px] h-[50px] flex items-center">
-        <a (click)="showReplyPanel(message.SenderID)" class="text-[#7f56d8] text-sm font-bold font-['Montserrat'] underline leading-[14px]">
-          Reply
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Reply Panel -->
-<div *ngIf="showReplyPanelVisible" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
-  <div class="bg-white p-5 rounded-lg w-1/2">
-    <h2 class="text-lg font-semibold mb-4">Reply to {{ replyToSenderName }}</h2>
-    <p *ngIf="senderIndexNumber" class="mb-2 text-sm text-gray-700">Sender Index Number: {{ senderIndexNumber }}</p>
-    <form (ngSubmit)="sendReply()">
-      <div class="mb-4">
-        <label for="subject" class="block text-sm font-medium mb-1">Subject:</label>
-        <input id="subject" [(ngModel)]="replySubject" name="subject" class="border border-gray-300 rounded p-2 w-full" required />
-      </div>
-      <div class="mb-4">
-        <label for="content" class="block text-sm font-medium mb-1">Message:</label>
-        <textarea id="content" [(ngModel)]="replyContent" name="content" class="border border-gray-300 rounded p-2 w-full h-32" required></textarea>
-      </div>
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Send</button>
-      <button type="button" (click)="hideReplyPanel()" class="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded">Cancel</button>
-    </form>
-  </div>
-</div>
-
-
-
-
-
-
-
-      
-    
-    </div>
-
   </div>
 </div>
