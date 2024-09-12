@@ -60,38 +60,40 @@
         <!-- Message List -->
         <div class="h-[85%] w-[100%] overflow-y-auto">
           <div *ngFor="let message of messages" class="w-[100%] h-[191px] border border-[#e7e7e7] rounded-[4px] mb-4">
+            <!-- Message Header -->
             <div class="w-[100%] h-[50px] flex items-center">
-              <div class="w-[287.74px] h-[22px] relative ml-5">
-                <div class="w-[22px] h-[22px] left-0 top-0 absolute bg-[#f7a433]/60 rounded-full"></div>
-                <div class="w-[248.74px] h-[15.22px] left-10 top-[4.35px] absolute text-[#2e2c34] text-base font-semibold font-['Montserrat'] leading-[14px]">
+              <div class="w-[287.74px] h-[22px] relative">
+                <div class="w-[248.74px] h-[15.22px] ml-5  top-[4.35px] absolute text-[#2e2c34] text-base font-semibold">
                   Ticket# {{ message.MessageID }}
                 </div>
               </div>
             </div>
+  
+            <!-- Message Body -->
             <div class="w-[100%] h-[80px] flex justify-center flex-col">
-              <div class="w-[411.93px] h-[15.22px] ml-5 text-[#2e2c34] text-sm font-medium font-['Montserrat'] leading-[14px]">
-                {{ message.Subject }}
-              </div>
-              <div class="w-[964px] h-[30.43px] ml-5 mt-3 text-[#84818a] text-xs font-medium font-['Montserrat'] leading-[14px]">
+              <div class="w-[411.93px] h-[15.22px] ml-5 text-[#2e2c34] text-sm font-medium">{{ message.Subject }}</div>
+              <div class="w-[98%] h-[40px] flex justify-between ml-5 mt-3 text-[#84818a] text-xs font-medium ">
                 {{ message.Content }}
+                
+  
               </div>
             </div>
+  
+            <!-- Message Footer -->
             <div class="w-[100%] h-[50px] flex justify-between border-t border-[#e7e7e7]">
-              <div class="w-[200px] h-[50px] flex items-center">
-                <div class="w-12 h-12 mr-4 bg-[#f2f3f6] rounded-full flex justify-center items-center">
-                  <span class="text-[#667084] text-base font-semibold font-['Archivo'] leading-normal tracking-tight">
-                      {{ (message.ReceiverName?.length > 1 ? message.ReceiverName.slice(0, 2) : message.ReceiverName) | uppercase }}
-                  </span>
-                </div>        
-                <div class="left-5 text-[#84818a] text-sm font-medium font-['Montserrat'] leading-[14px]">
-                  {{ message.ReceiverName }} - {{ message.CreatedAt }}
+              <div class="w-[100%] h-[50px] flex items-center justify-between ">
+               
+                <div class="text-[#84818a] text-sm font-medium ml-5 ">
+                  {{ message.SenderName }} 
+                </div>
+                <div class="text-[#84818a] text-sm font-medium">
+                   {{ message.CreatedAt }}
                 </div>
               </div>
-              
+             
             </div>
           </div>
         </div>
-        
         <!-- Reply Panel -->
         <div *ngIf="showReplyPanelVisible" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
           <div class="bg-white p-5 rounded-lg w-1/2">
