@@ -45,21 +45,24 @@ export class TopPanelComponent implements OnInit {
 
   private setActiveRouteName(): void {
     const currentRoute = this.router.url.toLowerCase();
-
+  
     if (currentRoute.includes('/dashboard')) {
       this.activeRouteName = 'Dashboard';
     } else if (currentRoute.includes('/faq')) {
       this.activeRouteName = 'FAQ';
     } else if (currentRoute.includes('/student')) {
       this.activeRouteName = 'Student';
+    } else if (currentRoute.includes('/admin/inbox')) {
+      this.activeRouteName = 'Inbox';
+    } else if (currentRoute.includes('/admin/outbox')) {
+      this.activeRouteName = 'Outbox';
+    } else if (currentRoute.includes('/admin/settings')) {
+      this.activeRouteName = 'Settings';
     } else if (currentRoute.includes('/admin')) {
       this.activeRouteName = 'Administrator';
-    } else if (currentRoute.includes('/settings')) {
-      this.activeRouteName = 'Settings';
-    } else if (currentRoute.includes('/Admin/inbox')) {
-      this.activeRouteName = 'Inbox';
     } else {
       this.activeRouteName = 'Manage Users';
     }
   }
+  
 }
