@@ -15,8 +15,7 @@ export class AdminInboxComponent implements OnInit {
   replyContent: string = '';
   senderIndexNumber: string = '';
   messages: any[] = [];
-  selectedMessageId: number | null = null; // Add this line
-  // Add this boolean property to control the visibility of the message form
+  selectedMessageId: number | null = null;
   isMessageFormVisible: boolean = false;
 
   constructor(
@@ -37,27 +36,34 @@ export class AdminInboxComponent implements OnInit {
     });
   }
 
+  // Method to load unresponded messages
   loadMessages(): void {
-    this.messageService.getMessages().subscribe(data => {
-      console.log('Messages loaded:', data.message_list);
-      this.messages = data.message_list; // Update message list
-    });
+    this.messageService.getMessages().subscribe(
+      data => {
+        console.log('Messages loaded:', data.unresponded_student_messages);  // Make sure to adjust data structure based on API response
+        this.messages = data.unresponded_student_messages; // Update the message list
+      },
+      error => {
+        console.error('Error loading messages:', error);
+      }
+    );
   }
 
+  // Method to show reply panel
   showReplyPanel(message: any): void {
     this.replyToSenderID = message.SenderID;
     this.replyToSenderName = message.SenderName;
     this.selectedMessageId = message.MessageID; // Store the selected message ID
-  
     this.showReplyPanelVisible = true;
   }
-  
 
+  // Method to hide reply panel
   hideReplyPanel(): void {
     this.showReplyPanelVisible = false;
-    this.replyContent = ''; // Reset reply content
+    this.replyContent = ''; // Reset the reply content
   }
 
+  // Method to send a reply
   sendReply(): void {
     if (this.selectedMessageId && this.replyContent.trim()) {
       this.messageService.respondToMessage(this.selectedMessageId, this.replyContent).subscribe(
@@ -75,7 +81,6 @@ export class AdminInboxComponent implements OnInit {
       alert('Please provide a valid reply');
     }
   }
-  
 
   fetchSenderIndexNumber(senderID: number): void {
     this.http.get(`http://godinberto.pythonanywhere.com/api/v1/users/${senderID}`).subscribe((data: any) => {
@@ -86,26 +91,20 @@ export class AdminInboxComponent implements OnInit {
 
   // Method to handle showing the message form
   showMessageForm(): void {
-    this.isMessageFormVisible = true; // Show the message form
+    this.isMessageFormVisible = true;
   }
 
   // Method to handle hiding the message form
   hideMessageForm(): void {
-    this.isMessageFormVisible = false; // Hide the message form
+    this.isMessageFormVisible = false;
   }
 
   handleFormClose(): void {
-    this.hideMessageForm(); // Handle form close event
+    this.hideMessageForm();
   }
 
+  // Search method (optional)
   onSearch(query: string): void {
-    if (query.trim()) {
-      this.messageService.searchMessages(query).subscribe(data => {
-        console.log('Search results:', data.message_list);
-        this.messages = data.message_list; // Update message list with search results
-      });
-    } else {
-      this.loadMessages(); // Load all messages if the search query is empty
-    }
+    // If you still want to include a search feature, you can handle it here
   }
 }
